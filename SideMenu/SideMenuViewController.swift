@@ -141,7 +141,7 @@ public class SideMenuController: UIViewController {
         }
     }
     
-    // MARK:
+    // MARK: Show/Hide Menu
     
     public func revealMenu() {
         func addTapView() {
@@ -202,6 +202,11 @@ public class SideMenuController: UIViewController {
     // MARK: Status Bar
     
     private func setStatusBar(hidden: Bool) {
+        // UIKit provides `setNeedsStatusBarAppearanceUpdate` and couple of methods to animate the status bar changes.
+        // The problem with this approach is it will hide the status bar and it's underlying space completely, as a result,
+        // the navigation bar will go up as we don't expect.
+        // So we need to manipulate the windows of status bar manually.
+        
         let behavior = self.preferences.basic.statusBarBehavior
         UIWindow.sb?.set(hidden, with: behavior)
         if behavior == .hideOnMenu {
@@ -215,7 +220,7 @@ public class SideMenuController: UIViewController {
         }
     }
     
-    func statusBarScreenShot() -> UIView? {
+    private func statusBarScreenShot() -> UIView? {
         let height = UIApplication.shared.statusBarFrame
         let screenshot = UIScreen.main.snapshotView(afterScreenUpdates: false)
         screenshot.frame.size.height = height.height

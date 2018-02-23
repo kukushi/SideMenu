@@ -9,11 +9,18 @@
 import UIKit
 
 extension UIWindow {
-    static var sb: UIWindow? {
+    
+    /// Access the "statusBarWindows"
+    static internal var sb: UIWindow? {
         let s = "status", b = "Bar", w = "Window"
         return UIApplication.shared.value(forKey: s+b+w) as? UIWindow
     }
     
+    /// Change the windows visibility's with custom behavior
+    ///
+    /// - Parameters:
+    ///   - hidden: the windows hidden status
+    ///   - behavior: status bar behavior
     func set(_ hidden: Bool, with behavior: SideMenuPreferences.StatusBarBehavior) {
         guard behavior != .none else {
             return

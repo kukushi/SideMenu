@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// The preferences of SideMenuController
 public struct SideMenuPreferences {
     public enum StatusBarBehavior {
         case none
