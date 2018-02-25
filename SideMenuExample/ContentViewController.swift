@@ -31,5 +31,13 @@ class ContentViewController: UIViewController {
         SideMenuController.preferences.basic.statusBarBehavior = statusBarBehaviors[sender.selectedSegmentIndex]
     }
     
+    @IBAction func switchDidClicked(_ sender: UISwitch) {
+        SideMenuController.preferences.basic.enableEdgePanGesture = sender.isOn
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
 }
 

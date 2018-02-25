@@ -24,12 +24,16 @@ public struct SideMenuPreferences {
         public var options: UIViewAnimationOptions = .curveEaseOut
         public var usingSpringDamping: CGFloat = 1
         public var initialSpringVelocity: CGFloat = 1
+        public var shouldShowShadowWhenRevealing = true
+        public var menuShadowAlpha: CGFloat = 0.2
     }
     
     public struct Configuration {
         public var menuWidth: CGFloat = 300
-        public var defaultCacheKey: String?
         public var statusBarBehavior: StatusBarBehavior = .none
+        public var enableEdgePanGesture = true
+        public var enableBounceWhenPan = true
+        public var defaultCacheKey: String?
     }
     
     public var basic = Configuration()

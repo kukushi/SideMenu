@@ -11,7 +11,6 @@ import UIKit
 // MARK: Delegates
 
 public protocol SideMenuControllerDelegate: class {
-    func sideMenuDidRecognizePanGesture(_ sideMenu: SideMenuController, recongnizer: UIPanGestureRecognizer)
     func sideMenuWillShow(_ sideMenu: SideMenuController)
     func sideMenuDidShow(_ sideMenu: SideMenuController)
     func sideMenuWillHide(_ sideMenu: SideMenuController)
@@ -20,7 +19,6 @@ public protocol SideMenuControllerDelegate: class {
 
 // Provides default implementation for delegates
 public extension SideMenuControllerDelegate {
-    func sideMenuDidRecognizePanGesture(_ sideMenu: SideMenuController, recongnizer: UIPanGestureRecognizer) {}
     func sideMenuWillShow(_ sideMenu: SideMenuController) {}
     func sideMenuDidShow(_ sideMenu: SideMenuController) {}
     func sideMenuWillHide(_ sideMenu: SideMenuController) {}
@@ -45,7 +43,6 @@ public class SideMenuSegue: UIStoryboardSegue {
     }
     
 }
-
 
 /// The SideMenuController main class
 public class SideMenuController: UIViewController {
@@ -88,21 +85,19 @@ public class SideMenuController: UIViewController {
     private let menuContainerView = UIView()
     private let contentContainerView = UIView()
     private var statusBarScreenShotView: UIView?
+    private var isMenuVisible = false
 
-    /// The view responsible for tapping to hide the menu
-    weak private var tapView: UIView? {
+    /// The view responsible for tapping to hide the menu and shadow
+    weak private var contentContainerOverlay: UIView? {
         didSet {
-            guard let tapView = tapView else {
+            guard let overlay = contentContainerOverlay else {
                 return
             }
             
-            tapView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            let exitPanGesture = UIPanGestureRecognizer()
-            exitPanGesture.addTarget(self, action:#selector(SideMenuController.hideButtonDidClicked(_:)))
-            let exitTapGesture = UITapGestureRecognizer()
-            exitTapGesture.addTarget(self, action: #selector(SideMenuController.hideButtonDidClicked(_:)))
-            tapView.addGestureRecognizer(exitPanGesture)
-            tapView.addGestureRecognizer(exitTapGesture)
+            overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            let tapToHideGesture = UITapGestureRecognizer()
+            tapToHideGesture.addTarget(self, action: #selector(SideMenuController.hideButtonDidClicked(_:)))
+            overlay.addGestureRecognizer(tapToHideGesture)
         }
     }
     
@@ -130,85 +125,174 @@ public class SideMenuController: UIViewController {
         view.addSubview(contentContainerView)
         
         menuContainerView.frame = sideMenuFrame(visibility: false)
-        menuViewController?.view.isHidden = true
         view.addSubview(menuContainerView)
         
         load(contentViewController, on: contentContainerView)
         load(menuViewController, on: menuContainerView)
         
+        // Forwarding stauts bar style/hidden to content view controller
+        setNeedsStatusBarAppearanceUpdate()
+        
         if let key = preferences.basic.defaultCacheKey {
             lazyCachedViewControllers[key] = contentViewController
         }
+        
+        configureGestures()
+    }
+    
+    private func configureGestures() {
+        // The gesture will be added anyway
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SideMenuController.handlePanGesture(_:)))
+        panGesture.delegate = self
+        view.addGestureRecognizer(panGesture)
     }
     
     // MARK: Show/Hide Menu
     
+    
+    /// Reveal the menu
     public func revealMenu() {
-        func addTapView() {
-            let tapView = UIView()
-            contentContainerView.isUserInteractionEnabled = true
-            contentContainerView.insertSubview(tapView, aboveSubview: contentViewController!.view)
-            tapView.bounds = contentContainerView.bounds
-            tapView.center = contentContainerView.center
-            tapView.alpha = 0
-            self.tapView = tapView
-        }
-        menuViewController?.view.isHidden = false
-        menuViewController?.beginAppearanceTransition(true, animated: true)
-        
-        addTapView()
-        
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
-        delegate?.sideMenuWillShow(self)
-        
-        animateMenu(with: preferences, reveal: true, animations: {
-            self.menuContainerView.frame = self.sideMenuFrame(visibility: true)
-            self.tapView?.backgroundColor = .black
-            self.tapView?.alpha = 0.2
-        }) { (finished) in
-            self.menuViewController?.endAppearanceTransition()
-            UIApplication.shared.endIgnoringInteractionEvents()
-            
-            self.delegate?.sideMenuDidShow(self)
-        }
+        showMenuWithOptions()
     }
     
+    /// Hide the menu
     public func hideMenu() {
+        hideMenuWithOptions()
+    }
+    
+    private func hideMenuWithOptions(shouldCallDelegate: Bool = true, shouldChangeStatusBar: Bool = true) {
         menuViewController?.beginAppearanceTransition(true, animated: true)
         
-        delegate?.sideMenuWillHide(self)
+        if shouldCallDelegate {
+            delegate?.sideMenuWillHide(self)
+        }
         
         UIApplication.shared.beginIgnoringInteractionEvents()
         
-        animateMenu(with: preferences, reveal: false, animations: {
+        animateMenu(with: preferences,
+                    reveal: false,
+                    shouldChangeStatusBar: shouldChangeStatusBar,
+                    animations: {
             self.menuContainerView.frame = self.sideMenuFrame(visibility: false)
             self.menuContainerView.alpha = 1.0
-            self.tapView?.alpha = 0
+            self.contentContainerOverlay?.alpha = 0
         }) { (finished) in
             self.menuViewController?.endAppearanceTransition()
             
-            self.delegate?.sideMenuDidHide(self)
+            if shouldCallDelegate {
+                self.delegate?.sideMenuDidHide(self)
+            }
             
-            self.tapView?.removeFromSuperview()
+            self.contentContainerOverlay?.removeFromSuperview()
+            self.contentContainerOverlay = nil
             UIApplication.shared.endIgnoringInteractionEvents()
+            
+            self.isMenuVisible = false
         }
     }
     
-    @objc func hideButtonDidClicked(_ tap: UITapGestureRecognizer) {
+    private func showMenuWithOptions(shouldCallDelegate: Bool = true, shouldChangeStatusBar: Bool = true) {
+        menuViewController?.beginAppearanceTransition(true, animated: true)
+        
+        addContentOverlayViewIfNeeded()
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        if shouldCallDelegate {
+            delegate?.sideMenuWillShow(self)
+        }
+        
+        animateMenu(with: preferences,
+                    reveal: true,
+                    shouldChangeStatusBar: shouldChangeStatusBar,
+                    animations: {
+            self.menuContainerView.frame = self.sideMenuFrame(visibility: true)
+            if self.preferences.animation.shouldShowShadowWhenRevealing {
+                self.contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha
+            }
+        }) { (finished) in
+            self.menuViewController?.endAppearanceTransition()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            if shouldCallDelegate {
+                self.delegate?.sideMenuDidShow(self)
+            }
+            
+            self.isMenuVisible = true
+        }
+    }
+    
+    @objc private func hideButtonDidClicked(_ tap: UITapGestureRecognizer) {
         hideMenu()
+    }
+    
+    // MAKR: Gesture
+    
+    private func addContentOverlayViewIfNeeded() {
+        guard self.contentContainerOverlay == nil else {
+            return
+        }
+        
+        let overlay = UIView()
+        overlay.bounds = contentContainerView.bounds
+        overlay.center = contentContainerView.center
+        overlay.backgroundColor = .black
+        overlay.alpha = 0
+        contentContainerOverlay = overlay
+        
+        contentContainerView.insertSubview(overlay, aboveSubview: contentViewController!.view)
+    }
+    
+    private var startFrameX: CGFloat = 0
+    
+    @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
+        
+        let menuWidth = preferences.basic.menuWidth
+        let translation = pan.translation(in: pan.view).x
+        switch pan.state {
+        case .began:
+            startFrameX = menuContainerView.frame.minX
+            addContentOverlayViewIfNeeded()
+            setStatusBar(hidden: !isMenuVisible, animate: true)
+            
+        case .changed:
+            let resultX = startFrameX + translation
+            let menuContainerWidth = menuContainerView.frame.width
+            if resultX >= menuWidth - menuContainerWidth || resultX < -menuContainerWidth {
+                return
+            }
+            menuContainerView.frame.origin.x = resultX
+            
+            let shadowPrecent = menuContainerView.frame.maxX / menuWidth
+            contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
+        case .ended, .cancelled, .failed:
+            let precent = menuContainerView.frame.maxX / menuWidth
+            if precent > 0.5 {
+                showMenuWithOptions(shouldCallDelegate: !isMenuVisible, shouldChangeStatusBar: isMenuVisible)
+            } else {
+                hideMenuWithOptions(shouldCallDelegate: isMenuVisible, shouldChangeStatusBar: !isMenuVisible)
+            }
+        default:
+            break
+        }
     }
     
     // MARK: Status Bar
     
-    private func setStatusBar(hidden: Bool) {
+    private func setStatusBar(hidden: Bool, animate: Bool = false) {
         // UIKit provides `setNeedsStatusBarAppearanceUpdate` and couple of methods to animate the status bar changes.
         // The problem with this approach is it will hide the status bar and it's underlying space completely, as a result,
         // the navigation bar will go up as we don't expect.
         // So we need to manipulate the windows of status bar manually.
         
         let behavior = self.preferences.basic.statusBarBehavior
-        UIWindow.sb?.set(hidden, with: behavior)
+        if animate && behavior != .hideOnMenu {
+            UIView.animate(withDuration: 0.4, animations: {
+                UIWindow.sb?.set(hidden, with: behavior)
+            })
+        } else {
+            UIWindow.sb?.set(hidden, with: behavior)
+        }
+        
         if behavior == .hideOnMenu {
             if !hidden {
                 statusBarScreenShotView?.removeFromSuperview()
@@ -229,17 +313,39 @@ public class SideMenuController: UIViewController {
         
     }
     
-    // MARK: Cache
-    
-    public func cache(lazyViewController:@escaping () -> UIViewController?, with identifier: String) {
-        lazyCachedViewControllerClosures[identifier] = lazyViewController
+    public override var childViewControllerForStatusBarStyle: UIViewController? {
+        // Forward to the content view controller
+        return contentViewController
     }
     
+    public override var childViewControllerForStatusBarHidden: UIViewController? {
+        return contentViewController
+    }
+    
+    // MARK: Cache
+    
+    /// Cache the closure with identifier. The closure will only execute when needed.
+    ///
+    /// - Parameters:
+    ///   - viewControllerClosure: the closure generate the view controller
+    ///   - identifier: identifier the cache the view controller
+    public func cache(viewControllerClosure: @escaping () -> UIViewController?, with identifier: String) {
+        lazyCachedViewControllerClosures[identifier] = viewControllerClosure
+    }
+    
+    /// Cache the view controller with identifier
+    ///
+    /// - Parameters:
+    ///   - viewController: the view controller to cache
+    ///   - identifier: the identifier
     public func cache(viewController: UIViewController, with identifier: String) {
         lazyCachedViewControllers[identifier] = viewController
     }
     
-    public func switchToViewController(with identifier: String) {
+    /// Change the content view controller with given identifier
+    ///
+    /// - Parameter identifier: the identifier
+    public func setContentViewController(with identifier: String) {
         if let viewController = lazyCachedViewControllers[identifier] {
             contentViewController = viewController
         } else if let viewController = lazyCachedViewControllerClosures[identifier]?() {
@@ -248,15 +354,31 @@ public class SideMenuController: UIViewController {
             contentViewController = viewController
         }
     }
+
+    /// The identifier of current content view controller, if exist
+    ///
+    /// - Returns: the identifier
+    public func currentCacheIdentifier() -> String? {
+        guard let index = lazyCachedViewControllers.values.index(of: contentViewController!) else {
+            return nil
+        }
+        return lazyCachedViewControllers.keys[index]
+    }
+    
+    public func clearCache(with identifier: String) {
+        lazyCachedViewControllerClosures[identifier] = nil
+        lazyCachedViewControllers[identifier] = nil
+    }
     
     // MARK: - Helper Methods
     
     private func animateMenu(with preferences: SideMenuPreferences,
                      reveal: Bool,
+                     shouldChangeStatusBar: Bool = true,
                      animations: @escaping () -> Void,
                      completion: ((Bool) -> Void)? = nil) {
         let shouldAnimateStatusBarChange = preferences.basic.statusBarBehavior != .hideOnMenu
-        if !shouldAnimateStatusBarChange && reveal {
+        if shouldChangeStatusBar && !shouldAnimateStatusBarChange && reveal {
             setStatusBar(hidden: reveal)
         }
         let duration = reveal ? preferences.animation.revealDuration : preferences.animation.hideDuration
@@ -266,14 +388,16 @@ public class SideMenuController: UIViewController {
                        initialSpringVelocity: preferences.animation.initialSpringVelocity,
                        options: preferences.animation.options,
         animations: {
-            if shouldAnimateStatusBarChange {
+            if shouldChangeStatusBar && shouldAnimateStatusBarChange {
                 self.setStatusBar(hidden: reveal)
             }
+            
             animations()
         }) { (finished) in
-            if !shouldAnimateStatusBarChange && !reveal {
+            if shouldChangeStatusBar && !shouldAnimateStatusBarChange && !reveal {
                 self.setStatusBar(hidden: reveal)
             }
+            
             completion?(finished)
         }
     }
@@ -312,4 +436,13 @@ public class SideMenuController: UIViewController {
         viewController.removeFromParentViewController()
     }
     
+}
+
+extension SideMenuController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if gestureRecognizer.view == view && gestureRecognizer is UIPanGestureRecognizer {
+            return self.preferences.basic.enableEdgePanGesture
+        }
+        return true
+    }
 }

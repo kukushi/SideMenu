@@ -27,8 +27,8 @@ class MenuViewController: UIViewController {
         }
         sideMenuController = theSideMenuController
         
-        sideMenuController.cache(lazyViewController: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
-        sideMenuController.cache(lazyViewController: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
+        sideMenuController.cache(viewControllerClosure: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
+        sideMenuController.cache(viewControllerClosure: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
         sideMenuController.delegate = self
     }
 }
@@ -71,8 +71,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        sm_sideMenuController?.switchToViewController(with: "\(row)")
-        sm_sideMenuController?.hideMenu()
+        sideMenuController.setContentViewController(with: "\(row)")
+        sideMenuController.hideMenu()
+        
+        print("ViewCOntroller Cache Identifier: " + sideMenuController.currentCacheIdentifier()!)
     }
 }
 
