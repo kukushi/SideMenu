@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Provides helpers methods for view controller
+// Provides aceess to the side menu controller
 public extension UIViewController {
     
     /// Access the side menu controller
@@ -17,13 +17,13 @@ public extension UIViewController {
     }
     
     fileprivate func getSideMenuController(_ viewController: UIViewController) -> SideMenuController? {
-        if let parent = viewController.parent {
-            if let parent = parent as? SideMenuController {
-                return parent
-            } else {
-                return getSideMenuController(parent)
+        var sourceViewController: UIViewController? = viewController
+        repeat {
+            if let parent = sourceViewController?.parent, parent is SideMenuController {
+                return parent as? SideMenuController
             }
-        }
+            sourceViewController = parent
+        } while (sourceViewController != nil)
         return nil
     }
 }

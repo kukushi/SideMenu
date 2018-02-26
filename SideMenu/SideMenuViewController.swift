@@ -117,6 +117,8 @@ public class SideMenuController: UIViewController {
         
         // Setup from the IB
         if isInitiatedFromStoryboard {
+            // Note that if you are using the SideMenuController from the IB, you must supply the default or custom view controller
+            // ID in the storybaord.
             performSegue(withIdentifier: contentID ?? StoryboardSegue.content.rawValue, sender: self)
             performSegue(withIdentifier: menuID ?? StoryboardSegue.menu.rawValue, sender: self)
         }
@@ -247,7 +249,7 @@ public class SideMenuController: UIViewController {
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
         
         let menuWidth = preferences.basic.menuWidth
-        let translation = pan.translation(in: pan.view).x
+        var translation = pan.translation(in: pan.view).x
         switch pan.state {
         case .began:
             startFrameX = menuContainerView.frame.minX
@@ -257,16 +259,25 @@ public class SideMenuController: UIViewController {
         case .changed:
             let resultX = startFrameX + translation
             let menuContainerWidth = menuContainerView.frame.width
-            if resultX >= menuWidth - menuContainerWidth || resultX < -menuContainerWidth {
+            if (!preferences.basic.enableRubberEffectWhenPanning && resultX >= menuWidth - menuContainerWidth) || resultX < -menuContainerWidth {
                 return
             }
-            menuContainerView.frame.origin.x = resultX
             
-            let shadowPrecent = menuContainerView.frame.maxX / menuWidth
+            if resultX <= menuWidth - menuContainerWidth {
+                menuContainerView.frame.origin.x = resultX
+            } else {
+                if !isMenuVisible {
+                    translation -= menuWidth
+                }
+                menuContainerView.frame.origin.x = (menuWidth - menuContainerWidth) + (menuWidth * log10((translation + menuWidth)/menuWidth))
+            }
+            
+            let shadowPrecent = min(menuContainerView.frame.maxX / menuWidth, 1)
             contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
         case .ended, .cancelled, .failed:
             let precent = menuContainerView.frame.maxX / menuWidth
-            if precent > 0.5 {
+            let decisionPoint: CGFloat = isMenuVisible ? 0.6 : 0.4
+            if precent > decisionPoint {
                 showMenuWithOptions(shouldCallDelegate: !isMenuVisible, shouldChangeStatusBar: isMenuVisible)
             } else {
                 hideMenuWithOptions(shouldCallDelegate: isMenuVisible, shouldChangeStatusBar: !isMenuVisible)
@@ -310,7 +321,6 @@ public class SideMenuController: UIViewController {
         screenshot.frame.size.height = height.height
         screenshot.contentMode = .top
         return screenshot
-        
     }
     
     public override var childViewControllerForStatusBarStyle: UIViewController? {
@@ -438,10 +448,12 @@ public class SideMenuController: UIViewController {
     
 }
 
+// MARK: UIGestureRecognizerDelegate
+
 extension SideMenuController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if gestureRecognizer.view == view && gestureRecognizer is UIPanGestureRecognizer {
-            return self.preferences.basic.enableEdgePanGesture
+            return self.preferences.basic.enablePanGesture
         }
         return true
     }

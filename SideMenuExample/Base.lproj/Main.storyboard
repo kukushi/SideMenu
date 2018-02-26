@@ -90,14 +90,30 @@
                                             <action selector="switchDidClicked:" destination="sdR-iU-7Ig" eventType="valueChanged" id="Lbf-ie-vh2"/>
                                         </connections>
                                     </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Rubber Band Effect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht3-rm-Mhh">
+                                        <rect key="frame" x="20" y="59" width="206" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRk-27-sAo">
+                                        <rect key="frame" x="306" y="54" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchDidClicked:" destination="sdR-iU-7Ig" eventType="valueChanged" id="uM3-Gu-7FP"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="paq-x0-fz3" firstAttribute="centerY" secondItem="i71-AF-n6x" secondAttribute="centerY" id="3SE-yz-K12"/>
+                                    <constraint firstItem="ht3-rm-Mhh" firstAttribute="leading" secondItem="oVz-7o-4j5" secondAttribute="leading" constant="20" id="8KP-Z7-86a"/>
                                     <constraint firstItem="i71-AF-n6x" firstAttribute="leading" secondItem="oVz-7o-4j5" secondAttribute="leading" constant="20" id="Ai2-1s-7V5"/>
                                     <constraint firstAttribute="trailing" secondItem="paq-x0-fz3" secondAttribute="trailing" constant="20" id="Q4C-q1-VbG"/>
                                     <constraint firstItem="i71-AF-n6x" firstAttribute="top" secondItem="oVz-7o-4j5" secondAttribute="top" constant="8" id="UKn-z1-Ypr"/>
+                                    <constraint firstItem="ht3-rm-Mhh" firstAttribute="top" secondItem="i71-AF-n6x" secondAttribute="bottom" constant="30" id="eYO-df-mcG"/>
                                     <constraint firstAttribute="height" constant="88" id="ek0-d7-5bj"/>
+                                    <constraint firstItem="YRk-27-sAo" firstAttribute="centerY" secondItem="ht3-rm-Mhh" secondAttribute="centerY" id="qBz-Lf-MBJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="YRk-27-sAo" secondAttribute="trailing" constant="20" id="yxz-7G-br3"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -118,6 +134,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="enablePanGesture" destination="paq-x0-fz3" id="kTO-C9-igp"/>
+                        <outlet property="enableRubberBandEffect" destination="YRk-27-sAo" id="ynA-je-SUc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nJ-R8-VEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -189,6 +209,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8E5-af-WL5" firstAttribute="bottom" secondItem="4ZU-U2-5YC" secondAttribute="bottom" id="Ey7-t3-ERl"/>
                             <constraint firstItem="8E5-af-WL5" firstAttribute="top" secondItem="gAk-Pk-U3l" secondAttribute="top" id="gCR-hZ-uL6"/>

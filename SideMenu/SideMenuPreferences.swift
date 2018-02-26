@@ -31,8 +31,8 @@ public struct SideMenuPreferences {
     public struct Configuration {
         public var menuWidth: CGFloat = 300
         public var statusBarBehavior: StatusBarBehavior = .none
-        public var enableEdgePanGesture = true
-        public var enableBounceWhenPan = true
+        public var enablePanGesture = true
+        public var enableRubberEffectWhenPanning = true
         public var defaultCacheKey: String?
     }
     

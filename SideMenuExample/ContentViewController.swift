@@ -10,7 +10,9 @@ import UIKit
 import SideMenu
 
 class ContentViewController: UIViewController {
-
+    @IBOutlet weak var enablePanGesture: UISwitch!
+    @IBOutlet weak var enableRubberBandEffect: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +34,14 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func switchDidClicked(_ sender: UISwitch) {
-        SideMenuController.preferences.basic.enableEdgePanGesture = sender.isOn
+        switch sender {
+        case enablePanGesture:
+            SideMenuController.preferences.basic.enablePanGesture = sender.isOn
+        case enableRubberBandEffect:
+            SideMenuController.preferences.basic.enableRubberEffectWhenPanning = sender.isOn
+        default:
+            break
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
