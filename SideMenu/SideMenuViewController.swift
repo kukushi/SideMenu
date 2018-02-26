@@ -86,6 +86,11 @@ public class SideMenuController: UIViewController {
     private let contentContainerView = UIView()
     private var statusBarScreenShotView: UIView?
     private var isMenuVisible = false
+    
+    private var shouldShowShadowOnContent: Bool {
+        return preferences.animation.shouldShowShadowWhenRevealing
+            && preferences.basic.position != .below
+    }
 
     /// The view responsible for tapping to hide the menu and shadow
     weak private var contentContainerOverlay: UIView? {
@@ -132,6 +137,10 @@ public class SideMenuController: UIViewController {
         load(contentViewController, on: contentContainerView)
         load(menuViewController, on: menuContainerView)
         
+        if preferences.basic.position == .below {
+            view.bringSubview(toFront: contentContainerView)
+        }
+        
         // Forwarding stauts bar style/hidden to content view controller
         setNeedsStatusBarAppearanceUpdate()
         
@@ -150,7 +159,6 @@ public class SideMenuController: UIViewController {
     }
     
     // MARK: Show/Hide Menu
-    
     
     /// Reveal the menu
     public func revealMenu() {
@@ -176,8 +184,10 @@ public class SideMenuController: UIViewController {
                     shouldChangeStatusBar: shouldChangeStatusBar,
                     animations: {
             self.menuContainerView.frame = self.sideMenuFrame(visibility: false)
-            self.menuContainerView.alpha = 1.0
-            self.contentContainerOverlay?.alpha = 0
+            self.contentContainerView.frame = self.contentFrame(visibility: false)
+            if self.shouldShowShadowOnContent {
+                    self.contentContainerOverlay?.alpha = 0
+            }
         }) { (finished) in
             self.menuViewController?.endAppearanceTransition()
             
@@ -209,7 +219,8 @@ public class SideMenuController: UIViewController {
                     shouldChangeStatusBar: shouldChangeStatusBar,
                     animations: {
             self.menuContainerView.frame = self.sideMenuFrame(visibility: true)
-            if self.preferences.animation.shouldShowShadowWhenRevealing {
+            self.contentContainerView.frame = self.contentFrame(visibility: true)
+            if self.shouldShowShadowOnContent {
                 self.contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha
             }
         }) { (finished) in
@@ -237,8 +248,12 @@ public class SideMenuController: UIViewController {
         let overlay = UIView()
         overlay.bounds = contentContainerView.bounds
         overlay.center = contentContainerView.center
-        overlay.backgroundColor = .black
-        overlay.alpha = 0
+        if preferences.basic.position == .below {
+            overlay.backgroundColor = .clear
+        } else {
+            overlay.backgroundColor = .black
+            overlay.alpha = 0
+        }
         contentContainerOverlay = overlay
         
         contentContainerView.insertSubview(overlay, aboveSubview: contentViewController!.view)
@@ -247,35 +262,65 @@ public class SideMenuController: UIViewController {
     private var startFrameX: CGFloat = 0
     
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
-        
         let menuWidth = preferences.basic.menuWidth
         var translation = pan.translation(in: pan.view).x
+        let viewToAnimate: UIView
+        let leftBorder: CGFloat
+        let rightBorder: CGFloat
+        let containerWidth: CGFloat
+        switch preferences.basic.position {
+        case .above:
+            viewToAnimate = menuContainerView
+            containerWidth = viewToAnimate.frame.width
+            leftBorder = -containerWidth
+            rightBorder = menuWidth - containerWidth
+        case .below:
+            viewToAnimate = contentContainerView
+            containerWidth = viewToAnimate.frame.width
+            leftBorder = 0
+            rightBorder = menuWidth
+        default:
+            viewToAnimate = menuContainerView
+            containerWidth = viewToAnimate.frame.width
+            leftBorder = -containerWidth
+            rightBorder = menuWidth - containerWidth
+        }
+        
         switch pan.state {
         case .began:
-            startFrameX = menuContainerView.frame.minX
+            startFrameX = viewToAnimate.frame.minX
             addContentOverlayViewIfNeeded()
             setStatusBar(hidden: !isMenuVisible, animate: true)
             
         case .changed:
             let resultX = startFrameX + translation
-            let menuContainerWidth = menuContainerView.frame.width
-            if (!preferences.basic.enableRubberEffectWhenPanning && resultX >= menuWidth - menuContainerWidth) || resultX < -menuContainerWidth {
+            guard (preferences.basic.enableRubberEffectWhenPanning || resultX <= rightBorder) && resultX >= leftBorder else {
                 return
             }
             
-            if resultX <= menuWidth - menuContainerWidth {
-                menuContainerView.frame.origin.x = resultX
+            if resultX <= rightBorder {
+                viewToAnimate.frame.origin.x = resultX
             } else {
                 if !isMenuVisible {
                     translation -= menuWidth
                 }
-                menuContainerView.frame.origin.x = (menuWidth - menuContainerWidth) + (menuWidth * log10((translation + menuWidth)/menuWidth))
+                viewToAnimate.frame.origin.x = rightBorder + (menuWidth * log10(translation / menuWidth + 1))
             }
             
-            let shadowPrecent = min(menuContainerView.frame.maxX / menuWidth, 1)
-            contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
+            if shouldShowShadowOnContent {
+                let shadowPrecent = min(menuContainerView.frame.maxX / menuWidth, 1)
+                contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
+            }
         case .ended, .cancelled, .failed:
-            let precent = menuContainerView.frame.maxX / menuWidth
+            let precent: CGFloat
+            switch preferences.basic.position {
+            case .above:
+                precent = viewToAnimate.frame.maxX / menuWidth
+            case .below:
+                precent = viewToAnimate.frame.minX / menuWidth
+            case .sideBySide:
+                precent = 0
+            }
             let decisionPoint: CGFloat = isMenuVisible ? 0.6 : 0.4
             if precent > decisionPoint {
                 showMenuWithOptions(shouldCallDelegate: !isMenuVisible, shouldChangeStatusBar: isMenuVisible)
@@ -413,13 +458,39 @@ public class SideMenuController: UIViewController {
     }
     
     private func sideMenuFrame(visibility: Bool) -> CGRect {
-        var baseFrame = view.frame
-        if visibility {
-            baseFrame.origin.x = preferences.basic.menuWidth - baseFrame.width
-        } else {
-            baseFrame.origin.x = -baseFrame.width
+        let position = preferences.basic.position
+        switch position {
+        case .above:
+            var baseFrame = view.frame
+            if visibility {
+                baseFrame.origin.x = preferences.basic.menuWidth - baseFrame.width
+            } else {
+                baseFrame.origin.x = -baseFrame.width
+            }
+            return baseFrame
+        case .below:
+            return view.frame
+        case .sideBySide:
+            return view.frame
         }
-        return baseFrame
+    }
+    
+    private func contentFrame(visibility: Bool) -> CGRect {
+        let position = preferences.basic.position
+        switch position {
+        case .above:
+            return view.frame
+        case .below:
+            var baseFrame = view.frame
+            if visibility {
+                baseFrame.origin.x = preferences.basic.menuWidth
+            } else {
+                baseFrame.origin.x = 0
+            }
+            return baseFrame
+        case .sideBySide:
+            return view.frame
+        }
     }
     
     // MARK: Container ViewController Lifecyle

@@ -18,6 +18,17 @@ public struct SideMenuPreferences {
         case hideOnMenu
     }
     
+    public enum MenuDirection {
+        case left
+        case right
+    }
+    
+    public enum MenuPosition {
+        case above
+        case below
+        case sideBySide
+    }
+    
     public struct Animation {
         public var revealDuration: TimeInterval = 0.4
         public var hideDuration: TimeInterval = 0.4
@@ -30,6 +41,7 @@ public struct SideMenuPreferences {
     
     public struct Configuration {
         public var menuWidth: CGFloat = 300
+        public var position: MenuPosition = .above
         public var statusBarBehavior: StatusBarBehavior = .none
         public var enablePanGesture = true
         public var enableRubberEffectWhenPanning = true
