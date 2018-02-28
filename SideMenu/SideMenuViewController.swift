@@ -78,6 +78,7 @@ public class SideMenuController: UIViewController {
             load(contentViewController, on: contentContainerView)
             contentContainerView.sendSubview(toBack: contentViewController!.view)
             unload(oldValue)
+            setNeedsStatusBarAppearanceUpdate()
         }
     }
     public var menuViewController: UIViewController?
