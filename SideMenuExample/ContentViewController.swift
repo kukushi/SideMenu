@@ -51,7 +51,6 @@ class ContentViewController: UIViewController {
             for label in indicatorLabels {
                 label.textColor = .white
             }
-            rebuildButton.tintColor = .lobolly
             navigationController?.navigationBar.isTranslucent = false
             navigationController?.navigationBar.tintColor = .lobolly
             navigationController?.navigationBar.barTintColor = .mirage
@@ -76,14 +75,23 @@ class ContentViewController: UIViewController {
     @IBAction func segementControlDidChanged(_ sender: UISegmentedControl) {
         switch sender {
         case statusBarBehaviorSegment:
-            let statusBarBehaviors: [SideMenuPreferences.StatusBarBehavior] = [.none, .slide, .fade, .hideOnMenu]
             SideMenuController.preferences.basic.statusBarBehavior = statusBarBehaviors[sender.selectedSegmentIndex]
         case menuPositionSegment:
-            
+            presentAlert()
             SideMenuController.preferences.basic.position = menuPosition[sender.selectedSegmentIndex]
         default:
             break
         }
+    }
+    
+    func presentAlert() {
+        let alert = UIAlertController(title: "Reload Side Menu", message: "Side Menu need to be reloaded after switching position", preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: "Yeah", style: .default) { (action) in
+            let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
+            UIApplication.shared.keyWindow?.rootViewController = sideMenuController
+        }
+        alert.addAction(confirmButton)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func switchDidClicked(_ sender: UISwitch) {
@@ -95,11 +103,6 @@ class ContentViewController: UIViewController {
         default:
             break
         }
-    }
-    
-    @IBAction func rebulidSideMenuController(_ sender: Any) {
-        let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
-        UIApplication.shared.keyWindow?.rootViewController = sideMenuController
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

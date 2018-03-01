@@ -132,13 +132,6 @@
                                             <action selector="segementControlDidChanged:" destination="sdR-iU-7Ig" eventType="valueChanged" id="jTL-Gi-jHR"/>
                                         </connections>
                                     </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SC-l7-ACY">
-                                        <rect key="frame" x="303" y="81" width="52" height="30"/>
-                                        <state key="normal" title="Rebuild"/>
-                                        <connections>
-                                            <action selector="rebulidSideMenuController:" destination="sdR-iU-7Ig" eventType="touchUpInside" id="MOn-s3-GwX"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -146,8 +139,6 @@
                                     <constraint firstItem="9RT-ih-gX1" firstAttribute="centerX" secondItem="heT-Qv-hkG" secondAttribute="centerX" id="9DC-yE-MFI"/>
                                     <constraint firstItem="9RT-ih-gX1" firstAttribute="leading" secondItem="heT-Qv-hkG" secondAttribute="leading" constant="20" id="Av4-Mp-vdO"/>
                                     <constraint firstItem="LgW-Zc-6z7" firstAttribute="leading" secondItem="heT-Qv-hkG" secondAttribute="leading" constant="20" id="H52-II-zkd"/>
-                                    <constraint firstItem="5SC-l7-ACY" firstAttribute="top" secondItem="9RT-ih-gX1" secondAttribute="bottom" constant="8" id="bzV-tj-bMR"/>
-                                    <constraint firstItem="5SC-l7-ACY" firstAttribute="trailing" secondItem="9RT-ih-gX1" secondAttribute="trailing" id="djX-Bw-PNL"/>
                                     <constraint firstItem="LgW-Zc-6z7" firstAttribute="top" secondItem="heT-Qv-hkG" secondAttribute="top" constant="8" id="igK-Vm-tcd"/>
                                     <constraint firstItem="9RT-ih-gX1" firstAttribute="top" secondItem="LgW-Zc-6z7" secondAttribute="bottom" constant="16" id="lL0-WV-wo3"/>
                                     <constraint firstAttribute="height" constant="120" id="syw-YB-U3c"/>
@@ -178,7 +169,6 @@
                         <outlet property="enablePanGesture" destination="paq-x0-fz3" id="kTO-C9-igp"/>
                         <outlet property="enableRubberBandEffect" destination="YRk-27-sAo" id="ynA-je-SUc"/>
                         <outlet property="menuPositionSegment" destination="9RT-ih-gX1" id="TMr-xs-xK5"/>
-                        <outlet property="rebuildButton" destination="5SC-l7-ACY" id="QH9-Jg-qhn"/>
                         <outlet property="statusBarBehaviorSegment" destination="dt4-kz-pkr" id="Z6w-JW-5cy"/>
                         <outletCollection property="indicatorLabels" destination="8eD-Pf-9eW" collectionClass="NSMutableArray" id="MPX-nX-ojd"/>
                         <outletCollection property="indicatorLabels" destination="i71-AF-n6x" collectionClass="NSMutableArray" id="afe-TA-Jfw"/>

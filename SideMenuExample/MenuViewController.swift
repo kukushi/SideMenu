@@ -47,7 +47,7 @@ class MenuViewController: UIViewController {
             selectionTableViewHeader.textColor = .white
         } else {
             selectionMenuTrailingConstraint.constant = 0
-            themeColor = .white
+            themeColor = UIColor(red:0.98, green:0.97, blue:0.96, alpha:1.00)
         }
         view.backgroundColor = themeColor
         tableView.backgroundColor = themeColor
