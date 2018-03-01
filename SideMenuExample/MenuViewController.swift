@@ -27,7 +27,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        isDarkModeEnabled = SideMenuController.preferences.basic.position == .below
+        isDarkModeEnabled = SideMenuController.preferences.basic.position == .under
         configureView()
 
         guard let theSideMenuController = sm_sideMenuController else {

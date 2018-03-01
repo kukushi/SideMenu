@@ -30,14 +30,14 @@ class ContentViewController: UIViewController {
     var isDarkModeEnabled = false
     var themeColor = UIColor.white
     let statusBarBehaviors: [SideMenuPreferences.StatusBarBehavior] = [.none, .slide, .fade, .hideOnMenu]
-    let menuPosition: [SideMenuPreferences.MenuPosition] = [.above, .below, .sideBySide]
+    let menuPosition: [SideMenuPreferences.MenuPosition] = [.above, .under, .sideBySide]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "SideMenu"
         
-        isDarkModeEnabled = SideMenuController.preferences.basic.position == .below
+        isDarkModeEnabled = SideMenuController.preferences.basic.position == .under
         configureUI()
         setNeedsStatusBarAppearanceUpdate()
     }

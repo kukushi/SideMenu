@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Provides aceess to the side menu controller
+// Provides access to the side menu controller
 public extension UIViewController {
     
     /// Access the side menu controller
