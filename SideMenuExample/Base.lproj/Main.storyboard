@@ -21,8 +21,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="contentID" value="SideMenuContent"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="D83-H8-ode" kind="custom" identifier="SideMenu.Content" customClass="SideMenuSegue" customModule="SideMenu" id="4ke-RI-yoL"/>
+                        <segue destination="D83-H8-ode" kind="custom" identifier="SideMenuContent" customClass="SideMenuSegue" customModule="SideMenu" id="4ke-RI-yoL"/>
                         <segue destination="6Hh-eN-Uad" kind="custom" identifier="SideMenu.Menu" customClass="SideMenuSegue" customModule="SideMenu" id="8B2-ow-jDg"/>
                     </connections>
                 </viewController>
@@ -230,6 +233,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="FQI-HO-d7c" firstAttribute="leading" secondItem="nk6-IL-cSO" secondAttribute="leadingMargin" constant="8" id="6xC-Rv-8zB"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FQI-HO-d7c" secondAttribute="trailingMargin" id="JhT-Ho-SaX"/>
                                                         <constraint firstItem="FQI-HO-d7c" firstAttribute="centerY" secondItem="nk6-IL-cSO" secondAttribute="centerY" id="w8m-1c-ZKu"/>
                                                     </constraints>
                                                 </tableViewCellContentView>

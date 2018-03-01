@@ -27,14 +27,19 @@ public extension SideMenuControllerDelegate {
 
 /// Custom Segue for SideMenuController
 public class SideMenuSegue: UIStoryboardSegue {
+    public enum SegueType: String {
+        case content = "SideMenu.Content"
+        case menu = "SideMenu.Menu"
+    }
+    
+    public var type = SegueType.content
+    
     public override func perform() {
-        guard let identifier = identifier,
-            let segueType = SideMenuController.StoryboardSegue(rawValue: identifier),
-            let sideMenuController = source as? SideMenuController else {
-                return
+        guard let sideMenuController = source as? SideMenuController else {
+            return
         }
         
-        switch segueType {
+        switch type {
         case .content:
             sideMenuController.contentViewController = destination
         case .menu:
@@ -52,20 +57,17 @@ public class SideMenuController: UIViewController {
         return type(of: self).preferences
     }
     
-    public enum StoryboardSegue: String {
-        case content = "SideMenu.Content"
-        case menu = "SideMenu.Menu"
-    }
-    
     private var isInitiatedFromStoryboard: Bool {
         return storyboard != nil
     }
     
-    @IBInspectable public var contentID: String?
-    @IBInspectable public var menuID: String?
+    @IBInspectable public var contentID: String = SideMenuSegue.SegueType.content.rawValue
+    @IBInspectable public var menuID: String = SideMenuSegue.SegueType.menu.rawValue
 
+    /// Caching
     private lazy var lazyCachedViewControllerClosures: [String: () -> UIViewController?] = [:]
     private lazy var lazyCachedViewControllers: [String: UIViewController] = [:]
+    private var startFrameX: CGFloat = 0
     
     public weak var delegate: SideMenuControllerDelegate?
     
@@ -90,7 +92,7 @@ public class SideMenuController: UIViewController {
     
     private var shouldShowShadowOnContent: Bool {
         return preferences.animation.shouldShowShadowWhenRevealing
-            && preferences.basic.position != .below
+            && preferences.basic.position == .above
     }
 
     /// The view responsible for tapping to hide the menu and shadow
@@ -125,8 +127,8 @@ public class SideMenuController: UIViewController {
         if isInitiatedFromStoryboard {
             // Note that if you are using the SideMenuController from the IB, you must supply the default or custom view controller
             // ID in the storybaord.
-            performSegue(withIdentifier: contentID ?? StoryboardSegue.content.rawValue, sender: self)
-            performSegue(withIdentifier: menuID ?? StoryboardSegue.menu.rawValue, sender: self)
+            performSegue(withIdentifier: contentID, sender: self)
+            performSegue(withIdentifier: menuID, sender: self)
         }
         
         contentContainerView.frame = view.bounds
@@ -159,6 +161,22 @@ public class SideMenuController: UIViewController {
         view.addGestureRecognizer(panGesture)
     }
     
+    // MARK: Storyboard
+    
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segue = segue as? SideMenuSegue, let identifier = segue.identifier else {
+            return
+        }
+        switch identifier {
+        case contentID:
+            segue.type = .content
+        case menuID:
+            segue.type = .menu
+        default:
+            break
+        }
+    }
+    
     // MARK: Show/Hide Menu
     
     /// Reveal the menu
@@ -187,7 +205,7 @@ public class SideMenuController: UIViewController {
             self.menuContainerView.frame = self.sideMenuFrame(visibility: false)
             self.contentContainerView.frame = self.contentFrame(visibility: false)
             if self.shouldShowShadowOnContent {
-                    self.contentContainerOverlay?.alpha = 0
+                self.contentContainerOverlay?.alpha = 0
             }
         }) { (finished) in
             self.menuViewController?.endAppearanceTransition()
@@ -249,7 +267,7 @@ public class SideMenuController: UIViewController {
         let overlay = UIView()
         overlay.bounds = contentContainerView.bounds
         overlay.center = contentContainerView.center
-        if preferences.basic.position == .below {
+        if !shouldShowShadowOnContent {
             overlay.backgroundColor = .clear
         } else {
             overlay.backgroundColor = .black
@@ -260,36 +278,38 @@ public class SideMenuController: UIViewController {
         contentContainerView.insertSubview(overlay, aboveSubview: contentViewController!.view)
     }
     
-    private var startFrameX: CGFloat = 0
-    
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
         let menuWidth = preferences.basic.menuWidth
         var translation = pan.translation(in: pan.view).x
         let viewToAnimate: UIView
+        let viewToAnimate2: UIView?
         let leftBorder: CGFloat
         let rightBorder: CGFloat
         let containerWidth: CGFloat
         switch preferences.basic.position {
         case .above:
             viewToAnimate = menuContainerView
+            viewToAnimate2 = nil
             containerWidth = viewToAnimate.frame.width
             leftBorder = -containerWidth
             rightBorder = menuWidth - containerWidth
         case .below:
             viewToAnimate = contentContainerView
+            viewToAnimate2 = nil
             containerWidth = viewToAnimate.frame.width
             leftBorder = 0
             rightBorder = menuWidth
-        default:
-            viewToAnimate = menuContainerView
+        case .sideBySide:
+            viewToAnimate = contentContainerView
+            viewToAnimate2 = menuContainerView
             containerWidth = viewToAnimate.frame.width
-            leftBorder = -containerWidth
-            rightBorder = menuWidth - containerWidth
+            leftBorder = 0
+            rightBorder = menuWidth
         }
         
         switch pan.state {
         case .began:
-            startFrameX = viewToAnimate.frame.minX
+            startFrameX = viewToAnimate.frame.origin.x
             addContentOverlayViewIfNeeded()
             setStatusBar(hidden: !isMenuVisible, animate: true)
             
@@ -308,6 +328,10 @@ public class SideMenuController: UIViewController {
                 viewToAnimate.frame.origin.x = rightBorder + (menuWidth * log10(translation / menuWidth + 1))
             }
             
+            if let viewToAnimate2 = viewToAnimate2 {
+                viewToAnimate2.frame.origin.x = viewToAnimate.frame.origin.x - containerWidth
+            }
+            
             if shouldShowShadowOnContent {
                 let shadowPrecent = min(menuContainerView.frame.maxX / menuWidth, 1)
                 contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
@@ -320,7 +344,7 @@ public class SideMenuController: UIViewController {
             case .below:
                 precent = viewToAnimate.frame.minX / menuWidth
             case .sideBySide:
-                precent = 0
+                precent = viewToAnimate.frame.minX / menuWidth
             }
             let decisionPoint: CGFloat = isMenuVisible ? 0.6 : 0.4
             if precent > decisionPoint {
@@ -461,7 +485,7 @@ public class SideMenuController: UIViewController {
     private func sideMenuFrame(visibility: Bool) -> CGRect {
         let position = preferences.basic.position
         switch position {
-        case .above:
+        case .above, .sideBySide:
             var baseFrame = view.frame
             if visibility {
                 baseFrame.origin.x = preferences.basic.menuWidth - baseFrame.width
@@ -471,8 +495,6 @@ public class SideMenuController: UIViewController {
             return baseFrame
         case .below:
             return view.frame
-        case .sideBySide:
-            return view.frame
         }
     }
     
@@ -481,7 +503,7 @@ public class SideMenuController: UIViewController {
         switch position {
         case .above:
             return view.frame
-        case .below:
+        case .below, .sideBySide:
             var baseFrame = view.frame
             if visibility {
                 baseFrame.origin.x = preferences.basic.menuWidth
@@ -489,8 +511,6 @@ public class SideMenuController: UIViewController {
                 baseFrame.origin.x = 0
             }
             return baseFrame
-        case .sideBySide:
-            return view.frame
         }
     }
     
