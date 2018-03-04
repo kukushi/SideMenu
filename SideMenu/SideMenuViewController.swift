@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: Delegates
+// MARK: Delegate
 
 public protocol SideMenuControllerDelegate: class {
     func sideMenuWillShow(_ sideMenu: SideMenuController)
@@ -27,19 +27,19 @@ public extension SideMenuControllerDelegate {
 
 /// Custom Segue for SideMenuController
 public class SideMenuSegue: UIStoryboardSegue {
-    public enum SegueType: String {
+    public enum ContentType: String {
         case content = "SideMenu.Content"
         case menu = "SideMenu.Menu"
     }
     
-    public var type = SegueType.content
+    public var contentType = ContentType.content
     
     public override func perform() {
         guard let sideMenuController = source as? SideMenuController else {
             return
         }
         
-        switch type {
+        switch contentType {
         case .content:
             sideMenuController.contentViewController = destination
         case .menu:
@@ -49,30 +49,39 @@ public class SideMenuSegue: UIStoryboardSegue {
     
 }
 
-/// The SideMenuController main class
+/// A container view controller owns a menu view controller and a content view controller.
 public class SideMenuController: UIViewController {
     
-    /// Configure this property to change the behavior of SideMenuController.
+    /// Configure this property to change the behavior of SideMenuController;
     /// Most changes will take effect immediately, besides the `basic.positon`.
     public static var preferences = SideMenuPreferences()
     private var preferences: SideMenuPreferences {
         return type(of: self).preferences
     }
     
-    /// Storyboard
     private var isInitiatedFromStoryboard: Bool {
         return storyboard != nil
     }
     
-    @IBInspectable public var contentID: String = SideMenuSegue.SegueType.content.rawValue
-    @IBInspectable public var menuID: String = SideMenuSegue.SegueType.menu.rawValue
+    /// The identifier of content view controller segue. If the SideMenuController instance is initiated from IB, this identifier will
+    /// be used to retrive the content view controller.
+    @IBInspectable public var contentSegueID: String = SideMenuSegue.ContentType.content.rawValue
+    
+    /// The identifier of menu view controller segue. If the SideMenuController instance is initiated from IB, this identifier will
+    /// be used to retrive the menu view controller.
+    @IBInspectable public var menuSegueID: String = SideMenuSegue.ContentType.menu.rawValue
 
     /// Caching
-    private lazy var lazyCachedViewControllerClosures: [String: () -> UIViewController?] = [:]
+    private lazy var lazyCachedviewControllerGenerators: [String: () -> UIViewController?] = [:]
     private lazy var lazyCachedViewControllers: [String: UIViewController] = [:]
     
+    
+    /// The delegate.
     public weak var delegate: SideMenuControllerDelegate?
     
+    
+    /// The content view controller. Changes its value will change the display immediately.
+    /// If you want a caching approach, use `setContentViewController(with)`
     public var contentViewController: UIViewController? {
         didSet {
             guard contentViewController !== oldValue else {
@@ -86,8 +95,17 @@ public class SideMenuController: UIViewController {
             setNeedsStatusBarAppearanceUpdate()
         }
     }
-    public var menuViewController: UIViewController?
-
+    public var menuViewController: UIViewController? {
+        didSet {
+            guard menuViewController !== oldValue else {
+                return
+            }
+            
+            load(menuViewController, on: menuContainerView)
+            unload(oldValue)
+        }
+    }
+    
     private let menuContainerView = UIView()
     private let contentContainerView = UIView()
     private var statusBarScreenShotView: UIView?
@@ -106,7 +124,12 @@ public class SideMenuController: UIViewController {
     
     // MARK: Initalization
 
-    convenience init(contentViewController: UIViewController, menuViewController: UIViewController) {
+    /// Creates a SideMenuController instance with the content view controller and menu view controller.
+    ///
+    /// - Parameters:
+    ///   - contentViewController: the content view controller
+    ///   - menuViewController: the menu view controller
+    public convenience init(contentViewController: UIViewController, menuViewController: UIViewController) {
         self.init()
         
         self.contentViewController = contentViewController
@@ -122,8 +145,8 @@ public class SideMenuController: UIViewController {
         if isInitiatedFromStoryboard {
             // Note that if you are using the SideMenuController from the IB, you must supply the default or custom view controller
             // ID in the storyboard.
-            performSegue(withIdentifier: contentID, sender: self)
-            performSegue(withIdentifier: menuID, sender: self)
+            performSegue(withIdentifier: contentSegueID, sender: self)
+            performSegue(withIdentifier: menuSegueID, sender: self)
         }
         
         contentContainerView.frame = view.bounds
@@ -163,23 +186,23 @@ public class SideMenuController: UIViewController {
             return
         }
         switch identifier {
-        case contentID:
-            segue.type = .content
-        case menuID:
-            segue.type = .menu
+        case contentSegueID:
+            segue.contentType = .content
+        case menuSegueID:
+            segue.contentType = .menu
         default:
             break
         }
     }
     
-    // MARK: Show/Hide Menu
+    // MARK: Reveal/Hide Menu
     
-    /// Reveal the menu
+    /// Reveals the menu.
     public func revealMenu() {
         showMenuWithOptions()
     }
     
-    /// Hide the menu
+    /// Hides the menu.
     public func hideMenu() {
         hideMenuWithOptions()
     }
@@ -403,18 +426,20 @@ public class SideMenuController: UIViewController {
         return contentViewController
     }
     
-    // MARK: Cache
+    // MARK: Caching
     
-    /// Cache the closure with identifier. The closure will only execute when needed.
+    /// Caches the closure that generate the view controller with identifier.
+    ///
+    /// It's useful when you want to configure the caching relation without instantiating the view controller immediately.
     ///
     /// - Parameters:
-    ///   - viewControllerClosure: the closure generate the view controller
-    ///   - identifier: identifier the cache the view controller
-    public func cache(viewControllerClosure: @escaping () -> UIViewController?, with identifier: String) {
-        lazyCachedViewControllerClosures[identifier] = viewControllerClosure
+    ///   - viewControllerGenerator: The closure that generate the view controller. It will only executed when needed.
+    ///   - identifier: Identifier used to change content view controller
+    public func cache(viewControllerGenerator: @escaping () -> UIViewController?, with identifier: String) {
+        lazyCachedviewControllerGenerators[identifier] = viewControllerGenerator
     }
     
-    /// Cache the view controller with identifier
+    /// Caches the view controller with identifier.
     ///
     /// - Parameters:
     ///   - viewController: the view controller to cache
@@ -423,31 +448,34 @@ public class SideMenuController: UIViewController {
         lazyCachedViewControllers[identifier] = viewController
     }
     
-    /// Change the content view controller with given identifier
+    /// Changes the content view controller to the cached one with given `identifier`.
     ///
-    /// - Parameter identifier: the identifier
+    /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
     public func setContentViewController(with identifier: String) {
         if let viewController = lazyCachedViewControllers[identifier] {
             contentViewController = viewController
-        } else if let viewController = lazyCachedViewControllerClosures[identifier]?() {
-            lazyCachedViewControllerClosures[identifier] = nil
+        } else if let viewController = lazyCachedviewControllerGenerators[identifier]?() {
+            lazyCachedviewControllerGenerators[identifier] = nil
             lazyCachedViewControllers[identifier] = viewController
             contentViewController = viewController
         }
     }
 
-    /// The identifier of current content view controller, if exist
+    /// Return the identifier of current content view controller.
     ///
-    /// - Returns: the identifier
+    /// - Returns: if not exist, returns nil.
     public func currentCacheIdentifier() -> String? {
         guard let index = lazyCachedViewControllers.values.index(of: contentViewController!) else {
             return nil
         }
         return lazyCachedViewControllers.keys[index]
     }
-    
+
+    /// Clears cached view controller or generators with identifier.
+    ///
+    /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
     public func clearCache(with identifier: String) {
-        lazyCachedViewControllerClosures[identifier] = nil
+        lazyCachedviewControllerGenerators[identifier] = nil
         lazyCachedViewControllers[identifier] = nil
     }
     

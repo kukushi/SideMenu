@@ -24,7 +24,6 @@
 		8792D08E203093A6007F917F /* SideMenuExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792D08D203093A6007F917F /* SideMenuExampleTests.swift */; };
 		8792D099203093A6007F917F /* SideMenuExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792D098203093A6007F917F /* SideMenuExampleUITests.swift */; };
 		8792D0A5203093E2007F917F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792D0A4203093E2007F917F /* MenuViewController.swift */; };
-		8792D0A720309871007F917F /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A5D7BE2026108900DAAF4F /* SideMenu.framework */; };
 		87A5D7C82026108900DAAF4F /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A5D7BE2026108900DAAF4F /* SideMenu.framework */; };
 		87A5D7CD2026108900DAAF4F /* SideMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5D7CC2026108900DAAF4F /* SideMenuTests.swift */; };
 		87A5D7CF2026108900DAAF4F /* SideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A5D7C12026108900DAAF4F /* SideMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -111,7 +110,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				874025F1203DB06600EE4306 /* SideMenu.framework in Frameworks */,
-				8792D0A720309871007F917F /* SideMenu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,7 +676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -732,7 +730,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -747,7 +745,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U6N93T3598;
