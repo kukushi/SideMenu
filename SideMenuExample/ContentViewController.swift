@@ -37,7 +37,7 @@ class ContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "SideMenu"
+        title = "Preferences"
         
         isDarkModeEnabled = SideMenuController.preferences.basic.position == .under
         configureUI()

@@ -87,11 +87,11 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         cell.contentView.backgroundColor = themeColor
         let row = indexPath.row
         if row == 0 {
-            cell.titleLabel?.text = "First ViewController"
+            cell.titleLabel?.text = "Preferences"
         } else if row == 1 {
-            cell.titleLabel?.text = "Second ViewController"
+            cell.titleLabel?.text = "Random Number"
         } else if row == 2 {
-            cell.titleLabel?.text = "Third ViewController"
+            cell.titleLabel?.text = "IB / Code Example"
         }
         cell.titleLabel?.textColor = isDarkModeEnabled ? .white : .black
         return cell
