@@ -42,13 +42,18 @@ class MenuViewController: UIViewController {
     
     private func configureView() {
         if isDarkModeEnabled {
-            selectionMenuTrailingConstraint.constant = SideMenuController.preferences.basic.menuWidth - view.frame.width
             themeColor = UIColor(red:0.03, green:0.04, blue:0.07, alpha:1.00)
             selectionTableViewHeader.textColor = .white
         } else {
             selectionMenuTrailingConstraint.constant = 0
             themeColor = UIColor(red:0.98, green:0.97, blue:0.96, alpha:1.00)
         }
+        
+        let showPlaceTableOnLeft = (SideMenuController.preferences.basic.position == .under) != (SideMenuController.preferences.basic.direction == .right)
+        if showPlaceTableOnLeft {
+            selectionMenuTrailingConstraint.constant = SideMenuController.preferences.basic.menuWidth - view.frame.width
+        }
+        
         view.backgroundColor = themeColor
         tableView.backgroundColor = themeColor
     }
@@ -97,7 +102,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         sideMenuController.setContentViewController(with: "\(row)")
         sideMenuController.hideMenu()
         
-        print("ViewCOntroller Cache Identifier: " + sideMenuController.currentCacheIdentifier()!)
+        print("View Controller Cache Identifier: " + sideMenuController.currentCacheIdentifier()!)
     }
 }
 

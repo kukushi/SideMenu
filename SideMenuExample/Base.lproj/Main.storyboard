@@ -22,7 +22,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="contentID" value="SideMenuContent"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="contentSegueID" value="SideMenuContent"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="D83-H8-ode" kind="custom" identifier="SideMenuContent" customClass="SideMenuSegue" customModule="SideMenu" id="4ke-RI-yoL"/>
@@ -116,7 +116,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heT-Qv-hkG">
-                                <rect key="frame" x="0.0" y="240" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="240" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgW-Zc-6z7">
                                         <rect key="frame" x="20" y="8" width="109" height="21"/>
@@ -144,7 +144,38 @@
                                     <constraint firstItem="LgW-Zc-6z7" firstAttribute="leading" secondItem="heT-Qv-hkG" secondAttribute="leading" constant="20" id="H52-II-zkd"/>
                                     <constraint firstItem="LgW-Zc-6z7" firstAttribute="top" secondItem="heT-Qv-hkG" secondAttribute="top" constant="8" id="igK-Vm-tcd"/>
                                     <constraint firstItem="9RT-ih-gX1" firstAttribute="top" secondItem="LgW-Zc-6z7" secondAttribute="bottom" constant="16" id="lL0-WV-wo3"/>
-                                    <constraint firstAttribute="height" constant="120" id="syw-YB-U3c"/>
+                                    <constraint firstAttribute="height" constant="100" id="syw-YB-U3c"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ix5-It-sLx">
+                                <rect key="frame" x="0.0" y="340" width="375" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Direction" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8C-Ct-BIm">
+                                        <rect key="frame" x="20" y="8" width="117" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6UH-kN-5aA">
+                                        <rect key="frame" x="20" y="45" width="335" height="29"/>
+                                        <segments>
+                                            <segment title="Left"/>
+                                            <segment title="Right"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segementControlDidChanged:" destination="sdR-iU-7Ig" eventType="valueChanged" id="QAi-Zh-FHb"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6UH-kN-5aA" firstAttribute="leading" secondItem="j8C-Ct-BIm" secondAttribute="leading" id="2KR-0d-HIc"/>
+                                    <constraint firstItem="6UH-kN-5aA" firstAttribute="centerX" secondItem="ix5-It-sLx" secondAttribute="centerX" id="2Ug-5D-IOj"/>
+                                    <constraint firstItem="j8C-Ct-BIm" firstAttribute="top" secondItem="ix5-It-sLx" secondAttribute="top" constant="8" id="8Z2-6R-AcB"/>
+                                    <constraint firstItem="6UH-kN-5aA" firstAttribute="leading" secondItem="ix5-It-sLx" secondAttribute="leading" constant="20" id="Wcg-8b-qqf"/>
+                                    <constraint firstItem="6UH-kN-5aA" firstAttribute="top" secondItem="j8C-Ct-BIm" secondAttribute="bottom" constant="16" id="bKQ-RR-RQI"/>
+                                    <constraint firstAttribute="height" constant="100" id="t8X-LI-Sf5"/>
+                                    <constraint firstItem="j8C-Ct-BIm" firstAttribute="leading" secondItem="ix5-It-sLx" secondAttribute="leading" constant="20" id="u36-eM-w9u"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -153,8 +184,11 @@
                             <constraint firstItem="62a-kq-QKC" firstAttribute="trailing" secondItem="jkJ-sQ-Zg7" secondAttribute="trailing" id="6uE-hP-KBf"/>
                             <constraint firstItem="62a-kq-QKC" firstAttribute="leading" secondItem="jkJ-sQ-Zg7" secondAttribute="leading" id="Bdw-zc-b9p"/>
                             <constraint firstItem="heT-Qv-hkG" firstAttribute="leading" secondItem="jkJ-sQ-Zg7" secondAttribute="leading" id="NmE-Xm-GB3"/>
+                            <constraint firstItem="ix5-It-sLx" firstAttribute="leading" secondItem="jkJ-sQ-Zg7" secondAttribute="leading" id="S2q-6D-jSN"/>
                             <constraint firstItem="heT-Qv-hkG" firstAttribute="trailing" secondItem="jkJ-sQ-Zg7" secondAttribute="trailing" id="U25-Ln-tZL"/>
                             <constraint firstItem="oVz-7o-4j5" firstAttribute="top" secondItem="62a-kq-QKC" secondAttribute="bottom" id="YST-Mx-ec6"/>
+                            <constraint firstItem="ix5-It-sLx" firstAttribute="trailing" secondItem="jkJ-sQ-Zg7" secondAttribute="trailing" id="ZOV-mV-erj"/>
+                            <constraint firstItem="ix5-It-sLx" firstAttribute="top" secondItem="heT-Qv-hkG" secondAttribute="bottom" id="hau-yY-xbY"/>
                             <constraint firstItem="oVz-7o-4j5" firstAttribute="leading" secondItem="jkJ-sQ-Zg7" secondAttribute="leading" id="u9r-f2-7IQ"/>
                             <constraint firstItem="62a-kq-QKC" firstAttribute="top" secondItem="jkJ-sQ-Zg7" secondAttribute="top" id="wQZ-wY-9J5"/>
                             <constraint firstItem="heT-Qv-hkG" firstAttribute="top" secondItem="oVz-7o-4j5" secondAttribute="bottom" id="wT0-bX-d2P"/>
@@ -171,12 +205,14 @@
                     <connections>
                         <outlet property="enablePanGesture" destination="paq-x0-fz3" id="kTO-C9-igp"/>
                         <outlet property="enableRubberBandEffect" destination="YRk-27-sAo" id="ynA-je-SUc"/>
+                        <outlet property="menuDirectionSegment" destination="6UH-kN-5aA" id="KNE-fh-xej"/>
                         <outlet property="menuPositionSegment" destination="9RT-ih-gX1" id="TMr-xs-xK5"/>
                         <outlet property="statusBarBehaviorSegment" destination="dt4-kz-pkr" id="Z6w-JW-5cy"/>
                         <outletCollection property="indicatorLabels" destination="8eD-Pf-9eW" collectionClass="NSMutableArray" id="MPX-nX-ojd"/>
                         <outletCollection property="indicatorLabels" destination="i71-AF-n6x" collectionClass="NSMutableArray" id="afe-TA-Jfw"/>
                         <outletCollection property="indicatorLabels" destination="ht3-rm-Mhh" collectionClass="NSMutableArray" id="SCR-sO-NYP"/>
                         <outletCollection property="indicatorLabels" destination="LgW-Zc-6z7" collectionClass="NSMutableArray" id="Upc-eC-fPf"/>
+                        <outletCollection property="indicatorLabels" destination="j8C-Ct-BIm" collectionClass="NSMutableArray" id="g0v-Ve-rPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nJ-R8-VEV" userLabel="First Responder" sceneMemberID="firstResponder"/>

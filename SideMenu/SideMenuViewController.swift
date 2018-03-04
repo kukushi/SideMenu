@@ -75,10 +75,8 @@ public class SideMenuController: UIViewController {
     private lazy var lazyCachedviewControllerGenerators: [String: () -> UIViewController?] = [:]
     private lazy var lazyCachedViewControllers: [String: UIViewController] = [:]
     
-    
     /// The delegate.
     public weak var delegate: SideMenuControllerDelegate?
-    
     
     /// The content view controller. Changes its value will change the display immediately.
     /// If you want a caching approach, use `setContentViewController(with)`
@@ -275,7 +273,7 @@ public class SideMenuController: UIViewController {
         hideMenu()
     }
     
-    // MAKR: Gesture
+    // MARK: Gesture
     
     private func addContentOverlayViewIfNeeded() {
         guard contentContainerOverlay == nil else {
@@ -304,31 +302,38 @@ public class SideMenuController: UIViewController {
     
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
         let menuWidth = preferences.basic.menuWidth
+        let isLeft = preferences.basic.direction == .left
         var translation = pan.translation(in: pan.view).x
         let viewToAnimate: UIView
         let viewToAnimate2: UIView?
-        let leftBorder: CGFloat
-        let rightBorder: CGFloat
+        var leftBorder: CGFloat
+        var rightBorder: CGFloat
         let containerWidth: CGFloat
         switch preferences.basic.position {
         case .above:
             viewToAnimate = menuContainerView
             viewToAnimate2 = nil
             containerWidth = viewToAnimate.frame.width
-            leftBorder = -containerWidth
-            rightBorder = menuWidth - containerWidth
+            leftBorder = -containerWidth // containerWidth
+            rightBorder = menuWidth - containerWidth //ContainerWidth - menuWith
         case .under:
             viewToAnimate = contentContainerView
             viewToAnimate2 = nil
             containerWidth = viewToAnimate.frame.width
-            leftBorder = 0
-            rightBorder = menuWidth
+            leftBorder = 0 //  0
+            rightBorder = menuWidth // -menuwidth
         case .sideBySide:
             viewToAnimate = contentContainerView
             viewToAnimate2 = menuContainerView
             containerWidth = viewToAnimate.frame.width
-            leftBorder = 0
-            rightBorder = menuWidth
+            leftBorder = 0 //
+            rightBorder = menuWidth // 0
+        }
+        
+        if !isLeft {
+            swap(&leftBorder, &rightBorder)
+            leftBorder *= -1
+            rightBorder *= -1
         }
         
         switch pan.state {
@@ -336,24 +341,27 @@ public class SideMenuController: UIViewController {
             startFrameX = viewToAnimate.frame.origin.x
             addContentOverlayViewIfNeeded()
             setStatusBar(hidden: !isMenuRevealed, animate: true)
-            
         case .changed:
             let resultX = startFrameX + translation
-            guard (preferences.basic.enableRubberEffectWhenPanning || resultX <= rightBorder) && resultX >= leftBorder else {
+            let notReachLeftBorder = (!isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX >= leftBorder
+            let notReachRightBorder = (isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX <= rightBorder
+            guard notReachLeftBorder && notReachRightBorder else {
                 return
             }
             
-            if resultX <= rightBorder {
+            let factor: CGFloat = isLeft ? 1 : -1
+            let notReachDesiredBorder = isLeft ? resultX <= rightBorder : resultX >= leftBorder
+            if notReachDesiredBorder {
                 viewToAnimate.frame.origin.x = resultX
             } else {
                 if !isMenuRevealed {
-                    translation -= menuWidth
+                    translation -= menuWidth * factor
                 }
-                viewToAnimate.frame.origin.x = rightBorder + (menuWidth * log10(translation / menuWidth + 1))
+                viewToAnimate.frame.origin.x = (isLeft ? rightBorder : leftBorder) + factor * menuWidth * log10(translation * factor / menuWidth + 1) * 0.5
             }
             
             if let viewToAnimate2 = viewToAnimate2 {
-                viewToAnimate2.frame.origin.x = viewToAnimate.frame.origin.x - containerWidth
+                viewToAnimate2.frame.origin.x = viewToAnimate.frame.origin.x - containerWidth * factor
             }
             
             if shouldShowShadowOnContent {
@@ -361,17 +369,16 @@ public class SideMenuController: UIViewController {
                 contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
             }
         case .ended, .cancelled, .failed:
-            let precent: CGFloat
+            let offset: CGFloat
             switch preferences.basic.position {
             case .above:
-                precent = viewToAnimate.frame.maxX / menuWidth
-            case .under:
-                precent = viewToAnimate.frame.minX / menuWidth
-            case .sideBySide:
-                precent = viewToAnimate.frame.minX / menuWidth
+                offset = isLeft ? viewToAnimate.frame.maxX : containerWidth - viewToAnimate.frame.minX
+            case .under, .sideBySide:
+                offset = isLeft ? viewToAnimate.frame.minX : containerWidth - viewToAnimate.frame.maxX
             }
+            let offsetPrecent = offset / menuWidth
             let decisionPoint: CGFloat = isMenuRevealed ? 0.6 : 0.4
-            if precent > decisionPoint {
+            if offsetPrecent > decisionPoint {
                 showMenuWithOptions(shouldCallDelegate: !isMenuRevealed, shouldChangeStatusBar: isMenuRevealed)
             } else {
                 hideMenuWithOptions(shouldCallDelegate: isMenuRevealed, shouldChangeStatusBar: !isMenuRevealed)
@@ -521,6 +528,8 @@ public class SideMenuController: UIViewController {
             } else {
                 baseFrame.origin.x = -baseFrame.width
             }
+            let factor: CGFloat = preferences.basic.direction == .left ? 1 : -1
+            baseFrame.origin.x = baseFrame.origin.x * factor
             return baseFrame
         case .under:
             return view.frame
@@ -535,7 +544,8 @@ public class SideMenuController: UIViewController {
         case .under, .sideBySide:
             var baseFrame = view.frame
             if visibility {
-                baseFrame.origin.x = preferences.basic.menuWidth
+                let factor: CGFloat = preferences.basic.direction == .left ? 1 : -1
+                baseFrame.origin.x = preferences.basic.menuWidth * factor
             } else {
                 baseFrame.origin.x = 0
             }

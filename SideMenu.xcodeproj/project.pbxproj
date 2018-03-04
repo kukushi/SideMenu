@@ -216,9 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				87A5D7C12026108900DAAF4F /* SideMenu.h */,
-				872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */,
-				872EABB3202F39180066A8AE /* SideMenuViewController.swift */,
 				874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */,
+				872EABB3202F39180066A8AE /* SideMenuViewController.swift */,
+				872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */,
 				876428BC203EFDA900203A30 /* StatusBar.swift */,
 				87A5D7C22026108900DAAF4F /* Info.plist */,
 			);

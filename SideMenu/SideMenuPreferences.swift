@@ -27,7 +27,7 @@ public struct SideMenuPreferences {
     }
     
     
-    /// Only supports left now.
+    /// The direction where menu will show up from
     ///
     /// - left: Side menu will reveal from the left side.
     /// - right: Side menu will reveal from the right side.
@@ -77,6 +77,9 @@ public struct SideMenuPreferences {
         
         /// The position of the side menu
         public var position: MenuPosition = .above
+        
+        /// THe direction of side menu
+        public var direction: MenuDirection = .left
         
         /// The status bar behavior when menu revealed / hidden
         public var statusBarBehavior: StatusBarBehavior = .none

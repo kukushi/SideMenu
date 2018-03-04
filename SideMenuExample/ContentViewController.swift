@@ -24,13 +24,15 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var enableRubberBandEffect: UISwitch!
     @IBOutlet weak var statusBarBehaviorSegment: UISegmentedControl!
     @IBOutlet weak var menuPositionSegment: UISegmentedControl!
-    @IBOutlet var indicatorLabels: [UILabel]!
-    @IBOutlet weak var rebuildButton: UIButton!
+    @IBOutlet weak var menuDirectionSegment: UISegmentedControl!
     
+    @IBOutlet var indicatorLabels: [UILabel]!
+
     var isDarkModeEnabled = false
     var themeColor = UIColor.white
     let statusBarBehaviors: [SideMenuPreferences.StatusBarBehavior] = [.none, .slide, .fade, .hideOnMenu]
     let menuPosition: [SideMenuPreferences.MenuPosition] = [.above, .under, .sideBySide]
+    let menuDirections: [SideMenuPreferences.MenuDirection] = [.left, .right]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,7 @@ class ContentViewController: UIViewController {
             themeColor = .mirage
             statusBarBehaviorSegment.tintColor = .lobolly
             menuPositionSegment.tintColor = .lobolly
+            menuDirectionSegment.tintColor = .lobolly
             for label in indicatorLabels {
                 label.textColor = .white
             }
@@ -66,6 +69,7 @@ class ContentViewController: UIViewController {
         let preferences = SideMenuController.preferences.basic
         statusBarBehaviorSegment.selectedSegmentIndex = statusBarBehaviors.index(of: preferences.statusBarBehavior)!
         menuPositionSegment.selectedSegmentIndex = menuPosition.index(of: preferences.position)!
+        menuDirectionSegment.selectedSegmentIndex = menuDirections.index(of: preferences.direction)!
     }
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {
@@ -77,8 +81,11 @@ class ContentViewController: UIViewController {
         case statusBarBehaviorSegment:
             SideMenuController.preferences.basic.statusBarBehavior = statusBarBehaviors[sender.selectedSegmentIndex]
         case menuPositionSegment:
-            presentAlert()
             SideMenuController.preferences.basic.position = menuPosition[sender.selectedSegmentIndex]
+            presentAlert()
+        case menuDirectionSegment:
+            SideMenuController.preferences.basic.direction = menuDirections[sender.selectedSegmentIndex]
+            presentAlert()
         default:
             break
         }
