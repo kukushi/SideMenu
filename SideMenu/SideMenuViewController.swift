@@ -314,20 +314,20 @@ public class SideMenuController: UIViewController {
             viewToAnimate = menuContainerView
             viewToAnimate2 = nil
             containerWidth = viewToAnimate.frame.width
-            leftBorder = -containerWidth // containerWidth
-            rightBorder = menuWidth - containerWidth //ContainerWidth - menuWith
+            leftBorder = -containerWidth
+            rightBorder = menuWidth - containerWidth
         case .under:
             viewToAnimate = contentContainerView
             viewToAnimate2 = nil
             containerWidth = viewToAnimate.frame.width
-            leftBorder = 0 //  0
-            rightBorder = menuWidth // -menuwidth
+            leftBorder = 0
+            rightBorder = menuWidth
         case .sideBySide:
             viewToAnimate = contentContainerView
             viewToAnimate2 = menuContainerView
             containerWidth = viewToAnimate.frame.width
-            leftBorder = 0 //
-            rightBorder = menuWidth // 0
+            leftBorder = 0
+            rightBorder = menuWidth
         }
         
         if !isLeft {
@@ -340,7 +340,8 @@ public class SideMenuController: UIViewController {
         case .began:
             startFrameX = viewToAnimate.frame.origin.x
             addContentOverlayViewIfNeeded()
-            setStatusBar(hidden: !isMenuRevealed, animate: true)
+            // If status bar behavior is not `.none`, status bar will always be hidden when paning.
+            setStatusBar(hidden: true, animate: true)
         case .changed:
             let resultX = startFrameX + translation
             let notReachLeftBorder = (!isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX >= leftBorder
@@ -376,12 +377,13 @@ public class SideMenuController: UIViewController {
             case .under, .sideBySide:
                 offset = isLeft ? viewToAnimate.frame.minX : containerWidth - viewToAnimate.frame.maxX
             }
-            let offsetPrecent = offset / menuWidth
+            let offsetPercent = offset / menuWidth
             let decisionPoint: CGFloat = isMenuRevealed ? 0.6 : 0.4
-            if offsetPrecent > decisionPoint {
-                showMenuWithOptions(shouldCallDelegate: !isMenuRevealed, shouldChangeStatusBar: isMenuRevealed)
+            if offsetPercent > decisionPoint {
+                // We need to call the delegates/ change the status bar only when the menu was previous hidden
+                showMenuWithOptions(shouldCallDelegate: !isMenuRevealed, shouldChangeStatusBar: !isMenuRevealed)
             } else {
-                hideMenuWithOptions(shouldCallDelegate: isMenuRevealed, shouldChangeStatusBar: !isMenuRevealed)
+                hideMenuWithOptions(shouldCallDelegate: isMenuRevealed, shouldChangeStatusBar: true)
             }
         default:
             break
@@ -397,12 +399,16 @@ public class SideMenuController: UIViewController {
         // So we need to manipulate the windows of status bar manually.
         
         let behavior = self.preferences.basic.statusBarBehavior
+        guard let sbw = UIWindow.sb, sbw.isStatusBarHidden(with: behavior) != hidden else {
+            return
+        }
+        
         if animate && behavior != .hideOnMenu {
             UIView.animate(withDuration: 0.4, animations: {
-                UIWindow.sb?.set(hidden, with: behavior)
+                sbw.setStatusBar(hidden, with: behavior)
             })
         } else {
-            UIWindow.sb?.set(hidden, with: behavior)
+            sbw.setStatusBar(hidden, with: behavior)
         }
         
         if behavior == .hideOnMenu {
@@ -417,10 +423,11 @@ public class SideMenuController: UIViewController {
     }
     
     private func statusBarScreenShot() -> UIView? {
-        let height = UIApplication.shared.statusBarFrame
+        let statusBarFrame = UIApplication.shared.statusBarFrame
         let screenshot = UIScreen.main.snapshotView(afterScreenUpdates: false)
-        screenshot.frame.size.height = height.height
+        screenshot.frame = statusBarFrame
         screenshot.contentMode = .top
+        screenshot.clipsToBounds = true
         return screenshot
     }
     

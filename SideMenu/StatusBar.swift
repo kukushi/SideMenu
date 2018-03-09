@@ -21,7 +21,7 @@ extension UIWindow {
     /// - Parameters:
     ///   - hidden: the windows hidden status
     ///   - behavior: status bar behavior
-    internal func set(_ hidden: Bool, with behavior: SideMenuPreferences.StatusBarBehavior) {
+    internal func setStatusBar(_ hidden: Bool, with behavior: SideMenuPreferences.StatusBarBehavior) {
         guard behavior != .none else {
             return
         }
@@ -31,9 +31,20 @@ extension UIWindow {
             alpha = hidden ? 0 : 1
         case .slide:
             let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            transform = hidden ? CGAffineTransform(translationX: 0, y: -statusBarHeight) : CGAffineTransform.identity
+            transform = hidden ? CGAffineTransform(translationX: 0, y: -statusBarHeight) : .identity
         default:
             return
+        }
+    }
+   
+    internal func isStatusBarHidden(with behavior: SideMenuPreferences.StatusBarBehavior) -> Bool {
+        switch behavior {
+        case .none:
+            return false
+        case .fade, .hideOnMenu:
+            return alpha == 0
+        case .slide:
+            return transform != .identity
         }
     }
 }

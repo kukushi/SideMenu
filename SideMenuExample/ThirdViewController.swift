@@ -17,7 +17,6 @@ class ThirdViewController: UIViewController {
         title = "Example"
     }
     
-    
     @IBAction func menuButtonDidClicked(_ sender: Any) {
         sm_sideMenuController?.revealMenu()
     }
