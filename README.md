@@ -36,12 +36,12 @@ We call the left/right view controller as the **menu** view controller, the cent
 
 ### Storyboard
 
-To setup `SideMenu` in storyboard:
+To set up `SideMenu` in storyboard:
 
 1. Open the initial view controller's identity inspector. Change it's **Class** to `SideMenuController` and change it's **Module** to `SideMenuSwift`.
 2. Set up the menu view controller and the initial content view controller in your Storyboard. Add a **Custom**  segue from the `SideMenuController` to both of them.
     - Change the menu segue's identifier to `SideMenu.Menu`, change it's **Class** to `SideMenuSegue` and change it's **Module** to `SideMenuSwift`.
-    - Change the content segue's identifier to `SideMenu.Content`, change it's **Class** to `SideMenuSegue` and change it's **Module** to `SideMenuSwift`..
+    - Change the content segue's identifier to `SideMenu.Content`, change it's **Class** to `SideMenuSegue` and change it's **Module** to `SideMenuSwift`.
 4. (Optional) If you want to use custom segue identifier:
    - Open the `SideMenuController`'s attribute inspector.
    - In the **Side Menu Controller** section, modify the *Content SegueID/Menu SegueID* to the desired value and change the corresponding segue's identifier.
