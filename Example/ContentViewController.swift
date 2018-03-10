@@ -75,8 +75,8 @@ class ContentViewController: UIViewController {
     @IBAction func menuButtonDidClicked(_ sender: Any) {
         sm_sideMenuController?.revealMenu()
     }
-    
-    @IBAction func segementControlDidChanged(_ sender: UISegmentedControl) {
+
+    @IBAction func segmentControlDidChanged(_ sender: UISegmentedControl) {
         switch sender {
         case statusBarBehaviorSegment:
             SideMenuController.preferences.basic.statusBarBehavior = statusBarBehaviors[sender.selectedSegmentIndex]

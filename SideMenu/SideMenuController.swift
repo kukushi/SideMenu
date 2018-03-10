@@ -64,15 +64,15 @@ public class SideMenuController: UIViewController {
     }
     
     /// The identifier of content view controller segue. If the SideMenuController instance is initiated from IB, this identifier will
-    /// be used to retrive the content view controller.
+    /// be used to retrieve the content view controller.
     @IBInspectable public var contentSegueID: String = SideMenuSegue.ContentType.content.rawValue
     
     /// The identifier of menu view controller segue. If the SideMenuController instance is initiated from IB, this identifier will
-    /// be used to retrive the menu view controller.
+    /// be used to retrieve the menu view controller.
     @IBInspectable public var menuSegueID: String = SideMenuSegue.ContentType.menu.rawValue
 
     /// Caching
-    private lazy var lazyCachedviewControllerGenerators: [String: () -> UIViewController?] = [:]
+    private lazy var lazyCachedViewControllerGenerators: [String: () -> UIViewController?] = [:]
     private lazy var lazyCachedViewControllers: [String: UIViewController] = [:]
     
     /// The delegate.
@@ -120,7 +120,7 @@ public class SideMenuController: UIViewController {
     /// The view responsible for tapping to hide the menu and shadow
     weak private var contentContainerOverlay: UIView?
     
-    // MARK: Initalization
+    // MARK: Initialization
 
     /// Creates a SideMenuController instance with the content view controller and menu view controller.
     ///
@@ -160,7 +160,7 @@ public class SideMenuController: UIViewController {
             view.bringSubview(toFront: contentContainerView)
         }
         
-        // Forwarding stauts bar style/hidden status to content view controller
+        // Forwarding status bar style/hidden status to content view controller
         setNeedsStatusBarAppearanceUpdate()
         
         if let key = preferences.basic.defaultCacheKey {
@@ -366,8 +366,8 @@ public class SideMenuController: UIViewController {
             }
             
             if shouldShowShadowOnContent {
-                let shadowPrecent = min(menuContainerView.frame.maxX / menuWidth, 1)
-                contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPrecent
+                let shadowPercent = min(menuContainerView.frame.maxX / menuWidth, 1)
+                contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPercent
             }
         case .ended, .cancelled, .failed:
             let offset: CGFloat
@@ -450,7 +450,7 @@ public class SideMenuController: UIViewController {
     ///   - viewControllerGenerator: The closure that generate the view controller. It will only executed when needed.
     ///   - identifier: Identifier used to change content view controller
     public func cache(viewControllerGenerator: @escaping () -> UIViewController?, with identifier: String) {
-        lazyCachedviewControllerGenerators[identifier] = viewControllerGenerator
+        lazyCachedViewControllerGenerators[identifier] = viewControllerGenerator
     }
     
     /// Caches the view controller with identifier.
@@ -468,8 +468,8 @@ public class SideMenuController: UIViewController {
     public func setContentViewController(with identifier: String) {
         if let viewController = lazyCachedViewControllers[identifier] {
             contentViewController = viewController
-        } else if let viewController = lazyCachedviewControllerGenerators[identifier]?() {
-            lazyCachedviewControllerGenerators[identifier] = nil
+        } else if let viewController = lazyCachedViewControllerGenerators[identifier]?() {
+            lazyCachedViewControllerGenerators[identifier] = nil
             lazyCachedViewControllers[identifier] = viewController
             contentViewController = viewController
         }
@@ -489,7 +489,7 @@ public class SideMenuController: UIViewController {
     ///
     /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
     public func clearCache(with identifier: String) {
-        lazyCachedviewControllerGenerators[identifier] = nil
+        lazyCachedViewControllerGenerators[identifier] = nil
         lazyCachedViewControllers[identifier] = nil
     }
     
@@ -560,7 +560,7 @@ public class SideMenuController: UIViewController {
         }
     }
     
-    // MARK: Container ViewController LifeCyle
+    // MARK: Container ViewController LifeCycle
     
     private func load(_ viewController: UIViewController?, on view: UIView) {
         guard let viewController = viewController else {

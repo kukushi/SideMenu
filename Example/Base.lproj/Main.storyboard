@@ -59,7 +59,7 @@
                                             <segment title="Hide"/>
                                         </segments>
                                         <connections>
-                                            <action selector="segementControlDidChanged:" destination="sdR-iU-7Ig" eventType="valueChanged" id="lsv-9u-AdB"/>
+                                            <action selector="segmentControlDidChanged" destination="sdR-iU-7Ig" eventType="valueChanged" id="lsv-9u-AdB"/>
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
@@ -132,7 +132,7 @@
                                             <segment title="SideBySide"/>
                                         </segments>
                                         <connections>
-                                            <action selector="segementControlDidChanged:" destination="sdR-iU-7Ig" eventType="valueChanged" id="jTL-Gi-jHR"/>
+                                            <action selector="segmentControlDidChanged" destination="sdR-iU-7Ig" eventType="valueChanged" id="jTL-Gi-jHR"/>
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
@@ -163,7 +163,7 @@
                                             <segment title="Right"/>
                                         </segments>
                                         <connections>
-                                            <action selector="segementControlDidChanged:" destination="sdR-iU-7Ig" eventType="valueChanged" id="QAi-Zh-FHb"/>
+                                            <action selector="segmentControlDidChanged" destination="sdR-iU-7Ig" eventType="valueChanged" id="QAi-Zh-FHb"/>
                                         </connections>
                                     </segmentedControl>
                                 </subviews>

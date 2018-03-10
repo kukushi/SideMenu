@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		871987552042FCB90052E62F /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871987542042FCB90052E62F /* UINavigationController+Extension.swift */; };
 		872EABB2202F2A6D0066A8AE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */; };
-		872EABB4202F39180066A8AE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB3202F39180066A8AE /* SideMenuViewController.swift */; };
+		872EABB4202F39180066A8AE /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB3202F39180066A8AE /* SideMenuController.swift */; };
 		874025EB203D6F9D00EE4306 /* SideMenuPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */; };
 		874025EE203DA0CD00EE4306 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025ED203DA0CD00EE4306 /* SecondViewController.swift */; };
 		874025F0203DA11900EE4306 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025EF203DA11900EE4306 /* ThirdViewController.swift */; };
@@ -61,7 +61,7 @@
 /* Begin PBXFileReference section */
 		871987542042FCB90052E62F /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		872EABB3202F39180066A8AE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		872EABB3202F39180066A8AE /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuPreferences.swift; sourceTree = "<group>"; };
 		874025ED203DA0CD00EE4306 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		874025EF203DA11900EE4306 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 			children = (
 				87A5D7C12026108900DAAF4F /* SideMenu.h */,
 				874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */,
-				872EABB3202F39180066A8AE /* SideMenuViewController.swift */,
+				872EABB3202F39180066A8AE /* SideMenuController.swift */,
 				872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */,
 				876428BC203EFDA900203A30 /* StatusBar.swift */,
 				87A5D7C22026108900DAAF4F /* Info.plist */,
@@ -336,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				874025EB203D6F9D00EE4306 /* SideMenuPreferences.swift in Sources */,
-				872EABB4202F39180066A8AE /* SideMenuViewController.swift in Sources */,
+				872EABB4202F39180066A8AE /* SideMenuController.swift in Sources */,
 				872EABB2202F2A6D0066A8AE /* UIViewController+Extension.swift in Sources */,
 				876428BD203EFDA900203A30 /* StatusBar.swift in Sources */,
 			);

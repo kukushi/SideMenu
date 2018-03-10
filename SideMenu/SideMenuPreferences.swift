@@ -12,7 +12,7 @@ import Foundation
 /// The preferences of SideMenuController
 public struct SideMenuPreferences {
     
-    /// The Changes that will apply to the status bar when menu is revealed or hidden
+    /// The Changes that will apply to the status bar when the menu is revealed or hidden
     ///
     /// - none: Nothing will happen to the status bar. That's the default behavior.
     /// - slide: Status bar will slide up when revealed and slide down when hidden
@@ -61,7 +61,7 @@ public struct SideMenuPreferences {
         // Same with UIView animation's usingSpringDamping
         public var usingSpringDamping: CGFloat = 1
         
-        // Same with UIView animation's initialSpringVelcotiy
+        // Same with UIView animation's initialSpringVelocity
         public var initialSpringVelocity: CGFloat = 1
         
         // Whether should show shadow on content view when revealing
