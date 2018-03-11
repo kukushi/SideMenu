@@ -90,6 +90,9 @@ public struct SideMenuPreferences {
         /// If enabled, the menu view will act like rubber when reaching the border.
         public var enableRubberEffectWhenPanning = true
         
+        /// If enabled, the menu view will hidden when the app entering background
+        public var dismissMenuWhenEnteringBackground = false
+        
         /// The cache key for
         public var defaultCacheKey: String?
     }

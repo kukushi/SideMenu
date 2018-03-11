@@ -134,6 +134,10 @@ public class SideMenuController: UIViewController {
         self.menuViewController = menuViewController
     }
     
+    deinit {
+        unregisterNotifications()
+    }
+    
     // MARK: Life Cycle
     
     public override func viewDidLoad() {
@@ -168,10 +172,11 @@ public class SideMenuController: UIViewController {
         }
         
         configureGestures()
+        setUpNotifications()
     }
     
     private func configureGestures() {
-        // The gesture will be added anyway, its delegate will tell whether it will work
+        // The gesture will be added anyway, its delegate will tell whether it should be recognized
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SideMenuController.handlePanGesture(_:)))
         panGesture.delegate = self
         view.addGestureRecognizer(panGesture)
@@ -391,6 +396,22 @@ public class SideMenuController: UIViewController {
         }
     }
     
+    // MARK: Notification
+    
+    private func setUpNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(SideMenuController.appDidEnteredBackground), name: .UIApplicationDidEnterBackground, object: nil)
+    }
+    
+    private func unregisterNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func appDidEnteredBackground() {
+        if preferences.basic.dismissMenuWhenEnteringBackground {
+            hideMenu()
+        }
+    }
+    
     // MARK: Status Bar
     
     private func setStatusBar(hidden: Bool, animate: Bool = false) {
@@ -585,6 +606,16 @@ public class SideMenuController: UIViewController {
         viewController.removeFromParentViewController()
     }
     
+    // MARK: Orientation
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { (context) in
+            let orientation = UIApplication.shared.statusBarOrientation
+            print(orientation)
+        }) { (context) in
+            
+        }
+    }
 }
 
 // MARK: UIGestureRecognizerDelegate
