@@ -11,16 +11,16 @@ import UIKit
 // MARK: Delegate Methods
 
 public protocol SideMenuControllerDelegate: class {
-    func sideMenuWillShow(_ sideMenu: SideMenuController)
-    func sideMenuDidShow(_ sideMenu: SideMenuController)
+    func sideMenuWillReveal(_ sideMenu: SideMenuController)
+    func sideMenuDidReveal(_ sideMenu: SideMenuController)
     func sideMenuWillHide(_ sideMenu: SideMenuController)
     func sideMenuDidHide(_ sideMenu: SideMenuController)
 }
 
 // Provides default implementation for delegates
 public extension SideMenuControllerDelegate {
-    func sideMenuWillShow(_ sideMenu: SideMenuController) {}
-    func sideMenuDidShow(_ sideMenu: SideMenuController) {}
+    func sideMenuWillReveal(_ sideMenu: SideMenuController) {}
+    func sideMenuDidReveal(_ sideMenu: SideMenuController) {}
     func sideMenuWillHide(_ sideMenu: SideMenuController) {}
     func sideMenuDidHide(_ sideMenu: SideMenuController) {}
 }
@@ -220,7 +220,7 @@ public class SideMenuController: UIViewController {
         menuViewController?.beginAppearanceTransition(true, animated: true)
         
         if shouldCallDelegate {
-            reveal ? delegate?.sideMenuWillShow(self) : delegate?.sideMenuWillHide(self)
+            reveal ? delegate?.sideMenuWillReveal(self) : delegate?.sideMenuWillHide(self)
         }
         
         if reveal {
@@ -241,7 +241,7 @@ public class SideMenuController: UIViewController {
             self.menuViewController?.endAppearanceTransition()
             
             if shouldCallDelegate {
-                reveal ? self.delegate?.sideMenuDidShow(self) : self.delegate?.sideMenuDidHide(self)
+                reveal ? self.delegate?.sideMenuDidReveal(self) : self.delegate?.sideMenuDidHide(self)
             }
             
             if !reveal {

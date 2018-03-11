@@ -76,11 +76,11 @@ extension MenuViewController: SideMenuControllerDelegate {
         print("[SideMenu] Menu did hide.")
     }
     
-    func sideMenuWillShow(_ sideMenu: SideMenuController) {
+    func sideMenuWillReveal(_ sideMenu: SideMenuController) {
         print("[SideMenu] Menu will whow.")
     }
     
-    func sideMenuDidShow(_ sideMenu: SideMenuController) {
+    func sideMenuDidReveal(_ sideMenu: SideMenuController) {
         print("[SideMenu] Menu did show.")
     }
 }
