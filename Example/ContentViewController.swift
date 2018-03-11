@@ -25,7 +25,7 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var statusBarBehaviorSegment: UISegmentedControl!
     @IBOutlet weak var menuPositionSegment: UISegmentedControl!
     @IBOutlet weak var menuDirectionSegment: UISegmentedControl!
-    
+    @IBOutlet weak var orientationSegment: UISegmentedControl!
     @IBOutlet var indicatorLabels: [UILabel]!
 
     var isDarkModeEnabled = false
@@ -51,6 +51,7 @@ class ContentViewController: UIViewController {
             statusBarBehaviorSegment.tintColor = .lobolly
             menuPositionSegment.tintColor = .lobolly
             menuDirectionSegment.tintColor = .lobolly
+            orientationSegment.tintColor = .lobolly
             for label in indicatorLabels {
                 label.textColor = .white
             }
@@ -86,6 +87,8 @@ class ContentViewController: UIViewController {
         case menuDirectionSegment:
             SideMenuController.preferences.basic.direction = menuDirections[sender.selectedSegmentIndex]
             presentAlert()
+        case orientationSegment:
+            SideMenuController.preferences.basic.supportedOrientations = sender.selectedSegmentIndex == 0 ? .portrait : .allButUpsideDown
         default:
             break
         }
