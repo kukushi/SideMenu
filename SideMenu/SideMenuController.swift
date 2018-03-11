@@ -269,7 +269,7 @@ public class SideMenuController: UIViewController {
         }
     }
     
-    @objc private func hideButtonDidClicked(_ tap: UITapGestureRecognizer) {
+    @objc private func handleTapGesture(_ tap: UITapGestureRecognizer) {
         hideMenu()
     }
     
@@ -291,8 +291,9 @@ public class SideMenuController: UIViewController {
         }
         overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
+        // UIKit can coordinate overlay's tap gesture and controller view's pan gesture correctly
         let tapToHideGesture = UITapGestureRecognizer()
-        tapToHideGesture.addTarget(self, action: #selector(SideMenuController.hideButtonDidClicked(_:)))
+        tapToHideGesture.addTarget(self, action: #selector(SideMenuController.handleTapGesture(_:)))
         overlay.addGestureRecognizer(tapToHideGesture)
         
         contentContainerView.insertSubview(overlay, aboveSubview: contentViewController!.view)
