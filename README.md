@@ -10,7 +10,7 @@
 
 SideMenu is an easy-to-use container view controller written in Swift.
 
-It supports:
+Besides all the features a *SideMenu* will have, it supports:
 
 - Four types of status bar behaviors which adopts by most Apps
 - Three different menu position
@@ -133,7 +133,6 @@ To install `SideMenu` with [CocoaPods](http://cocoapods.org/), add the below lin
 pod 'SideMenuSwift'
 # Note its not 'SideMenu'
 ```
-
 ### Carthage
 
 To install `SideMenu` with [Carthage](https://github.com/Carthage/Carthage), add the below line in your `Cartfile`:

@@ -57,23 +57,31 @@ class MenuViewController: UIViewController {
         view.backgroundColor = themeColor
         tableView.backgroundColor = themeColor
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        let showPlaceTableOnLeft = (SideMenuController.preferences.basic.position == .under) != (SideMenuController.preferences.basic.direction == .right)
+        selectionMenuTrailingConstraint.constant = showPlaceTableOnLeft ? SideMenuController.preferences.basic.menuWidth - size.width : 0
+        view.layoutIfNeeded()
+    }
 }
 
 extension MenuViewController: SideMenuControllerDelegate {
     func sideMenuWillHide(_ sideMenu: SideMenuController) {
-        print("Side Menu Will Hide")
+        print("[SideMenu] Menu will hide")
     }
     
     func sideMenuDidHide(_ sideMenu: SideMenuController) {
-        print("Side Menu Did Hide.")
+        print("[SideMenu] Menu did hide.")
     }
     
     func sideMenuWillShow(_ sideMenu: SideMenuController) {
-        print("Side Menu Will Show.")
+        print("[SideMenu] Menu will whow.")
     }
     
     func sideMenuDidShow(_ sideMenu: SideMenuController) {
-        print("Side Menu Did Show.")
+        print("[SideMenu] Menu did show.")
     }
 }
 
@@ -103,6 +111,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         sideMenuController.hideMenu()
         
         print("View Controller Cache Identifier: " + sideMenuController.currentCacheIdentifier()!)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
 }
 

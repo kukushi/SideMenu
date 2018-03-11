@@ -316,13 +316,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtT-D7-zwS">
-                                <rect key="frame" x="139" y="238.5" width="97.5" height="191"/>
+                                <rect key="frame" x="139" y="238" width="97.5" height="191"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="160"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-s4-rKw">
-                                <rect key="frame" x="159" y="458" width="57" height="30"/>
+                                <rect key="frame" x="159" y="457.5" width="57" height="30"/>
                                 <state key="normal" title="Random"/>
                                 <connections>
                                     <action selector="randomButtonDidClicked:" destination="Xkf-dR-rhE" eventType="touchUpInside" id="E5I-RM-5lT"/>
@@ -362,14 +362,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3H-Sf-IZj">
-                                <rect key="frame" x="62" y="318" width="252" height="30"/>
+                                <rect key="frame" x="61.5" y="318.5" width="252" height="30"/>
                                 <state key="normal" title="Switch To Programmatically Example"/>
                                 <connections>
                                     <action selector="switchToProgrammaticalExample:" destination="5t6-4r-SSF" eventType="touchUpInside" id="5jY-RN-DNq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef6-Gd-FI4">
-                                <rect key="frame" x="114" y="356" width="146" height="30"/>
+                                <rect key="frame" x="114.5" y="356.5" width="146" height="30"/>
                                 <state key="normal" title="Switch To IB Example"/>
                                 <connections>
                                     <action selector="switchToIBExample:" destination="5t6-4r-SSF" eventType="touchUpInside" id="5i0-Bc-o6J"/>
@@ -400,7 +400,7 @@
         <!--Navigation Controller-->
         <scene sceneID="I4a-0s-nfP">
             <objects>
-                <navigationController storyboardIdentifier="ContentNavigation" automaticallyAdjustsScrollViewInsets="NO" id="D83-H8-ode" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ContentNavigation" automaticallyAdjustsScrollViewInsets="NO" id="D83-H8-ode" customClass="NavigationController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2h1-dh-dyD">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -418,7 +418,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oOo-rf-hZU">
             <objects>
-                <navigationController storyboardIdentifier="SecondViewController" automaticallyAdjustsScrollViewInsets="NO" id="7BB-mj-t79" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SecondViewController" automaticallyAdjustsScrollViewInsets="NO" id="7BB-mj-t79" customClass="NavigationController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zpz-ah-qXm">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -436,7 +436,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DkE-6W-gfJ">
             <objects>
-                <navigationController storyboardIdentifier="ThirdViewController" automaticallyAdjustsScrollViewInsets="NO" id="7fT-f1-7wm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ThirdViewController" automaticallyAdjustsScrollViewInsets="NO" id="7fT-f1-7wm" customClass="NavigationController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cmk-FJ-eF6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

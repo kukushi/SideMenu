@@ -112,6 +112,12 @@ class ContentViewController: UIViewController {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        print("View Will Transition")
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isDarkModeEnabled ? .lightContent : .default
     }

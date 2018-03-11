@@ -29,5 +29,9 @@ class SecondViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
 
 }

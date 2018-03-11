@@ -91,10 +91,13 @@ public struct SideMenuPreferences {
         public var enableRubberEffectWhenPanning = true
         
         /// If enabled, the menu view will hidden when the app entering background
-        public var dismissMenuWhenEnteringBackground = false
+        public var hideMenuWhenEnteringBackground = false
         
-        /// The cache key for
+        /// The cache key for the first content view controller
         public var defaultCacheKey: String?
+        
+        /// The supported orientations
+        public var supportedOrientations: UIInterfaceOrientationMask = .portrait
     }
     
     public var basic = Configuration()
