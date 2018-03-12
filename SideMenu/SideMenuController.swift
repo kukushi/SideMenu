@@ -8,8 +8,35 @@
 
 import UIKit
 
-// MARK: Delegate Methods
+// MARK: Storyboard Segue
 
+/// Custom Segue that is required for SideMenuController to be used in Storyboard.
+open class SideMenuSegue: UIStoryboardSegue {
+    public enum ContentType: String {
+        case content = "SideMenu.Content"
+        case menu = "SideMenu.Menu"
+    }
+    
+    public var contentType = ContentType.content
+    
+    open override func perform() {
+        guard let sideMenuController = source as? SideMenuController else {
+            return
+        }
+        
+        switch contentType {
+        case .content:
+            sideMenuController.contentViewController = destination
+        case .menu:
+            sideMenuController.menuViewController = destination
+        }
+    }
+    
+}
+
+// MARK: SideMenuController
+
+// Delegate Methods
 public protocol SideMenuControllerDelegate: class {
     func sideMenuWillReveal(_ sideMenu: SideMenuController)
     func sideMenuDidReveal(_ sideMenu: SideMenuController)
@@ -25,36 +52,17 @@ public extension SideMenuControllerDelegate {
     func sideMenuDidHide(_ sideMenu: SideMenuController) {}
 }
 
-/// Custom Segue for SideMenuController
-public class SideMenuSegue: UIStoryboardSegue {
-    public enum ContentType: String {
-        case content = "SideMenu.Content"
-        case menu = "SideMenu.Menu"
-    }
-    
-    public var contentType = ContentType.content
-    
-    public override func perform() {
-        guard let sideMenuController = source as? SideMenuController else {
-            return
-        }
-        
-        switch contentType {
-        case .content:
-            sideMenuController.contentViewController = destination
-        case .menu:
-            sideMenuController.menuViewController = destination
-        }
-    }
-    
-}
-
 /// A container view controller owns a menu view controller and a content view controller.
-public class SideMenuController: UIViewController {
+///
+/// The overall architect of SideMenuController is:
+/// SideMenuController
+/// ├── Menu View Controller
+/// └── Content View Controller
+open class SideMenuController: UIViewController {
     
     /// Configure this property to change the behavior of SideMenuController;
     /// Most changes will take effect immediately, besides the `basic.positon`.
-    public static var preferences = SideMenuPreferences()
+    open static var preferences = SideMenuPreferences()
     private var preferences: SideMenuPreferences {
         return type(of: self).preferences
     }
@@ -80,7 +88,7 @@ public class SideMenuController: UIViewController {
     
     /// The content view controller. Changes its value will change the display immediately.
     /// If you want a caching approach, use `setContentViewController(with)`
-    public var contentViewController: UIViewController? {
+    open var contentViewController: UIViewController? {
         didSet {
             guard contentViewController !== oldValue else {
                 return
@@ -94,7 +102,8 @@ public class SideMenuController: UIViewController {
         }
     }
     
-    public var menuViewController: UIViewController? {
+    /// The menu view controller.
+    open var menuViewController: UIViewController? {
         didSet {
             guard menuViewController !== oldValue else {
                 return
@@ -110,7 +119,7 @@ public class SideMenuController: UIViewController {
     private var statusBarScreenShotView: UIView?
     
     /// Return true if the menu is revealing
-    public var isMenuRevealed = false
+    open var isMenuRevealed = false
     
     private var shouldShowShadowOnContent: Bool {
         return preferences.animation.shouldShowShadowWhenRevealing
@@ -141,7 +150,7 @@ public class SideMenuController: UIViewController {
     
     // MARK: Life Cycle
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setup from the IB
@@ -178,7 +187,7 @@ public class SideMenuController: UIViewController {
     
     // MARK: Storyboard
     
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segue = segue as? SideMenuSegue, let identifier = segue.identifier else {
             return
         }
@@ -199,7 +208,7 @@ public class SideMenuController: UIViewController {
     /// - Parameters:
     ///   - animated: If set to true, the process will be animated
     ///   - completion: Completion closure that will be called after revaeling the menu
-    public func revealMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+    open func revealMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         changeMenuVisibility(reveal: true, animated: animated, completion: completion)
     }
     
@@ -208,7 +217,7 @@ public class SideMenuController: UIViewController {
     /// - Parameters:
     ///   - animated: If set to true, the process will be animated
     ///   - completion: Completion closure that will be called after hiding the menu
-    public func hideMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+    open func hideMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         changeMenuVisibility(reveal: false, animated: animated, completion: completion)
     }
     
@@ -485,12 +494,12 @@ public class SideMenuController: UIViewController {
         return screenshot
     }
     
-    public override var childViewControllerForStatusBarStyle: UIViewController? {
+    open override var childViewControllerForStatusBarStyle: UIViewController? {
         // Forward to the content view controller
         return contentViewController
     }
     
-    public override var childViewControllerForStatusBarHidden: UIViewController? {
+    open override var childViewControllerForStatusBarHidden: UIViewController? {
         return contentViewController
     }
     
@@ -503,7 +512,7 @@ public class SideMenuController: UIViewController {
     /// - Parameters:
     ///   - viewControllerGenerator: The closure that generate the view controller. It will only executed when needed.
     ///   - identifier: Identifier used to change content view controller
-    public func cache(viewControllerGenerator: @escaping () -> UIViewController?, with identifier: String) {
+    open func cache(viewControllerGenerator: @escaping () -> UIViewController?, with identifier: String) {
         lazyCachedViewControllerGenerators[identifier] = viewControllerGenerator
     }
     
@@ -512,14 +521,14 @@ public class SideMenuController: UIViewController {
     /// - Parameters:
     ///   - viewController: the view controller to cache
     ///   - identifier: the identifier
-    public func cache(viewController: UIViewController, with identifier: String) {
+    open func cache(viewController: UIViewController, with identifier: String) {
         lazyCachedViewControllers[identifier] = viewController
     }
     
     /// Changes the content view controller to the cached one with given `identifier`.
     ///
     /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
-    public func setContentViewController(with identifier: String) {
+    open func setContentViewController(with identifier: String) {
         if let viewController = lazyCachedViewControllers[identifier] {
             contentViewController = viewController
         } else if let viewController = lazyCachedViewControllerGenerators[identifier]?() {
@@ -532,7 +541,7 @@ public class SideMenuController: UIViewController {
     /// Return the identifier of current content view controller.
     ///
     /// - Returns: if not exist, returns nil.
-    public func currentCacheIdentifier() -> String? {
+    open func currentCacheIdentifier() -> String? {
         guard let index = lazyCachedViewControllers.values.index(of: contentViewController!) else {
             return nil
         }
@@ -542,7 +551,7 @@ public class SideMenuController: UIViewController {
     /// Clears cached view controller or generators with identifier.
     ///
     /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
-    public func clearCache(with identifier: String) {
+    open func clearCache(with identifier: String) {
         lazyCachedViewControllerGenerators[identifier] = nil
         lazyCachedViewControllers[identifier] = nil
     }
@@ -610,11 +619,11 @@ public class SideMenuController: UIViewController {
     
     // MARK: Orientation
     
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
        return preferences.basic.supportedOrientations
     }
     
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         hideMenu(animated: false, completion: { finished in
             coordinator.animate(alongsideTransition: { (context) in
                 self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed)
