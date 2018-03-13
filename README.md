@@ -10,7 +10,7 @@
 
 SideMenu is an easy-to-use container view controller written in Swift.
 
-Besides all the features a *SideMenu* will have, it supports:
+Besides all the features a *SideMenu* should have, it supports:
 
 - Four types of status bar behaviors which adopts by most Apps
 - Three different menu position
