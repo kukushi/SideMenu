@@ -61,7 +61,6 @@ public extension SideMenuControllerDelegate {
 open class SideMenuController: UIViewController {
     
     /// Configure this property to change the behavior of SideMenuController;
-    /// Most changes will take effect immediately, besides the `basic.positon`.
     open static var preferences = SideMenuPreferences()
     private var preferences: SideMenuPreferences {
         return type(of: self).preferences
@@ -118,11 +117,11 @@ open class SideMenuController: UIViewController {
     private let contentContainerView = UIView()
     private var statusBarScreenShotView: UIView?
     
-    /// Return true if the menu is revealing
+    /// Return true if the menu is now revealing.
     open var isMenuRevealed = false
     
     private var shouldShowShadowOnContent: Bool {
-        return preferences.animation.shouldShowShadowWhenRevealing
+        return preferences.animation.shouldAddShadowWhenRevealing
             && preferences.basic.position == .above
     }
     
@@ -209,8 +208,8 @@ open class SideMenuController: UIViewController {
     /// Reveals the menu.
     ///
     /// - Parameters:
-    ///   - animated: If set to true, the process will be animated
-    ///   - completion: Completion closure that will be called after revaeling the menu
+    ///   - animated: If set to true, the process will be animated. The default is true.
+    ///   - completion: Completion closure that will be executed after revaeling the menu.
     open func revealMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         changeMenuVisibility(reveal: true, animated: animated, completion: completion)
     }
@@ -218,8 +217,8 @@ open class SideMenuController: UIViewController {
     /// Hides the menu.
     ///
     /// - Parameters:
-    ///   - animated: If set to true, the process will be animated
-    ///   - completion: Completion closure that will be called after hiding the menu
+    ///   - animated: If set to true, the process will be animated. The default is true.
+    ///   - completion: Completion closure that will be executed after hiding the menu.
     open func hideMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         changeMenuVisibility(reveal: false, animated: animated, completion: completion)
     }
@@ -245,7 +244,7 @@ open class SideMenuController: UIViewController {
             self.menuContainerView.frame = self.sideMenuFrame(visibility: reveal)
             self.contentContainerView.frame = self.contentFrame(visibility: reveal)
             if self.shouldShowShadowOnContent {
-                self.contentContainerOverlay?.alpha = reveal ? self.preferences.animation.menuShadowAlpha : 0
+                self.contentContainerOverlay?.alpha = reveal ? self.preferences.animation.shadowAlpha : 0
             }
         }
         
@@ -290,7 +289,7 @@ open class SideMenuController: UIViewController {
         let duration = reveal ? preferences.animation.revealDuration : preferences.animation.hideDuration
         UIView.animate(withDuration: duration,
                        delay: 0,
-                       usingSpringWithDamping: preferences.animation.usingSpringDamping,
+                       usingSpringWithDamping: preferences.animation.dampingRatio,
                        initialSpringVelocity: preferences.animation.initialSpringVelocity,
                        options: preferences.animation.options,
                        animations: {
@@ -420,7 +419,7 @@ open class SideMenuController: UIViewController {
             
             if shouldShowShadowOnContent {
                 let shadowPercent = min(menuContainerView.frame.maxX / menuWidth, 1)
-                contentContainerOverlay?.alpha = self.preferences.animation.menuShadowAlpha * shadowPercent
+                contentContainerOverlay?.alpha = self.preferences.animation.shadowAlpha * shadowPercent
             }
         case .ended, .cancelled, .failed:
             let offset: CGFloat
