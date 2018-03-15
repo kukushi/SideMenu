@@ -125,7 +125,10 @@ open class SideMenuController: UIViewController {
         return preferences.animation.shouldShowShadowWhenRevealing
             && preferences.basic.position == .above
     }
-    private var startFrameX: CGFloat = 0
+    
+    /// States used in panning gesture
+    private var isValidatePanningBegan = false
+    private var panningBaganPointX: CGFloat = 0
 
     /// The view responsible for tapping to hide the menu and shadow
     weak private var contentContainerOverlay: UIView?
@@ -340,7 +343,6 @@ open class SideMenuController: UIViewController {
         overlay.addGestureRecognizer(tapToHideGesture)
         
         contentContainerView.insertSubview(overlay, aboveSubview: contentViewController!.view)
-        
         contentContainerOverlay = overlay
     }
     
@@ -382,16 +384,23 @@ open class SideMenuController: UIViewController {
         
         switch pan.state {
         case .began:
-            startFrameX = viewToAnimate.frame.origin.x
-            addContentOverlayViewIfNeeded()
-            // If status bar behavior is not `.none`, status bar will always be hidden when paning.
-            setStatusBar(hidden: true, animate: true)
+            panningBaganPointX = viewToAnimate.frame.origin.x
+            isValidatePanningBegan = false
         case .changed:
-            let resultX = startFrameX + translation
+            let resultX = panningBaganPointX + translation
             let notReachLeftBorder = (!isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX >= leftBorder
             let notReachRightBorder = (isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX <= rightBorder
             guard notReachLeftBorder && notReachRightBorder else {
                 return
+            }
+            
+            if !isValidatePanningBegan {
+                // Do some setup works in the initial step of validate panning. This can't be done in the `.began` period
+                // because we can't know whether its a validate panning
+                addContentOverlayViewIfNeeded()
+                setStatusBar(hidden: true, animate: true)
+                
+                isValidatePanningBegan = true
             }
             
             let factor: CGFloat = isLeft ? 1 : -1
