@@ -77,7 +77,7 @@ extension MenuViewController: SideMenuControllerDelegate {
     }
     
     func sideMenuWillReveal(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu will whow.")
+        print("[SideMenu] Menu will show.")
     }
     
     func sideMenuDidReveal(_ sideMenu: SideMenuController) {
@@ -97,7 +97,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         if row == 0 {
             cell.titleLabel?.text = "Preferences"
         } else if row == 1 {
-            cell.titleLabel?.text = "Random Number"
+            cell.titleLabel?.text = "Works with Other"
         } else if row == 2 {
             cell.titleLabel?.text = "IB / Code Example"
         }

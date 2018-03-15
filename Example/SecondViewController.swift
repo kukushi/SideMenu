@@ -14,9 +14,16 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Random"
+        title = "Work With Other"
     }
-
+    
+    
+    @IBAction func pushViewControllerButtonDiidClicked(_ sender: Any) {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .white
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {
         sm_sideMenuController?.revealMenu()

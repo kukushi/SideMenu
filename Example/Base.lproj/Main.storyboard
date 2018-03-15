@@ -366,26 +366,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtT-D7-zwS">
-                                <rect key="frame" x="139" y="238" width="97.5" height="191"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="160"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-s4-rKw">
-                                <rect key="frame" x="159" y="457.5" width="57" height="30"/>
-                                <state key="normal" title="Random"/>
-                                <connections>
-                                    <action selector="randomButtonDidClicked:" destination="Xkf-dR-rhE" eventType="touchUpInside" id="E5I-RM-5lT"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSZ-65-sPN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working with Pan to Pop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNM-iF-Nrm">
+                                        <rect key="frame" x="20" y="16" width="210" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDO-dU-Ab4">
+                                        <rect key="frame" x="20" y="50" width="155" height="30"/>
+                                        <state key="normal" title="Push a View Controller"/>
+                                        <connections>
+                                            <action selector="pushViewControllerButtonDiidClicked:" destination="Xkf-dR-rhE" eventType="touchUpInside" id="OSL-Se-gCI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="88" id="6aY-hh-OM8"/>
+                                    <constraint firstAttribute="height" constant="88" id="Aya-cC-bFg"/>
+                                    <constraint firstItem="hNM-iF-Nrm" firstAttribute="top" secondItem="PSZ-65-sPN" secondAttribute="top" constant="16" id="E16-x0-mqu"/>
+                                    <constraint firstItem="SDO-dU-Ab4" firstAttribute="leading" secondItem="hNM-iF-Nrm" secondAttribute="leading" id="RWo-yS-jvk"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hNM-iF-Nrm" secondAttribute="trailing" constant="20" symbolic="YES" id="cyc-K9-HCE"/>
+                                    <constraint firstItem="hNM-iF-Nrm" firstAttribute="leading" secondItem="PSZ-65-sPN" secondAttribute="leading" constant="20" id="kay-VA-oKx"/>
+                                    <constraint firstItem="SDO-dU-Ab4" firstAttribute="top" secondItem="hNM-iF-Nrm" secondAttribute="bottom" constant="10" id="xKo-Y2-jGm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HtT-D7-zwS" firstAttribute="centerY" secondItem="zns-Wm-N2k" secondAttribute="centerY" id="GWQ-X3-o3u"/>
-                            <constraint firstItem="HtT-D7-zwS" firstAttribute="centerX" secondItem="zns-Wm-N2k" secondAttribute="centerX" id="a1k-Tu-b8i"/>
-                            <constraint firstItem="Oy8-s4-rKw" firstAttribute="centerX" secondItem="zns-Wm-N2k" secondAttribute="centerX" id="bwA-Ga-XTY"/>
-                            <constraint firstItem="Oy8-s4-rKw" firstAttribute="top" secondItem="HtT-D7-zwS" secondAttribute="bottom" constant="28.5" id="y3P-cn-1bz"/>
+                            <constraint firstItem="PSZ-65-sPN" firstAttribute="leading" secondItem="8sV-sC-5J0" secondAttribute="leading" id="4lt-Hw-zK9"/>
+                            <constraint firstItem="PSZ-65-sPN" firstAttribute="top" secondItem="8sV-sC-5J0" secondAttribute="top" id="NjX-tg-1st"/>
+                            <constraint firstItem="PSZ-65-sPN" firstAttribute="trailing" secondItem="8sV-sC-5J0" secondAttribute="trailing" id="p6k-PA-6ee"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8sV-sC-5J0"/>
                     </view>
@@ -396,9 +410,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="textLabel" destination="HtT-D7-zwS" id="BOY-Vc-rtx"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="078-E7-w6r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -413,15 +424,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3H-Sf-IZj">
-                                <rect key="frame" x="61.5" y="318.5" width="252" height="30"/>
-                                <state key="normal" title="Switch To Programmatically Example"/>
+                                <rect key="frame" x="138.5" y="318.5" width="99" height="30"/>
+                                <state key="normal" title="Code Example"/>
                                 <connections>
                                     <action selector="switchToProgrammaticalExample:" destination="5t6-4r-SSF" eventType="touchUpInside" id="5jY-RN-DNq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef6-Gd-FI4">
-                                <rect key="frame" x="114.5" y="356.5" width="146" height="30"/>
-                                <state key="normal" title="Switch To IB Example"/>
+                                <rect key="frame" x="149.5" y="356.5" width="76" height="30"/>
+                                <state key="normal" title="IB Example"/>
                                 <connections>
                                     <action selector="switchToIBExample:" destination="5t6-4r-SSF" eventType="touchUpInside" id="5i0-Bc-o6J"/>
                                 </connections>
@@ -446,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccm-Oq-9Pw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="1941"/>
+            <point key="canvasLocation" x="1641" y="1941"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I4a-0s-nfP">

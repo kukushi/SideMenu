@@ -33,6 +33,7 @@ class ContentViewController: UIViewController {
     let statusBarBehaviors: [SideMenuPreferences.StatusBarBehavior] = [.none, .slide, .fade, .hideOnMenu]
     let menuPosition: [SideMenuPreferences.MenuPosition] = [.above, .under, .sideBySide]
     let menuDirections: [SideMenuPreferences.MenuDirection] = [.left, .right]
+    let menuOrientation: [UIInterfaceOrientationMask] = [.portrait, .allButUpsideDown]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,7 @@ class ContentViewController: UIViewController {
         statusBarBehaviorSegment.selectedSegmentIndex = statusBarBehaviors.index(of: preferences.statusBarBehavior)!
         menuPositionSegment.selectedSegmentIndex = menuPosition.index(of: preferences.position)!
         menuDirectionSegment.selectedSegmentIndex = menuDirections.index(of: preferences.direction)!
+        orientationSegment.selectedSegmentIndex = menuOrientation.index(of: preferences.supportedOrientations)!
     }
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {
