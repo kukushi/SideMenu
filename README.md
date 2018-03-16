@@ -1,4 +1,4 @@
-# SideMenu
+# ![](https://github.com/kukushi/SideMenu/blob/develop/Images/Logo.png?raw=true)
 
 [![Version](https://img.shields.io/cocoapods/v/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
 ![Swift4](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat")
@@ -31,6 +31,24 @@ Menu Position / Status Bar Behavior
 | ![](https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/SideBySide%2BFade.gif) | ![](https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/SideBySide%2BHideOnMenu.gif) |
 
 We call the left/right view controller as the **menu** view controller, the central view controller as **content** view controller.
+
+## Installation
+
+### CocoaPods
+
+To install `SideMenu` with [CocoaPods](http://cocoapods.org/), add the below line in your `Podfile`:
+
+```ruby
+pod 'SideMenuSwift'
+# Note its not 'SideMenu'
+```
+### Carthage
+
+To install `SideMenu` with [Carthage](https://github.com/Carthage/Carthage), add the below line in your `Cartfile`:
+
+```
+github "kukushi/SideMenu" "master"
+```
 
 ## Usages
 
@@ -72,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-Use `sm_sideMenuController` provides in `UIViewController`'s  extension to access the parent `SideMenuController`:
+Use the `sm_sideMenuController` method provided in `UIViewController`'s extension to get the parent `SideMenuController`:
 
 ```swift
 viewController.sm_sideMenuController.revealMenu()
@@ -92,16 +110,16 @@ SideMenuController.preferences.basic.enablePanGesture = true
 // Many other options.
 ```
 
-### Caching Content
+### Caching The Content
 
 One of the biggest features of SideMenu is caching. 
 
 ```swift
-# Cache the view controllers somewhere in your code
+// Cache the view controllers somewhere in your code
 sideMenuController.cache(viewControllerGenerator: secondViewController, with: "1")
 sideMenuController.cache(viewControllerGenerator: thirdViewController, with: "2")
 
-# Switch to it when needed
+// Switch to it when needed
 sm_sideMenuController.setContentViewController(with: "1")
 ```
 
@@ -121,25 +139,8 @@ sm_sideMenuController.cache(viewControllerGenerator: { self.storyboard?.instanti
 ## Requirements
 
 - Xcode 9
-- iOS 9 or later
+- iOS 9.0 or later
 
-## Installation
-
-## CocoaPods
-
-To install `SideMenu` with [CocoaPods](http://cocoapods.org/), add the below line in your `Podfile`:
-
-```ruby
-pod 'SideMenuSwift'
-# Note its not 'SideMenu'
-```
-### Carthage
-
-To install `SideMenu` with [Carthage](https://github.com/Carthage/Carthage), add the below line in your `Cartfile`:
-
-```
-github "kukushi/SideMenu" "master"
-```
 ## License
 
 SideMenu is available under the MIT license. See the LICENSE file for more info.
