@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "SideMenuSwift"
-    s.version      = "0.1.0"
+    s.version      = "0.2.0"
     s.summary      = "An iOS container view controller which look like Android's Navigation Drawer."
   
     s.description  = <<-DESC
