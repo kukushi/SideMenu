@@ -228,6 +228,11 @@ open class SideMenuController: UIViewController {
                                       shouldCallDelegate: Bool = true,
                                       shouldChangeStatusBar: Bool = true,
                                       completion: ((Bool) -> Void)? = nil) {
+        if reveal == isMenuRevealed {
+            completion?(true)
+            return
+        }
+        
         menuViewController?.beginAppearanceTransition(true, animated: true)
         
         if shouldCallDelegate {
@@ -633,9 +638,12 @@ open class SideMenuController: UIViewController {
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         hideMenu(animated: false, completion: { finished in
+            // Temporally hide the menu container veiw for smooth animation
+            self.menuContainerView.isHidden = true
             coordinator.animate(alongsideTransition: { (context) in
                 self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed)
             }) { (context) in
+                self.menuContainerView.isHidden = false
                 self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed)
             }
         })
