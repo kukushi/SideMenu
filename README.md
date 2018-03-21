@@ -10,7 +10,7 @@
 
 SideMenu is an easy-to-use container view controller written in Swift.
 
-Besides all the features a *SideMenu* should have, it supports:
+Besides all the features a *Side Menu* should have, it supports:
 
 - Four types of status bar behaviors which adopts by most Apps
 - Three different menu position
@@ -56,14 +56,14 @@ github "kukushi/SideMenu" "master"
 
 To set up `SideMenu` in storyboard:
 
-1. Open the initial view controller's identity inspector. Change it's **Class** to `SideMenuController` and change it's **Module** to `SideMenuSwift`.
-2. Set up the menu view controller and the initial content view controller in your Storyboard. Add a **Custom**  segue from the `SideMenuController` to both of them.
-    - Change the menu segue's identifier to `SideMenu.Menu`, change it's **Class** to `SideMenuSegue` and change it's **Module** to `SideMenuSwift`.
-    - Change the content segue's identifier to `SideMenu.Content`, change it's **Class** to `SideMenuSegue` and change it's **Module** to `SideMenuSwift`.
+1. Open the view controller's *Identity inspector*. Change the **Class** to `SideMenuController` and **Module** to `SideMenuSwift`.
+2. Set up the menu view controller and the initial content view controller in your Storyboard. Add a **Custom** segue from the `SideMenuController` to each of them.
+    - Change the menu segue's identifier to `SideMenu.Menu`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
+    - Change the content segue's identifier to `SideMenu.Content`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
 4. (Optional) If you want to use custom segue identifier:
-   - Open the `SideMenuController`'s attribute inspector.
+   - Open the `SideMenuController`'s *Attribute inspector*.
    - In the **Side Menu Controller** section, modify the *Content SegueID/Menu SegueID* to the desired value and change the corresponding segue's identifier.
-5. It's done.
+5. It's done. Check [this screenshot](https://github.com/kukushi/SideMenu/blob/develop/Images/StoryboardSample.png?raw=true) a for clear view.
 
 ### Programmatically
 
