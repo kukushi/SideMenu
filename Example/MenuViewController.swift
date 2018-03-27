@@ -10,7 +10,6 @@ import UIKit
 import SideMenu
 
 class MenuViewController: UIViewController {
-    weak var sideMenuController: SideMenuController!
     var isDarkModeEnabled = false
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -30,14 +29,9 @@ class MenuViewController: UIViewController {
         isDarkModeEnabled = SideMenuController.preferences.basic.position == .under
         configureView()
 
-        guard let theSideMenuController = sm_sideMenuController else {
-            return
-        }
-        sideMenuController = theSideMenuController
-        
-        sideMenuController.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
-        sideMenuController.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
-        sideMenuController.delegate = self
+        sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
+        sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
+        sideMenuController?.delegate = self
     }
     
     private func configureView() {
@@ -107,10 +101,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        sideMenuController.setContentViewController(with: "\(row)")
-        sideMenuController.hideMenu()
+        sideMenuController?.setContentViewController(with: "\(row)")
+        sideMenuController?.hideMenu()
         
-        print("View Controller Cache Identifier: " + sideMenuController.currentCacheIdentifier()!)
+        print("View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
