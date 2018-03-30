@@ -76,7 +76,7 @@ class ContentViewController: UIViewController {
     }
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {
-        sm_sideMenuController?.revealMenu()
+        sideMenuController?.revealMenu()
     }
 
     @IBAction func segmentControlDidChanged(_ sender: UISegmentedControl) {

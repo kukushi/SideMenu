@@ -18,7 +18,7 @@ class ThirdViewController: UIViewController {
     }
     
     @IBAction func menuButtonDidClicked(_ sender: Any) {
-        sm_sideMenuController?.revealMenu()
+        sideMenuController?.revealMenu()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

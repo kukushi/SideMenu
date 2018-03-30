@@ -26,7 +26,7 @@ class SecondViewController: UIViewController {
     
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {
-        sm_sideMenuController?.revealMenu()
+        sideMenuController?.revealMenu()
     }
     
     @IBAction func randomButtonDidClicked(_ sender: Any) {
