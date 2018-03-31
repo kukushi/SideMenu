@@ -13,23 +13,23 @@ public extension UIViewController {
     
     /// Access the nearest ancestor view controller hierarchy that is a side menu controller.
     public var sideMenuController: SideMenuController? {
-        return getSideMenuController(self)
+        return findSideMenuController(from: self)
     }
     
     
     @available(*, deprecated, message: "Renamed to `sideMenuController`.")
-    /// `SideMenu` currently doesn't support ObjC, thus the prefix will be removed.
+    /// `SideMenu` currently doesn't support ObjC, thus the prefix was removed.
     public var sm_sideMenuController: SideMenuController? {
         return sideMenuController
     }
     
-    fileprivate func getSideMenuController(_ viewController: UIViewController) -> SideMenuController? {
+    fileprivate func findSideMenuController(from viewController: UIViewController) -> SideMenuController? {
         var sourceViewController: UIViewController? = viewController
         repeat {
-            if let parent = sourceViewController?.parent, parent is SideMenuController {
-                return parent as? SideMenuController
+            sourceViewController = sourceViewController?.parent
+            if let sideMenuController = sourceViewController as? SideMenuController {
+                return sideMenuController
             }
-            sourceViewController = parent
         } while (sourceViewController != nil)
         return nil
     }
