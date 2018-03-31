@@ -86,23 +86,23 @@ open class SideMenuController: UIViewController {
     public weak var delegate: SideMenuControllerDelegate?
     
     /// The content view controller. Changes its value will change the display immediately.
-    /// If you want a caching approach, use `setContentViewController(with)`
-    open var contentViewController: UIViewController? {
+    /// If you want a caching approach, use `setContentViewController(with)`. Its value should not be nil.
+    open var contentViewController: UIViewController! {
         didSet {
             guard contentViewController !== oldValue else {
                 return
             }
             
             load(contentViewController, on: contentContainerView)
-            contentContainerView.sendSubview(toBack: contentViewController!.view)
+            contentContainerView.sendSubview(toBack: contentViewController.view)
             unload(oldValue)
             
             setNeedsStatusBarAppearanceUpdate()
         }
     }
     
-    /// The menu view controller.
-    open var menuViewController: UIViewController? {
+    /// The menu view controller. Its value should not be nil.
+    open var menuViewController: UIViewController! {
         didSet {
             guard menuViewController !== oldValue else {
                 return
@@ -140,7 +140,7 @@ open class SideMenuController: UIViewController {
     ///   - contentViewController: the content view controller
     ///   - menuViewController: the menu view controller
     public convenience init(contentViewController: UIViewController, menuViewController: UIViewController) {
-        self.init()
+        self.init(nibName: nil, bundle: nil)
         
         self.contentViewController = contentViewController
         self.menuViewController = menuViewController
@@ -161,6 +161,10 @@ open class SideMenuController: UIViewController {
             // ID in the storyboard.
             performSegue(withIdentifier: contentSegueID, sender: self)
             performSegue(withIdentifier: menuSegueID, sender: self)
+        }
+        
+        if menuViewController == nil || contentViewController == nil {
+            fatalError("[SideMenuSwift] `menuViewController` or `contnetViewController` should not be nil.")
         }
         
         contentContainerView.frame = view.bounds
@@ -228,7 +232,7 @@ open class SideMenuController: UIViewController {
                                       shouldCallDelegate: Bool = true,
                                       shouldChangeStatusBar: Bool = true,
                                       completion: ((Bool) -> Void)? = nil) {
-        menuViewController?.beginAppearanceTransition(true, animated: true)
+        menuViewController.beginAppearanceTransition(true, animated: true)
         
         if shouldCallDelegate {
             reveal ? delegate?.sideMenuWillReveal(self) : delegate?.sideMenuWillHide(self)
@@ -249,7 +253,7 @@ open class SideMenuController: UIViewController {
         }
         
         let animationCompletionClosure : (Bool) -> Void = { finish in
-            self.menuViewController?.endAppearanceTransition()
+            self.menuViewController.endAppearanceTransition()
             
             if shouldCallDelegate {
                 reveal ? self.delegate?.sideMenuDidReveal(self) : self.delegate?.sideMenuDidHide(self)
@@ -341,7 +345,7 @@ open class SideMenuController: UIViewController {
         tapToHideGesture.addTarget(self, action: #selector(SideMenuController.handleTapGesture(_:)))
         overlay.addGestureRecognizer(tapToHideGesture)
         
-        contentContainerView.insertSubview(overlay, aboveSubview: contentViewController!.view)
+        contentContainerView.insertSubview(overlay, aboveSubview: contentViewController.view)
         contentContainerOverlay = overlay
     }
     
@@ -488,7 +492,7 @@ open class SideMenuController: UIViewController {
                 statusBarScreenShotView = nil
             } else if statusBarScreenShotView == nil {
                 statusBarScreenShotView = statusBarScreenShot()
-                contentContainerView.insertSubview(statusBarScreenShotView!, aboveSubview: contentViewController!.view)
+                contentContainerView.insertSubview(statusBarScreenShotView!, aboveSubview: contentViewController.view)
             }
         }
     }
@@ -550,7 +554,7 @@ open class SideMenuController: UIViewController {
     ///
     /// - Returns: if not exist, returns nil.
     open func currentCacheIdentifier() -> String? {
-        guard let index = lazyCachedViewControllers.values.index(of: contentViewController!) else {
+        guard let index = lazyCachedViewControllers.values.index(of: contentViewController) else {
             return nil
         }
         return lazyCachedViewControllers.keys[index]
