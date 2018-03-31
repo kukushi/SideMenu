@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,10 +33,10 @@
             </objects>
             <point key="canvasLocation" x="-169" y="17"/>
         </scene>
-        <!--Content View Controller-->
+        <!--Preferences View Controller-->
         <scene sceneID="u3w-WG-Of8">
             <objects>
-                <viewController id="sdR-iU-7Ig" customClass="ContentViewController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sdR-iU-7Ig" customClass="PreferencesViewController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Gi-aP-QjY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -358,10 +358,10 @@
             </objects>
             <point key="canvasLocation" x="773.60000000000002" y="393.55322338830587"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Work With Other View Controller-->
         <scene sceneID="t8u-Xd-wcn">
             <objects>
-                <viewController id="Xkf-dR-rhE" customClass="SecondViewController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xkf-dR-rhE" customClass="WorkWithOtherViewController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zns-Wm-N2k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,16 +415,16 @@
             </objects>
             <point key="canvasLocation" x="1642" y="1223"/>
         </scene>
-        <!--Third View Controller-->
+        <!--Other Example View Controller-->
         <scene sceneID="sR0-zW-AQ7">
             <objects>
-                <viewController id="5t6-4r-SSF" customClass="ThirdViewController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5t6-4r-SSF" customClass="OtherExampleViewController" customModule="SideMenuExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hZe-rj-rt4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3H-Sf-IZj">
-                                <rect key="frame" x="138.5" y="318.5" width="99" height="30"/>
+                                <rect key="frame" x="138" y="318.5" width="99" height="30"/>
                                 <state key="normal" title="Code Example"/>
                                 <connections>
                                     <action selector="switchToProgrammaticalExample:" destination="5t6-4r-SSF" eventType="touchUpInside" id="5jY-RN-DNq"/>

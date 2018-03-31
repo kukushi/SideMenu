@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 
-class ThirdViewController: UIViewController {
+class OtherExampleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

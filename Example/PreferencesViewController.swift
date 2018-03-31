@@ -19,7 +19,7 @@ extension UIColor {
     }
 }
 
-class ContentViewController: UIViewController {
+class PreferencesViewController: UIViewController {
     @IBOutlet weak var enablePanGesture: UISwitch!
     @IBOutlet weak var enableRubberBandEffect: UISwitch!
     @IBOutlet weak var statusBarBehaviorSegment: UISegmentedControl!
