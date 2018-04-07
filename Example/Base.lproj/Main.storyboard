@@ -57,12 +57,12 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dt4-kz-pkr">
-                                                        <rect key="frame" x="20" y="40.5" width="336" height="29"/>
+                                                        <rect key="frame" x="20" y="40.5" width="335" height="29"/>
                                                         <segments>
                                                             <segment title="None"/>
                                                             <segment title="Slide"/>
                                                             <segment title="Fade"/>
-                                                            <segment title="Hide"/>
+                                                            <segment title="HideOnMenu"/>
                                                         </segments>
                                                         <connections>
                                                             <action selector="segmentControlDidChanged:" destination="sdR-iU-7Ig" eventType="valueChanged" id="Ixi-X0-HTe"/>

@@ -97,7 +97,7 @@ class PreferencesViewController: UIViewController {
     }
     
     func presentAlert() {
-        let alert = UIAlertController(title: "Reload Side Menu", message: "Side Menu need to be reloaded after switching position", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Reload Side Menu", message: "Side Menu need to be reloaded after modifying key properties.", preferredStyle: .alert)
         let confirmButton = UIAlertAction(title: "Yeah", style: .default) { (action) in
             let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
             UIApplication.shared.keyWindow?.rootViewController = sideMenuController
@@ -120,7 +120,7 @@ class PreferencesViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        print("View Will Transition")
+        print("[SideMenu] View Will Transition")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

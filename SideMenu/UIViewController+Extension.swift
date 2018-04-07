@@ -16,9 +16,8 @@ public extension UIViewController {
         return findSideMenuController(from: self)
     }
     
-    
     @available(*, deprecated, message: "Renamed to `sideMenuController`.")
-    /// `SideMenu` currently doesn't support ObjC, thus the prefix was removed.
+    /// `SideMenu` currently doesn't support ObjC, therefore the prefix was removed.
     public var sm_sideMenuController: SideMenuController? {
         return sideMenuController
     }
