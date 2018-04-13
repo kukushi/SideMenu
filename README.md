@@ -90,10 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-Use the `sm_sideMenuController` method provided in `UIViewController`'s extension to get the parent `SideMenuController`:
+Use the `sideMenuController` method provided in `UIViewController`'s extension to get the parent `SideMenuController`:
 
 ```swift
-viewController.sm_sideMenuController.revealMenu()
+viewController.sideMenuController.revealMenu()
 ```
 
 ### Preferences
@@ -120,7 +120,7 @@ sideMenuController.cache(viewControllerGenerator: secondViewController, with: "1
 sideMenuController.cache(viewControllerGenerator: thirdViewController, with: "2")
 
 // Switch to it when needed
-sm_sideMenuController.setContentViewController(with: "1")
+sideMenuController.setContentViewController(with: "1")
 ```
 
 What about the content view controller initialized from the Storyboard? We can use the preferences to apply a default key for it!
