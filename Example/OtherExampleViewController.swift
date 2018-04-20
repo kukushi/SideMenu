@@ -24,12 +24,14 @@ class OtherExampleViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
+    
     @IBAction func switchToProgrammaticalExample(_ sender: Any) {
         let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentNavigation")
         let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuNavigation")
         let sideMenuController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)
         UIApplication.shared.keyWindow?.rootViewController = sideMenuController
     }
+    
     @IBAction func switchToIBExample(_ sender: Any) {
         let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
         UIApplication.shared.keyWindow?.rootViewController = sideMenuController
