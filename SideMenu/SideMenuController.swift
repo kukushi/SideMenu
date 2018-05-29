@@ -347,6 +347,7 @@ open class SideMenuController: UIViewController {
         
         contentContainerView.insertSubview(overlay, aboveSubview: contentViewController.view)
         contentContainerOverlay = overlay
+        contentContainerOverlay?.accessibilityIdentifier = "ContentShadowOverlay"
     }
     
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {

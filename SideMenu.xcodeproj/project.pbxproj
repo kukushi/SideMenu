@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8711F0A420A9F6CA00DCB7D4 /* SideMenuRightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711F0A320A9F6CA00DCB7D4 /* SideMenuRightUITests.swift */; };
 		871987552042FCB90052E62F /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871987542042FCB90052E62F /* UINavigationController+Extension.swift */; };
 		872EABB2202F2A6D0066A8AE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */; };
 		872EABB4202F39180066A8AE /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB3202F39180066A8AE /* SideMenuController.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8711F0A320A9F6CA00DCB7D4 /* SideMenuRightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRightUITests.swift; sourceTree = "<group>"; };
 		871987542042FCB90052E62F /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		872EABB1202F2A6D0066A8AE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		872EABB3202F39180066A8AE /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				87AF0B4D207A1EF30041CBEC /* SideMenuExampleUITests.swift */,
+				8711F0A320A9F6CA00DCB7D4 /* SideMenuRightUITests.swift */,
 				875A43E12089F474008E7B17 /* UITestHelpers.swift */,
 				87AF0B4F207A1EF30041CBEC /* Info.plist */,
 			);
@@ -418,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				875A43E22089F474008E7B17 /* UITestHelpers.swift in Sources */,
+				8711F0A420A9F6CA00DCB7D4 /* SideMenuRightUITests.swift in Sources */,
 				87AF0B4E207A1EF30041CBEC /* SideMenuExampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
