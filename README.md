@@ -8,7 +8,7 @@
 
 ## Overview
 
-SideMenu is an easy-to-use container view controller written in Swift.
+SideMenu is an easy-to-use side bar style container view controller written in pure Swift.
 
 Besides all the features a *Side Menu* should have, it supports:
 
@@ -40,7 +40,7 @@ To install `SideMenu` with [CocoaPods](http://cocoapods.org/), add the below lin
 
 ```ruby
 pod 'SideMenuSwift'
-# Note its not 'SideMenu'
+# Note its NOT 'SideMenu'
 ```
 ### Carthage
 
@@ -72,14 +72,14 @@ To start the app with `SideMenu`:
 ```swift
 import UIKit
 import SideMenuSwift
+// If you are using Carthage, using `import SideMenu`
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    @objc func applicationDidFinishLaunching(_ application: UIApplication) {
         let contentViewController = ...
         let menuViewController = ...
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 Use the `sideMenuController` method provided in `UIViewController`'s extension to get the parent `SideMenuController`:
 
 ```swift
-viewController.sideMenuController.revealMenu()
+viewController.sideMenuController?.revealMenu()
 ```
 
 ### Preferences
@@ -110,17 +110,17 @@ SideMenuController.preferences.basic.enablePanGesture = true
 // Many other options.
 ```
 
-### Caching The Content
+### Caching the Content
 
-One of the biggest features of SideMenu is caching. 
+One of the coolest features of SideMenu is caching. 
 
 ```swift
 // Cache the view controllers somewhere in your code
-sideMenuController.cache(viewControllerGenerator: secondViewController, with: "1")
-sideMenuController.cache(viewControllerGenerator: thirdViewController, with: "2")
+sideMenuController?.cache(viewControllerGenerator: secondViewController, with: "1")
+sideMenuController?.cache(viewControllerGenerator: thirdViewController, with: "2")
 
 // Switch to it when needed
-sideMenuController.setContentViewController(with: "1")
+sideMenuController?.setContentViewController(with: "1")
 ```
 
 What about the content view controller initialized from the Storyboard? We can use the preferences to apply a default key for it!
@@ -132,8 +132,8 @@ SideMenuController.preferences.basic.defaultCacheKey = "0"
 What if we can't want to load all the content view controllers so early? We can use lazy caching:
 
 ```Swift
-sm_sideMenuController.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
-sm_sideMenuController.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
+sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
+sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
 ```
 
 ## Requirements
