@@ -1,18 +1,18 @@
 # ![](https://github.com/kukushi/SideMenu/blob/develop/Images/Logo.png?raw=true)
 
 [![Version](https://img.shields.io/cocoapods/v/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
-![Swift4](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat")
+![Swift4](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat")
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
 [![Platform](https://img.shields.io/cocoapods/p/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
 
 ## Overview
 
-SideMenu is an easy-to-use side bar style container view controller written in pure Swift.
+*SideMenu* is an easy-to-use side menu  container view controller written in Swift 4.
 
 Besides all the features a *Side Menu* should have, it supports:
 
-- Four types of status bar behaviors which adopts by most Apps
+- Four kinds of status bar behaviors
 - Three different menu position
 - Both storyboard and programmatically
 - Caching the content view controller and lazy initialization
@@ -20,7 +20,7 @@ Besides all the features a *Side Menu* should have, it supports:
 
 ## Preview
 
-Menu Position / Status Bar Behavior
+Menu Position / Status Menu Behavior
 
 | Above + None | Below + Slide |
 | --- | --- |
@@ -116,8 +116,8 @@ One of the coolest features of SideMenu is caching.
 
 ```swift
 // Cache the view controllers somewhere in your code
-sideMenuController?.cache(viewControllerGenerator: secondViewController, with: "1")
-sideMenuController?.cache(viewControllerGenerator: thirdViewController, with: "2")
+sideMenuController?.cache(viewController: secondViewController, with: "1")
+sideMenuController?.cache(viewController: thirdViewController, with: "2")
 
 // Switch to it when needed
 sideMenuController?.setContentViewController(with: "1")
