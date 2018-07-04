@@ -66,6 +66,8 @@ open class SideMenuController: UIViewController {
         return type(of: self).preferences
     }
     
+    private lazy var adjustedDirection = SideMenuPreferences.MenuDirection.left
+    
     private var isInitiatedFromStoryboard: Bool {
         return storyboard != nil
     }
@@ -157,7 +159,7 @@ open class SideMenuController: UIViewController {
         
         // Setup from the IB
         if isInitiatedFromStoryboard {
-            // Note that if you are using the SideMenuController from the IB, you must supply the default or custom view controller
+            // Note that if you are using the `SideMenuController` from the IB, you must supply the default or custom view controller
             // ID in the storyboard.
             performSegue(withIdentifier: contentSegueID, sender: self)
             performSegue(withIdentifier: menuSegueID, sender: self)
@@ -169,6 +171,8 @@ open class SideMenuController: UIViewController {
         
         contentContainerView.frame = view.bounds
         view.addSubview(contentContainerView)
+        
+        resolveDirection(with: contentContainerView)
         
         menuContainerView.frame = sideMenuFrame(visibility: false)
         view.addSubview(menuContainerView)
@@ -189,6 +193,23 @@ open class SideMenuController: UIViewController {
         
         configureGestures()
         setUpNotifications()
+    }
+    
+    private func resolveDirection(with view: UIView) {
+        var shouldReverseDirection = false
+        if preferences.basic.shouldRespectLanguageDirection {
+            let attribute = view.semanticContentAttribute
+            let layoutDirection = UIView.userInterfaceLayoutDirection(for: attribute)
+            if layoutDirection == .rightToLeft {
+                shouldReverseDirection = true
+            }
+        }
+        
+        if shouldReverseDirection {
+            adjustedDirection = (preferences.basic.direction == .left ? .right : .left)
+        } else {
+            adjustedDirection = preferences.basic.direction
+        }
     }
     
     // MARK: Storyboard
@@ -352,7 +373,7 @@ open class SideMenuController: UIViewController {
     
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
         let menuWidth = preferences.basic.menuWidth
-        let isLeft = preferences.basic.direction == .left
+        let isLeft = adjustedDirection == .left
         var translation = pan.translation(in: pan.view).x
         let viewToAnimate: UIView
         let viewToAnimate2: UIView?
@@ -581,7 +602,7 @@ open class SideMenuController: UIViewController {
             } else {
                 baseFrame.origin.x = -baseFrame.width
             }
-            let factor: CGFloat = preferences.basic.direction == .left ? 1 : -1
+            let factor: CGFloat = adjustedDirection == .left ? 1 : -1
             baseFrame.origin.x = baseFrame.origin.x * factor
             return baseFrame
         case .under:
@@ -597,7 +618,7 @@ open class SideMenuController: UIViewController {
         case .under, .sideBySide:
             var baseFrame = view.frame
             if visibility {
-                let factor: CGFloat = preferences.basic.direction == .left ? 1 : -1
+                let factor: CGFloat = adjustedDirection == .left ? 1 : -1
                 baseFrame.origin.x = preferences.basic.menuWidth * factor
             } else {
                 baseFrame.origin.x = 0

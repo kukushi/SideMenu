@@ -79,7 +79,11 @@ public struct SideMenuPreferences {
         /// Note that you should only modify this property before the side menu controller is initialized.
         public var position: MenuPosition = .above
         
-        /// THe direction of side menu. Default is `.left`.
+        // Whether the direction of side menu should be reversed when the user interaction layout direction is RTL.
+        // More specific, when the app is using a right to left (RTL) language, the direction of side menu will be reversed
+        public var shouldRespectLanguageDirection = true
+        
+        /// The direction of side menu. Default is `.left`.
         /// Note that you should only modify this property before the side menu controller is initialized.
         public var direction: MenuDirection = .left
         
@@ -105,4 +109,3 @@ public struct SideMenuPreferences {
     public var basic = Configuration()
     public var animation = Animation()
 }
-
