@@ -18,7 +18,9 @@ class WorkWithOtherViewController: UIViewController {
     }
     
     @IBAction func pushViewControllerButtonDiidClicked(_ sender: Any) {
-        let viewController = PushedViewController()
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "PushedViewController") else {
+            return
+        }
         viewController.view.backgroundColor = .white
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -44,6 +46,15 @@ class WorkWithOtherViewController: UIViewController {
 
 
 class PushedViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
+    
+    var items = [String](repeating: "Cell", count: 100)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +80,25 @@ class PushedViewController: UIViewController {
         if sideMenuController == nil {
             let representation2 = navigationController != nil ? String(describing: navigationController!) : "nil"
             print("    - And navigationController is: \(representation2)")
+        }
+    }
+}
+
+extension PushedViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlainCell", for: indexPath)
+        cell.textLabel?.text = "\(items[indexPath.row]) \(indexPath.row)"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

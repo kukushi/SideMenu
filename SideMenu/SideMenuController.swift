@@ -132,7 +132,10 @@ open class SideMenuController: UIViewController {
     private var panningBaganPointX: CGFloat = 0
 
     /// The view responsible for tapping to hide the menu and shadow
-    weak private var contentContainerOverlay: UIView?
+    private weak var contentContainerOverlay: UIView?
+    
+    // The pan gesture recognizer responsible for revealing and hiding side menu
+    private weak var panGestureRecognizer: UIPanGestureRecognizer?
     
     // MARK: Initialization
 
@@ -191,7 +194,7 @@ open class SideMenuController: UIViewController {
             lazyCachedViewControllers[key] = contentViewController
         }
         
-        configureGestures()
+        configureGesturesRecognizer()
         setUpNotifications()
     }
     
@@ -332,17 +335,14 @@ open class SideMenuController: UIViewController {
         }
     }
     
-    // MARK: Gesture
+    // MARK: Gesture Recognizer
     
-    private func configureGestures() {
+    private func configureGesturesRecognizer() {
         // The gesture will be added anyway, its delegate will tell whether it should be recognized
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SideMenuController.handlePanGesture(_:)))
         panGesture.delegate = self
+        panGestureRecognizer = panGesture
         view.addGestureRecognizer(panGesture)
-    }
-    
-    @objc private func handleTapGesture(_ tap: UITapGestureRecognizer) {
-        hideMenu()
     }
     
     private func addContentOverlayViewIfNeeded() {
@@ -369,6 +369,10 @@ open class SideMenuController: UIViewController {
         contentContainerView.insertSubview(overlay, aboveSubview: contentViewController.view)
         contentContainerOverlay = overlay
         contentContainerOverlay?.accessibilityIdentifier = "ContentShadowOverlay"
+    }
+    
+    @objc private func handleTapGesture(_ tap: UITapGestureRecognizer) {
+        hideMenu()
     }
     
     @objc private func handlePanGesture(_ pan: UIPanGestureRecognizer) {
@@ -458,7 +462,7 @@ open class SideMenuController: UIViewController {
             let offsetPercent = offset / menuWidth
             let decisionPoint: CGFloat = isMenuRevealed ? 0.6 : 0.4
             if offsetPercent > decisionPoint {
-                // We need to call the delegates/ change the status bar only when the menu was previous hidden
+                // We need to call the delegates, change the status bar only when the menu was previous hidden
                 changeMenuVisibility(reveal: true, shouldCallDelegate: !isMenuRevealed, shouldChangeStatusBar: !isMenuRevealed)
             } else {
                 changeMenuVisibility(reveal: false, shouldCallDelegate: isMenuRevealed, shouldChangeStatusBar: true)
@@ -678,8 +682,19 @@ open class SideMenuController: UIViewController {
 extension SideMenuController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if gestureRecognizer.view == view && gestureRecognizer is UIPanGestureRecognizer {
-            return self.preferences.basic.enablePanGesture
+            return preferences.basic.enablePanGesture
         }
+        
         return true
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let contentView = panGestureRecognizer?.view, let currentView = otherGestureRecognizer.view else {
+            return false
+        }
+        
+        // When returning `true`, `panGestureRecognizer` will fail.
+        // And it will prevent paning to reveal when the content view is a scroll view
+        return gestureRecognizer === panGestureRecognizer && currentView.isDescendant(of: contentView)
     }
 }
