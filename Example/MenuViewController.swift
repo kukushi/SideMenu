@@ -91,9 +91,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         if row == 0 {
             cell.titleLabel?.text = "Preferences"
         } else if row == 1 {
-            cell.titleLabel?.text = "Works with Other"
+            cell.titleLabel?.text = "Example with other UI"
         } else if row == 2 {
-            cell.titleLabel?.text = "IB / Code Example"
+            cell.titleLabel?.text = "IB / Code"
         }
         cell.titleLabel?.textColor = isDarkModeEnabled ? .white : .black
         return cell
