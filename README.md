@@ -8,7 +8,7 @@
 
 ## Overview
 
-*SideMenu* is an easy-to-use side menu  container view controller written in Swift 4.
+*SideMenu* is an easy-to-use side menu container controller written in Swift 4.
 
 Besides all the features a *Side Menu* should have, it supports:
 
@@ -40,7 +40,7 @@ To install `SideMenu` with [CocoaPods](http://cocoapods.org/), add the below lin
 
 ```ruby
 pod 'SideMenuSwift'
-# Note its NOT 'SideMenu'
+# Note it's NOT 'SideMenu'
 ```
 ### Carthage
 
@@ -54,9 +54,13 @@ github "kukushi/SideMenu" "master"
 
 ### Storyboard
 
+<details>
+<summary>
 To set up `SideMenu` in storyboard:
+</summary>
 
-1. Open the view controller's *Identity inspector*. Change the **Class** to `SideMenuController` and **Module** to `SideMenuSwift`.
+
+1. Open the view controller's *Identity inspector*. Change its **Class** to `SideMenuController` and **Module** to `SideMenuSwift`.
 2. Set up the menu view controller and the initial content view controller in your Storyboard. Add a **Custom** segue from the `SideMenuController` to each of them.
     - Change the menu segue's identifier to `SideMenu.Menu`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
     - Change the content segue's identifier to `SideMenu.Content`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
@@ -64,15 +68,19 @@ To set up `SideMenu` in storyboard:
    - Open the `SideMenuController`'s *Attribute inspector*.
    - In the **Side Menu Controller** section, modify the *Content SegueID/Menu SegueID* to the desired value and change the corresponding segue's identifier.
 5. It's done. Check [this screenshot](https://github.com/kukushi/SideMenu/blob/develop/Images/StoryboardSample.png?raw=true) a for clear view.
+</details>
 
 ### Programmatically
 
-To start the app with `SideMenu`:
+<details>
+<summary>
+To start the app with `SideMenu` programmatically:
+</summary>
 
 ```swift
 import UIKit
 import SideMenuSwift
-// If you are using Carthage, using `import SideMenu`
+// If you are using Carthage, uses `import SideMenu`
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -82,15 +90,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func applicationDidFinishLaunching(_ application: UIApplication) {
         let contentViewController = ...
         let menuViewController = ...
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)
+        window?.rootViewController = SideMenuController(contentViewController: contentViewController, 
+        menuViewController: menuViewController)
+        
         window?.makeKeyAndVisible()
         return true
     }
 }
 ```
+</details>
 
-Use the `sideMenuController` method provided in `UIViewController`'s extension to get the parent `SideMenuController`:
+Use the `sideMenuController` method which provided in `UIViewController`'s extension to get the parent `SideMenuController`:
 
 ```swift
 viewController.sideMenuController?.revealMenu()
@@ -106,8 +118,10 @@ SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
 SideMenuController.preferences.basic.position = .below
 SideMenuController.preferences.basic.direction = .left
 SideMenuController.preferences.basic.enablePanGesture = true
-SideMenuController.preferences.basic.enablePanGesture = true
-// Many other options.
+SideMenuController.preferences.basic.supportedOrientations = .portrait
+SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
+
+// See a lot more options in `SideMenuPreferences.swift`.
 ```
 
 ### Caching the Content
@@ -116,24 +130,24 @@ One of the coolest features of SideMenu is caching.
 
 ```swift
 // Cache the view controllers somewhere in your code
-sideMenuController?.cache(viewController: secondViewController, with: "1")
-sideMenuController?.cache(viewController: thirdViewController, with: "2")
+sideMenuController?.cache(viewController: secondViewController, with: "second")
+sideMenuController?.cache(viewController: thirdViewController, with: "third")
 
 // Switch to it when needed
-sideMenuController?.setContentViewController(with: "1")
+sideMenuController?.setContentViewController(with: "second")
 ```
 
 What about the content view controller initialized from the Storyboard? We can use the preferences to apply a default key for it!
 
 ```swift
-SideMenuController.preferences.basic.defaultCacheKey = "0"
+SideMenuController.preferences.basic.defaultCacheKey = "default"
 ```
 
 What if we can't want to load all the content view controllers so early? We can use lazy caching:
 
 ```Swift
-sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "1")
-sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "2")
+sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "second")
+sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "third")
 ```
 
 ## Requirements
