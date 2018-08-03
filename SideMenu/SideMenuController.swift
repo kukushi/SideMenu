@@ -157,6 +157,9 @@ open class SideMenuController: UIViewController {
     
     // MARK: Life Cycle
     
+    // `SideMenu` may be initialized from Storyboard, thus we shouldn't load the view in `loadView()`.
+    // As mentioned by Apple, "If you use Interface Builder to create your views and initialize the view controller,
+    // you must not override this method."
     open override func viewDidLoad() {
         super.viewDidLoad()
         
