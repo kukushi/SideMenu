@@ -129,7 +129,7 @@ open class SideMenuController: UIViewController {
     
     /// States used in panning gesture
     private var isValidatePanningBegan = false
-    private var panningBaganPointX: CGFloat = 0
+    private var panningBeganPointX: CGFloat = 0
 
     /// The view responsible for tapping to hide the menu and shadow
     private weak var contentContainerOverlay: UIView?
@@ -172,7 +172,7 @@ open class SideMenuController: UIViewController {
         }
         
         if menuViewController == nil || contentViewController == nil {
-            fatalError("[SideMenuSwift] `menuViewController` or `contnetViewController` should not be nil.")
+            fatalError("[SideMenuSwift] `menuViewController` or `contentViewController` should not be nil.")
         }
         
         contentContainerView.frame = view.bounds
@@ -240,7 +240,7 @@ open class SideMenuController: UIViewController {
     ///
     /// - Parameters:
     ///   - animated: If set to true, the process will be animated. The default is true.
-    ///   - completion: Completion closure that will be executed after revaeling the menu.
+    ///   - completion: Completion closure that will be executed after revealing the menu.
     open func revealMenu(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         changeMenuVisibility(reveal: true, animated: animated, completion: completion)
     }
@@ -416,10 +416,10 @@ open class SideMenuController: UIViewController {
         
         switch pan.state {
         case .began:
-            panningBaganPointX = viewToAnimate.frame.origin.x
+            panningBeganPointX = viewToAnimate.frame.origin.x
             isValidatePanningBegan = false
         case .changed:
-            let resultX = panningBaganPointX + translation
+            let resultX = panningBeganPointX + translation
             let notReachLeftBorder = (!isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX >= leftBorder
             let notReachRightBorder = (isLeft && preferences.basic.enableRubberEffectWhenPanning) || resultX <= rightBorder
             guard notReachLeftBorder && notReachRightBorder else {
@@ -666,7 +666,7 @@ open class SideMenuController: UIViewController {
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         hideMenu(animated: false, completion: { finished in
-            // Temporally hide the menu container veiw for smooth animation
+            // Temporally hide the menu container view for smooth animation
             self.menuContainerView.isHidden = true
             coordinator.animate(alongsideTransition: { (context) in
                 self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed)
@@ -697,7 +697,7 @@ extension SideMenuController: UIGestureRecognizerDelegate {
         }
         
         // When returning `true`, `panGestureRecognizer` will fail.
-        // And it will prevent paning to reveal when the content view is a scroll view
+        // And it will prevent panning to reveal when the content view is a scroll view
         return gestureRecognizer === panGestureRecognizer && currentView.isDescendant(of: contentView)
     }
 }
