@@ -21,7 +21,12 @@ public protocol SideMenuControllerDelegate: class {
     ///   - fromVC: The currently visible view controller.
     ///   - toVC: The view controller that should be visible at the end of the transition.
     /// - Returns: The animator object responsible for managing the transition animations, or nil if you want to use the fade transitions.
-    func sideMenu(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    func sideMenuController(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    
+    // MARK: Switching
+    
+    func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool)
+    func sideMenuController(_ sideMenuController: SideMenuController, didShow viewController: UIViewController, animated: Bool)
     
     // MARK: Revealing
     
@@ -48,10 +53,12 @@ public protocol SideMenuControllerDelegate: class {
 
 // Provides default implementation for delegates
 public extension SideMenuControllerDelegate {
-    func sideMenu(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func sideMenuController(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
     }
     
+    func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {}
+    func sideMenuController(_ sideMenuController: SideMenuController, didShow viewController: UIViewController, animated: Bool) {}
     func sideMenuWillReveal(_ sideMenu: SideMenuController) {}
     func sideMenuDidReveal(_ sideMenu: SideMenuController) {}
     func sideMenuWillHide(_ sideMenu: SideMenuController) {}

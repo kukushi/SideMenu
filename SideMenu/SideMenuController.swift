@@ -45,17 +45,33 @@ open class SideMenuController: UIViewController {
     /// The side menu controller's delegate object.
     public weak var delegate: SideMenuControllerDelegate?
     
+    /// Tell whether `setContnetViewController` setter should call the delegate.
+    /// Work as a workaround when switching content view controller from other animation approach which also change the
+    /// `contentViewController`.
+    private var shouldCallSwitchingDelegate = true
+    
     /// The content view controller. Changes its value will change the display immediately.
+    /// If the new value is already one of the side menu controller's child controllers, nothing will happen beside value change.
     /// If you want a caching approach, use `setContentViewController(with)`. Its value should not be nil.
     open var contentViewController: UIViewController! {
         didSet {
-            guard contentViewController !== oldValue && isViewLoaded && !childViewControllers.contains(contentViewController) else {
+            guard contentViewController !== oldValue &&
+                isViewLoaded &&
+                !childViewControllers.contains(contentViewController) else {
                 return
+            }
+            
+            if shouldCallSwitchingDelegate {
+                delegate?.sideMenuController(self, willShow: contentViewController, animated: false)
             }
             
             load(contentViewController, on: contentContainerView)
             contentContainerView.sendSubview(toBack: contentViewController.view)
             unload(oldValue)
+            
+            if shouldCallSwitchingDelegate {
+                delegate?.sideMenuController(self, didShow: contentViewController, animated: false)
+            }
             
             setNeedsStatusBarAppearanceUpdate()
         }
@@ -547,13 +563,15 @@ open class SideMenuController: UIViewController {
         }
         
         if animated {
+            delegate?.sideMenuController(self, willShow: viewController, animated: animated)
+            
             addChildViewController(viewController)
             
             viewController.view.frame = view.bounds
             viewController.view.translatesAutoresizingMaskIntoConstraints = true
             viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
-            let animatorFromDelegate = delegate?.sideMenu(self, animationControllerFrom: contentViewController, to: viewController)
+            let animatorFromDelegate = delegate?.sideMenuController(self, animationControllerFrom: contentViewController, to: viewController)
             
             #if DEBUG
             if animatorFromDelegate == nil {
@@ -569,7 +587,14 @@ open class SideMenuController: UIViewController {
             transitionContext.completion = { finish in
                 self.unload(self.contentViewController)
                 
+                self.shouldCallSwitchingDelegate = false
+                // It's tricky here.
+                // `contentViewController` setter won't trigger due to the `viewController` already is added to the hierarchy.
+                // `shouldCallSwitchingDelegate` also prevent the delegate from been calling.
                 self.contentViewController = viewController
+                self.shouldCallSwitchingDelegate = true
+                
+                self.delegate?.sideMenuController(self, didShow: viewController, animated: animated)
                 
                 viewController.didMove(toParentViewController: self)
                 

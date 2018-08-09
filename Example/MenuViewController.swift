@@ -67,24 +67,32 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: SideMenuControllerDelegate {
-    func sideMenu(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func sideMenuController(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return BasicTransitionAnimator(options: .transitionFlipFromLeft, duration: 0.6)
     }
     
+    func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
+        print("[Example] View controller will show [\(viewController)]")
+    }
+    
+    func sideMenuController(_ sideMenuController: SideMenuController, didShow viewController: UIViewController, animated: Bool) {
+        print("[Example] View controller did show [\(viewController)]")
+    }
+    
     func sideMenuWillHide(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu will hide")
+        print("[Example] Menu will hide")
     }
     
     func sideMenuDidHide(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu did hide.")
+        print("[Example] Menu did hide.")
     }
     
     func sideMenuWillReveal(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu will show.")
+        print("[Example] Menu will show.")
     }
     
     func sideMenuDidReveal(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu did show.")
+        print("[Example] Menu did show.")
     }
 }
 
