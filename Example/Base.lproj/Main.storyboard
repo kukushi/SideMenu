@@ -45,7 +45,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OD5-1C-EpF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="476"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="564"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62a-kq-QKC">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
@@ -220,6 +220,32 @@
                                             <constraint firstItem="LfU-fm-pR2" firstAttribute="leading" secondItem="i40-NL-7BX" secondAttribute="leading" constant="20" id="yQ7-23-3Xu"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gct-4t-auJ">
+                                        <rect key="frame" x="0.0" y="476" width="375" height="88"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Transition Animation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLG-Cj-wMQ">
+                                                <rect key="frame" x="20" y="8" width="212" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Iyg-3L-7XW">
+                                                <rect key="frame" x="306" y="3" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="switchDidClicked:" destination="sdR-iU-7Ig" eventType="valueChanged" id="UuS-cr-m2f"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="vLG-Cj-wMQ" firstAttribute="top" secondItem="gct-4t-auJ" secondAttribute="top" constant="8" id="CVm-gM-6Yc"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vLG-Cj-wMQ" secondAttribute="trailing" constant="20" symbolic="YES" id="b0b-LM-Tr9"/>
+                                            <constraint firstAttribute="trailing" secondItem="Iyg-3L-7XW" secondAttribute="trailing" constant="20" id="cra-fE-Oui"/>
+                                            <constraint firstItem="Iyg-3L-7XW" firstAttribute="centerY" secondItem="vLG-Cj-wMQ" secondAttribute="centerY" id="fyy-9q-yAm"/>
+                                            <constraint firstAttribute="height" constant="88" id="kUT-Pn-fz2"/>
+                                            <constraint firstItem="vLG-Cj-wMQ" firstAttribute="leading" secondItem="gct-4t-auJ" secondAttribute="leading" constant="20" id="rRL-0t-bJ0"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="62a-kq-QKC" firstAttribute="top" secondItem="OD5-1C-EpF" secondAttribute="top" id="Wys-qx-93n"/>
@@ -247,6 +273,7 @@
                     <connections>
                         <outlet property="enablePanGesture" destination="paq-x0-fz3" id="kTO-C9-igp"/>
                         <outlet property="enableRubberBandEffect" destination="YRk-27-sAo" id="ynA-je-SUc"/>
+                        <outlet property="enableTransitionAnimationSwitch" destination="Iyg-3L-7XW" id="fwA-6w-b2Y"/>
                         <outlet property="menuDirectionSegment" destination="6UH-kN-5aA" id="KNE-fh-xej"/>
                         <outlet property="menuPositionSegment" destination="9RT-ih-gX1" id="TMr-xs-xK5"/>
                         <outlet property="orientationSegment" destination="LfU-fm-pR2" id="Snx-KN-Fxb"/>

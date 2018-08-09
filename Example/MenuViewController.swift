@@ -9,6 +9,11 @@
 import UIKit
 import SideMenu
 
+class Preferences {
+    static let shared = Preferences()
+    var enableTransitionAnimation = false
+}
+
 class MenuViewController: UIViewController {
     var isDarkModeEnabled = false
     @IBOutlet weak var tableView: UITableView! {
@@ -101,10 +106,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        sideMenuController?.setContentViewController(with: "\(row)")
+        sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
         
-        print("View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
+        print("[Example] View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
