@@ -10,10 +10,10 @@ import UIKit
 
 // Built-In Animation Controller
 public class BasicTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    let animationOptions: UIView.AnimationOptions
+    let animationOptions: UIViewAnimationOptions
     let duration: TimeInterval
     
-    public init(options: UIView.AnimationOptions = .transitionCrossDissolve, duration: TimeInterval = 0.4) {
+    public init(options: UIViewAnimationOptions = .transitionCrossDissolve, duration: TimeInterval = 0.4) {
         animationOptions = options
         self.duration = duration
     }
