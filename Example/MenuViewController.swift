@@ -67,6 +67,10 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: SideMenuControllerDelegate {
+    func sideMenu(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BasicTransitionAnimator(options: .transitionFlipFromLeft, duration: 0.6)
+    }
+    
     func sideMenuWillHide(_ sideMenu: SideMenuController) {
         print("[SideMenu] Menu will hide")
     }

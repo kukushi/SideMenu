@@ -11,13 +11,15 @@ import UIKit
 // Built-In Animation Controller
 public class BasicTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let animationOptions: UIView.AnimationOptions
+    let duration: TimeInterval
     
-    public init(options: UIView.AnimationOptions = .transitionCrossDissolve) {
+    public init(options: UIView.AnimationOptions = .transitionCrossDissolve, duration: TimeInterval = 0.4) {
         animationOptions = options
+        self.duration = duration
     }
     
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return duration
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
