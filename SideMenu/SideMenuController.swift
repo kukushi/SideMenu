@@ -8,53 +8,11 @@
 
 import UIKit
 
-// MARK: Storyboard Segue
-
-/// Custom Segue that is required for SideMenuController to be used in Storyboard.
-open class SideMenuSegue: UIStoryboardSegue {
-    public enum ContentType: String {
-        case content = "SideMenu.Content"
-        case menu = "SideMenu.Menu"
-    }
-    
-    public var contentType = ContentType.content
-    
-    open override func perform() {
-        guard let sideMenuController = source as? SideMenuController else {
-            return
-        }
-        
-        switch contentType {
-        case .content:
-            sideMenuController.contentViewController = destination
-        case .menu:
-            sideMenuController.menuViewController = destination
-        }
-    }
-    
-}
-
 // MARK: SideMenuController
-
-// Delegate Methods
-public protocol SideMenuControllerDelegate: class {
-    func sideMenuWillReveal(_ sideMenu: SideMenuController)
-    func sideMenuDidReveal(_ sideMenu: SideMenuController)
-    func sideMenuWillHide(_ sideMenu: SideMenuController)
-    func sideMenuDidHide(_ sideMenu: SideMenuController)
-}
-
-// Provides default implementation for delegates
-public extension SideMenuControllerDelegate {
-    func sideMenuWillReveal(_ sideMenu: SideMenuController) {}
-    func sideMenuDidReveal(_ sideMenu: SideMenuController) {}
-    func sideMenuWillHide(_ sideMenu: SideMenuController) {}
-    func sideMenuDidHide(_ sideMenu: SideMenuController) {}
-}
 
 /// A container view controller owns a menu view controller and a content view controller.
 ///
-/// The overall architect of SideMenuController is:
+/// The overall architecture of SideMenuController is:
 /// SideMenuController
 /// ├── Menu View Controller
 /// └── Content View Controller
@@ -91,7 +49,7 @@ open class SideMenuController: UIViewController {
     /// If you want a caching approach, use `setContentViewController(with)`. Its value should not be nil.
     open var contentViewController: UIViewController! {
         didSet {
-            guard contentViewController !== oldValue else {
+            guard contentViewController !== oldValue && isViewLoaded && !childViewControllers.contains(contentViewController) else {
                 return
             }
             
@@ -106,7 +64,7 @@ open class SideMenuController: UIViewController {
     /// The menu view controller. Its value should not be nil.
     open var menuViewController: UIViewController! {
         didSet {
-            guard menuViewController !== oldValue else {
+            guard menuViewController !== oldValue && isViewLoaded else {
                 return
             }
             
@@ -147,6 +105,7 @@ open class SideMenuController: UIViewController {
     public convenience init(contentViewController: UIViewController, menuViewController: UIViewController) {
         self.init(nibName: nil, bundle: nil)
         
+        // Assignment in initalizer won't trigger the setter
         self.contentViewController = contentViewController
         self.menuViewController = menuViewController
     }
@@ -569,13 +528,58 @@ open class SideMenuController: UIViewController {
     /// Changes the content view controller to the cached one with given `identifier`.
     ///
     /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
-    open func setContentViewController(with identifier: String) {
+    open func setContentViewController(with identifier: String, animated: Bool = false, completion: (() -> Void)? = nil) {
         if let viewController = lazyCachedViewControllers[identifier] {
-            contentViewController = viewController
+            setContentViewController(to: viewController, animated: animated, completion: completion)
         } else if let viewController = lazyCachedViewControllerGenerators[identifier]?() {
             lazyCachedViewControllerGenerators[identifier] = nil
             lazyCachedViewControllers[identifier] = viewController
+            setContentViewController(to: viewController, animated: animated, completion: completion)
+        } else {
+            fatalError("[SideMenu] View controller associated with \(identifier) not found!")
+        }
+    }
+    
+    open func setContentViewController(to viewController: UIViewController, animated: Bool = false, completion: (() -> Void)? = nil) {
+        guard contentViewController !== viewController && isViewLoaded else {
+            completion?()
+            return
+        }
+        
+        if animated {
+            addChildViewController(viewController)
+            
+            viewController.view.frame = view.bounds
+            viewController.view.translatesAutoresizingMaskIntoConstraints = true
+            viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            let animatorFromDelegate = delegate?.sideMenu(self, animationControllerFrom: contentViewController, to: viewController)
+            
+            #if DEBUG
+            if animatorFromDelegate == nil {
+                print("[SideMenu] `setContentViewController` is called with animated while the delegate method return nil, fall back to the fade animation.")
+            }
+            #endif
+            
+            let animator = animatorFromDelegate ?? BasicTransitionAnimator()
+            
+            let transitionContext = SideMenuTransitionContext(with: contentViewController, toViewController: viewController)
+            transitionContext.isAnimated = true
+            transitionContext.isInteractive = false
+            transitionContext.completion = { finish in
+                self.unload(self.contentViewController)
+                
+                self.contentViewController = viewController
+                
+                viewController.didMove(toParentViewController: self)
+                
+                completion?()
+            }
+            animator.animateTransition(using: transitionContext)
+            
+        } else {
             contentViewController = viewController
+            completion?()
         }
     }
 
@@ -634,29 +638,6 @@ open class SideMenuController: UIViewController {
         }
     }
     
-    // MARK: Container View Controller
-    
-    private func load(_ viewController: UIViewController?, on view: UIView) {
-        guard let viewController = viewController else {
-            return
-        }
-        
-        addChildViewController(viewController)
-        viewController.view.frame = view.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(viewController.view)
-        viewController.didMove(toParentViewController: self)
-    }
-    
-    private func unload(_ viewController: UIViewController?) {
-        guard let viewController = viewController else {
-            return
-        }
-        
-        viewController.willMove(toParentViewController: nil)
-        viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
-    }
     
     // MARK: Orientation
     
