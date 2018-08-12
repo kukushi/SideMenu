@@ -9,6 +9,11 @@
 import UIKit
 import SideMenu
 
+class Preferences {
+    static let shared = Preferences()
+    var enableTransitionAnimation = false
+}
+
 class MenuViewController: UIViewController {
     var isDarkModeEnabled = false
     @IBOutlet weak var tableView: UITableView! {
@@ -62,20 +67,32 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: SideMenuControllerDelegate {
+    func sideMenuController(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BasicTransitionAnimator(options: .transitionFlipFromLeft, duration: 0.6)
+    }
+    
+    func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
+        print("[Example] View controller will show [\(viewController)]")
+    }
+    
+    func sideMenuController(_ sideMenuController: SideMenuController, didShow viewController: UIViewController, animated: Bool) {
+        print("[Example] View controller did show [\(viewController)]")
+    }
+    
     func sideMenuWillHide(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu will hide")
+        print("[Example] Menu will hide")
     }
     
     func sideMenuDidHide(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu did hide.")
+        print("[Example] Menu did hide.")
     }
     
     func sideMenuWillReveal(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu will show.")
+        print("[Example] Menu will show.")
     }
     
     func sideMenuDidReveal(_ sideMenu: SideMenuController) {
-        print("[SideMenu] Menu did show.")
+        print("[Example] Menu did show.")
     }
 }
 
@@ -101,10 +118,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        sideMenuController?.setContentViewController(with: "\(row)")
+        sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
         
-        print("View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
+        print("[Example] View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
