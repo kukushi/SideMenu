@@ -9,7 +9,7 @@
 import XCTest
 
 extension XCTestCase {
-    
+
     /// Validates that given element is visible/invisible
     ///
     /// - Parameters:
@@ -20,25 +20,30 @@ extension XCTestCase {
         visible = isVisible ? visible : !visible
         UIAssert(visible, "elements should be \(isVisible ? "visible" : "invisible")", file: file, line: line)
     }
-    
+
     func UIAssert(_ value: Bool, _ description: String = "-", file: String = #file, line: Int = #line) {
         if !value {
             self.recordFailure(withDescription: description, inFile: file, atLine: line, expected: true)
         }
     }
-    
+
     /// waits for element to appear
-    func waitForElementToAppear(_ element: XCUIElement, file: String = #file, line: Int = #line)  {
+    func waitForElementToAppear(_ element: XCUIElement, file: String = #file, line: Int = #line) {
         let predicate = NSPredicate(format: "exists == true AND isHittable == true")
         waitFor(element, to: predicate, trueOrFalse: true, timeout: 5, file: file, line: line)
     }
-    
+
     func waitForElementToDisappear(_ element: XCUIElement, file: String = #file, line: Int = #line) {
         let predicate = NSPredicate(format: "isHittable == false")
         waitFor(element, to: predicate, trueOrFalse: false, timeout: 5, file: file, line: line)
     }
-    
-    func waitFor(_ element: XCUIElement, to: NSPredicate, trueOrFalse: Bool, timeout: TimeInterval, file: String = #file, line: Int = #line) {
+
+    func waitFor(_ element: XCUIElement,
+                 to: NSPredicate,
+                 trueOrFalse: Bool,
+                 timeout: TimeInterval,
+                 file: String = #file,
+                 line: Int = #line) {
         expectation(for: to, evaluatedWith: element, handler: nil)
         waitForExpectations(timeout: timeout) { (error) -> Void in
             if (error != nil) {
@@ -47,5 +52,5 @@ extension XCTestCase {
             }
         }
     }
-    
+
 }

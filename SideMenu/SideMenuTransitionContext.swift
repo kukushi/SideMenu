@@ -12,21 +12,21 @@ import UIKit
 class SideMenuTransitionContext: NSObject, UIViewControllerContextTransitioning {
     var isAnimated = true
     var targetTransform: CGAffineTransform = .identity
-    
+
     let containerView: UIView
     let presentationStyle: UIModalPresentationStyle
-    
+
     private var viewControllers = [UITransitionContextViewControllerKey: UIViewController]()
-    
+
     var isInteractive = false
-    
+
     var transitionWasCancelled: Bool {
         // Our non-interactive transition can't be cancelled
         return false
     }
-    
+
     var completion: ((Bool) -> Void)?
-    
+
     init(with fromViewController: UIViewController, toViewController: UIViewController) {
         presentationStyle = .custom
         containerView = fromViewController.view.superview!
@@ -34,18 +34,18 @@ class SideMenuTransitionContext: NSObject, UIViewControllerContextTransitioning 
             .from: fromViewController,
             .to: toViewController
         ]
-        
+
         super.init()
     }
-    
+
     func completeTransition(_ didComplete: Bool) {
         completion?(didComplete)
     }
-    
+
     func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
         return viewControllers[key]
     }
-    
+
     func view(forKey key: UITransitionContextViewKey) -> UIView? {
         switch key {
         case .from:
@@ -56,17 +56,18 @@ class SideMenuTransitionContext: NSObject, UIViewControllerContextTransitioning 
             return nil
         }
     }
-    
+
+    // swiftlint:disable identifier_name
     func initialFrame(for vc: UIViewController) -> CGRect {
         return containerView.frame
     }
-    
+
     func finalFrame(for vc: UIViewController) -> CGRect {
         return containerView.frame
     }
-    
+
     // MARK: Interactive, not supported yet
-    
+
     func updateInteractiveTransition(_ percentComplete: CGFloat) {}
     func finishInteractiveTransition() {}
     func cancelInteractiveTransition() {}

@@ -10,18 +10,12 @@ import UIKit
 
 // Provides access to the side menu controller
 public extension UIViewController {
-    
-    /// Access the nearest ancestor view controller hierarchy that is a side menu controller.
+
+    /// Access the nearest ancestor view controller  hierarchy that is a side menu controller.
     public var sideMenuController: SideMenuController? {
         return findSideMenuController(from: self)
     }
-    
-    @available(*, deprecated, message: "Renamed to `sideMenuController`.")
-    /// `SideMenu` currently doesn't support Objective-C, therefore the prefix was removed.
-    public var sm_sideMenuController: SideMenuController? {
-        return sideMenuController
-    }
-    
+
     fileprivate func findSideMenuController(from viewController: UIViewController) -> SideMenuController? {
         var sourceViewController: UIViewController? = viewController
         repeat {

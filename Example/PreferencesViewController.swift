@@ -11,11 +11,11 @@ import SideMenu
 
 extension UIColor {
     static var mirage: UIColor {
-        return UIColor(red:0.08, green:0.11, blue:0.19, alpha:1.00)
+        return UIColor(red: 0.08, green: 0.11, blue: 0.19, alpha: 1.00)
     }
-    
+
     static var lobolly: UIColor {
-        return UIColor(red:0.75, green:0.78, blue:0.81, alpha:1.00)
+        return UIColor(red: 0.75, green: 0.78, blue: 0.81, alpha: 1.00)
     }
 }
 
@@ -35,19 +35,19 @@ class PreferencesViewController: UIViewController {
     let menuPosition: [SideMenuPreferences.MenuPosition] = [.above, .under, .sideBySide]
     let menuDirections: [SideMenuPreferences.MenuDirection] = [.left, .right]
     let menuOrientation: [UIInterfaceOrientationMask] = [.portrait, .allButUpsideDown]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = "Preferences"
-        
+
         isDarkModeEnabled = SideMenuController.preferences.basic.position == .under
         configureUI()
         setNeedsStatusBarAppearanceUpdate()
     }
-    
+
     private func configureUI() {
-        
+
         if isDarkModeEnabled {
             themeColor = .mirage
             statusBarBehaviorSegment.tintColor = .lobolly
@@ -61,14 +61,13 @@ class PreferencesViewController: UIViewController {
             navigationController?.navigationBar.tintColor = .lobolly
             navigationController?.navigationBar.barTintColor = .mirage
             navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor : UIColor.white
+                NSAttributedStringKey.foregroundColor: UIColor.white
             ]
         } else {
             themeColor = .white
         }
         view.backgroundColor = themeColor
-        
-        
+
         let preferences = SideMenuController.preferences.basic
         statusBarBehaviorSegment.selectedSegmentIndex = statusBarBehaviors.index(of: preferences.statusBarBehavior)!
         menuPositionSegment.selectedSegmentIndex = menuPosition.index(of: preferences.position)!
@@ -96,17 +95,19 @@ class PreferencesViewController: UIViewController {
             break
         }
     }
-    
+
     func presentAlert() {
-        let alert = UIAlertController(title: "Reload Side Menu", message: "Side Menu need to be reloaded after modifying key properties.", preferredStyle: .alert)
-        let confirmButton = UIAlertAction(title: "Yeah", style: .default) { (action) in
+        let alert = UIAlertController(title: "Reload Side Menu",
+                                      message: "Side Menu need to be reloaded after modifying key properties.",
+                                      preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: "Yeah", style: .default) { (_) in
             let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
             UIApplication.shared.keyWindow?.rootViewController = sideMenuController
         }
         alert.addAction(confirmButton)
         present(alert, animated: true, completion: nil)
     }
-    
+
     @IBAction func switchDidClicked(_ sender: UISwitch) {
         switch sender {
         case enablePanGesture:
@@ -119,16 +120,15 @@ class PreferencesViewController: UIViewController {
             break
         }
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
+
         print("[SideMenu] View Will Transition")
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isDarkModeEnabled ? .lightContent : .default
     }
-    
-}
 
+}

@@ -1,0 +1,20 @@
+disabled_rules:
+   # TODO
+   - function_body_length
+   # TODO
+   - cyclomatic_complexity
+   # TODO
+   - type_body_length
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+
+identifier_name:
+  excluded: # excluded via string array
+    - ID
+    # Used by UIKit
+    # `func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath)`
+    - to
+
+line_length: 130

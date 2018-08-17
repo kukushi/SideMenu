@@ -14,14 +14,14 @@ open class SideMenuSegue: UIStoryboardSegue {
         case content = "SideMenu.Content"
         case menu = "SideMenu.Menu"
     }
-    
+
     public var contentType = ContentType.content
-    
+
     open override func perform() {
         guard let sideMenuController = source as? SideMenuController else {
             return
         }
-        
+
         switch contentType {
         case .content:
             sideMenuController.contentViewController = destination
@@ -29,5 +29,5 @@ open class SideMenuSegue: UIStoryboardSegue {
             sideMenuController.menuViewController = destination
         }
     }
-    
+
 }
