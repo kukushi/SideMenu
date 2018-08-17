@@ -399,7 +399,7 @@
                                         <rect key="frame" x="20" y="50" width="155" height="30"/>
                                         <state key="normal" title="Push a View Controller"/>
                                         <connections>
-                                            <action selector="pushViewControllerButtonDiidClicked:" destination="Xkf-dR-rhE" eventType="touchUpInside" id="OSL-Se-gCI"/>
+                                            <action selector="pushViewControllerButtonDidClicked" destination="Xkf-dR-rhE" eventType="touchUpInside" id="OSL-Se-gCI"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -476,7 +476,7 @@
                                 <rect key="frame" x="138" y="318.5" width="99" height="30"/>
                                 <state key="normal" title="Code Example"/>
                                 <connections>
-                                    <action selector="switchToProgrammaticalExample:" destination="5t6-4r-SSF" eventType="touchUpInside" id="5jY-RN-DNq"/>
+                                    <action selector="switchToProgrammaticallyExample" destination="5t6-4r-SSF" eventType="touchUpInside" id="5jY-RN-DNq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef6-Gd-FI4">

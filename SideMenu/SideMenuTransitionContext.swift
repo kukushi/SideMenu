@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// A private transitioning context used for trigerring the transition animation
+/// A private transitioning context used for triggering the transition animation
 class SideMenuTransitionContext: NSObject, UIViewControllerContextTransitioning {
     var isAnimated = true
     var targetTransform: CGAffineTransform = .identity
@@ -65,7 +65,7 @@ class SideMenuTransitionContext: NSObject, UIViewControllerContextTransitioning 
         return containerView.frame
     }
     
-    // MARK: Interactive, not suppoerted yet
+    // MARK: Interactive, not supported yet
     
     func updateInteractiveTransition(_ percentComplete: CGFloat) {}
     func finishInteractiveTransition() {}

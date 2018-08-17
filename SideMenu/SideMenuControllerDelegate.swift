@@ -13,7 +13,7 @@ public protocol SideMenuControllerDelegate: class {
     
     // MARK: Animation
     
-    /// Called to allow the delegate to return a noninteractive animator object for use during view controller transitions. Same with
+    /// Called to allow the delegate to return a non-interactive animator object for use during view controller transitions. Same with
     /// UIKit's `navigationController:animationControllerForOperation:fromViewController:toViewController:`.
     ///
     /// - Parameters:

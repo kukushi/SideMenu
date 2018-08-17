@@ -16,9 +16,9 @@ extension XCTestCase {
     ///   - element: the element
     ///   - isVisible: true - if need to check if visible, false - if hidden
     internal func assert(element: XCUIElement, isVisible: Bool, file: String = #file, line: Int = #line) {
-        var visibile = element.exists && element.isHittable
-        visibile = isVisible ? visibile : !visibile
-        UIAssert(visibile, "elements should be \(isVisible ? "visiable" : "invisible")", file: file, line: line)
+        var visible = element.exists && element.isHittable
+        visible = isVisible ? visible : !visible
+        UIAssert(visible, "elements should be \(isVisible ? "visible" : "invisible")", file: file, line: line)
     }
     
     func UIAssert(_ value: Bool, _ description: String = "-", file: String = #file, line: Int = #line) {

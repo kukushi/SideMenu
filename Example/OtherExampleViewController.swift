@@ -25,7 +25,7 @@ class OtherExampleViewController: UIViewController {
         return .default
     }
     
-    @IBAction func switchToProgrammaticalExample(_ sender: Any) {
+    @IBAction func switchToProgrammaticallyExample(_ sender: Any) {
         let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentNavigation")
         let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuNavigation")
         let sideMenuController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)

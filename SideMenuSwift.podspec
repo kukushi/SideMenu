@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.summary      = "An interactive iOS side menu with rich features."
   
     s.description  = <<-DESC
-    SideMenuSwift is an iOS container view controller written in Swift. Its easy-to-use and suppoerts both storyboard and code. It provides several ways to reveal the menu and animate the status bar.
+    SideMenuSwift is an iOS container view controller written in Swift. Its easy-to-use and supports both storyboard and code. It provides several ways to reveal the menu and animate the status bar.
                      DESC
   
     s.homepage     = "https://github.com/kukushi/SideMenu"

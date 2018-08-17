@@ -17,7 +17,7 @@ class WorkWithOtherViewController: UIViewController {
         title = "Work With Other"
     }
     
-    @IBAction func pushViewControllerButtonDiidClicked(_ sender: Any) {
+    @IBAction func pushViewControllerButtonDidClicked(_ sender: Any) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "PushedViewController") else {
             return
         }
@@ -75,7 +75,7 @@ class PushedViewController: UIViewController {
     
     private func printSideMenu(_ function: String) {
         let representation = sideMenuController != nil ? String(describing: sideMenuController!) : "nil"
-        print("In `\(function)`, sideMenuControlelr is: \(representation)")
+        print("In `\(function)`, sideMenuControlLer is: \(representation)")
         
         if sideMenuController == nil {
             let representation2 = navigationController != nil ? String(describing: navigationController!) : "nil"

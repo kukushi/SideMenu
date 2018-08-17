@@ -45,7 +45,7 @@ open class SideMenuController: UIViewController {
     /// The side menu controller's delegate object.
     public weak var delegate: SideMenuControllerDelegate?
     
-    /// Tell whether `setContnetViewController` setter should call the delegate.
+    /// Tell whether `setContentViewController` setter should call the delegate.
     /// Work as a workaround when switching content view controller from other animation approach which also change the
     /// `contentViewController`.
     private var shouldCallSwitchingDelegate = true
@@ -121,7 +121,7 @@ open class SideMenuController: UIViewController {
     public convenience init(contentViewController: UIViewController, menuViewController: UIViewController) {
         self.init(nibName: nil, bundle: nil)
         
-        // Assignment in initalizer won't trigger the setter
+        // Assignment in initializer won't trigger the setter
         self.contentViewController = contentViewController
         self.menuViewController = menuViewController
     }
