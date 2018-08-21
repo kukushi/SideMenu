@@ -17,6 +17,7 @@ Besides all the features a *Side Menu* should have, it supports:
 - Both storyboard and programmatically
 - Caching the content view controller and lazy initialization
 - Rubber band effect while panning
+- Custom transition animation
 
 ## Preview
 
