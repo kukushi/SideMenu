@@ -28,6 +28,7 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var menuDirectionSegment: UISegmentedControl!
     @IBOutlet weak var orientationSegment: UISegmentedControl!
     @IBOutlet var indicatorLabels: [UILabel]!
+    @IBOutlet weak var containerView: UIView!
 
     var isDarkModeEnabled = false
     var themeColor = UIColor.white
@@ -66,7 +67,9 @@ class PreferencesViewController: UIViewController {
         } else {
             themeColor = .white
         }
+
         view.backgroundColor = themeColor
+        containerView.backgroundColor = themeColor
 
         let preferences = SideMenuController.preferences.basic
         statusBarBehaviorSegment.selectedSegmentIndex = statusBarBehaviors.index(of: preferences.statusBarBehavior)!

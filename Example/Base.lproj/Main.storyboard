@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -271,6 +272,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerView" destination="rQ6-gT-doo" id="mkF-B7-HZc"/>
                         <outlet property="enablePanGesture" destination="paq-x0-fz3" id="kTO-C9-igp"/>
                         <outlet property="enableRubberBandEffect" destination="YRk-27-sAo" id="ynA-je-SUc"/>
                         <outlet property="enableTransitionAnimationSwitch" destination="Iyg-3L-7XW" id="fwA-6w-b2Y"/>
@@ -284,6 +286,7 @@
                         <outletCollection property="indicatorLabels" destination="8eD-Pf-9eW" collectionClass="NSMutableArray" id="MPX-nX-ojd"/>
                         <outletCollection property="indicatorLabels" destination="LgW-Zc-6z7" collectionClass="NSMutableArray" id="Upc-eC-fPf"/>
                         <outletCollection property="indicatorLabels" destination="j8C-Ct-BIm" collectionClass="NSMutableArray" id="g0v-Ve-rPH"/>
+                        <outletCollection property="indicatorLabels" destination="vLG-Cj-wMQ" collectionClass="NSMutableArray" id="yv9-8y-H3i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9nJ-R8-VEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
