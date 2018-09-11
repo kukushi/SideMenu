@@ -100,7 +100,6 @@ open class SideMenuController: UIViewController {
 
     private var shouldShowShadowOnContent: Bool {
         return preferences.animation.shouldAddShadowWhenRevealing
-            && preferences.basic.position == .above
     }
 
     /// States used in panning gesture

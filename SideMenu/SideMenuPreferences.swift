@@ -62,7 +62,6 @@ public struct SideMenuPreferences {
         public var initialSpringVelocity: CGFloat = 1
 
         // Whether a shadow effect should be added on content view when revealing the menu. The default is true.
-        // This option will only work when `position` is set to `.above`.
         public var shouldAddShadowWhenRevealing = true
 
         // The shadow's alpha when showing on the content view. Default is 0.2.
