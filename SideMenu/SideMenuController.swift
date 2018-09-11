@@ -442,7 +442,7 @@ open class SideMenuController: UIViewController {
                 offset = isLeft ? viewToAnimate.frame.minX : containerWidth - viewToAnimate.frame.maxX
             }
             let offsetPercent = offset / menuWidth
-            let decisionPoint: CGFloat = isMenuRevealed ? 0.6 : 0.4
+            let decisionPoint: CGFloat = isMenuRevealed ? 0.85 : 0.15
             if offsetPercent > decisionPoint {
                 // We need to call the delegates, change the status bar only when the menu was previous hidden
                 changeMenuVisibility(reveal: true, shouldCallDelegate: !isMenuRevealed, shouldChangeStatusBar: !isMenuRevealed)
