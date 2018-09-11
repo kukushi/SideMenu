@@ -14,7 +14,7 @@ class WorkWithOtherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Work With Other"
+        title = "Scroll View and Others"
     }
 
     @IBAction func pushViewControllerButtonDidClicked(_ sender: Any) {
@@ -27,10 +27,6 @@ class WorkWithOtherViewController: UIViewController {
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {
         sideMenuController?.revealMenu()
-    }
-
-    @IBAction func randomButtonDidClicked(_ sender: Any) {
-        textLabel.text = "\(arc4random_uniform(100))"
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -115,7 +115,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         if row == 0 {
             cell.titleLabel?.text = "Preferences"
         } else if row == 1 {
-            cell.titleLabel?.text = "Example with other UI"
+            cell.titleLabel?.text = "Scroll View and Others"
         } else if row == 2 {
             cell.titleLabel?.text = "IB / Code"
         }

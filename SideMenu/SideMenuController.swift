@@ -112,6 +112,15 @@ open class SideMenuController: UIViewController {
     // The pan gesture recognizer responsible for revealing and hiding side menu
     private weak var panGestureRecognizer: UIPanGestureRecognizer?
 
+    var shouldReverseDirection: Bool {
+        guard preferences.basic.shouldRespectLanguageDirection else {
+            return false
+        }
+        let attribute = view.semanticContentAttribute
+        let layoutDirection = UIView.userInterfaceLayoutDirection(for: attribute)
+        return layoutDirection == .rightToLeft
+    }
+
     // MARK: Initialization
 
     /// Creates a SideMenuController instance with the content view controller and menu view controller.
@@ -178,15 +187,6 @@ open class SideMenuController: UIViewController {
     }
 
     private func resolveDirection(with view: UIView) {
-        var shouldReverseDirection = false
-        if preferences.basic.shouldRespectLanguageDirection {
-            let attribute = view.semanticContentAttribute
-            let layoutDirection = UIView.userInterfaceLayoutDirection(for: attribute)
-            if layoutDirection == .rightToLeft {
-                shouldReverseDirection = true
-            }
-        }
-
         if shouldReverseDirection {
             adjustedDirection = (preferences.basic.direction == .left ? .right : .left)
         } else {
@@ -308,13 +308,13 @@ open class SideMenuController: UIViewController {
                         }
 
                         animations()
-        }) { (finished) in
+        }, completion: { (finished) in
             if shouldChangeStatusBar && !shouldAnimateStatusBarChange && !reveal {
                 self.setStatusBar(hidden: reveal)
             }
 
             completion?(finished)
-        }
+        })
     }
 
     // MARK: Gesture Recognizer
@@ -698,22 +698,50 @@ open class SideMenuController: UIViewController {
 // MARK: UIGestureRecognizerDelegate
 
 extension SideMenuController: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if gestureRecognizer.view == view && gestureRecognizer is UIPanGestureRecognizer {
-            return preferences.basic.enablePanGesture
+    private func isValidateHorizontalMovement(for velocity: CGPoint) -> Bool {
+        if isMenuRevealed {
+            return true
         }
 
+        let direction = preferences.basic.direction
+        var factor: CGFloat = direction == .left ? 1 : -1
+        factor *= shouldReverseDirection ? -1 : 1
+        guard velocity.x * factor > 0 else {
+            return false
+        }
+        return fabs(velocity.y / velocity.x) < 0.25
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view is UISlider {
+            return false
+        }
+
+        // If the view is scrollable in horizon direciton, don't receive the touch
+        if let scrollView = touch.view as? UIScrollView, scrollView.frame.width > scrollView.contentSize.width {
+            return false
+        }
+
+        if gestureRecognizer === panGestureRecognizer {
+            return preferences.basic.enablePanGesture
+        }
+        return true
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panGestureRecognizer,
+            let velocity = panGestureRecognizer?.velocity(in: view) {
+            return isValidateHorizontalMovement(for: velocity)
+        }
         return true
     }
 
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard let contentView = panGestureRecognizer?.view, let currentView = otherGestureRecognizer.view else {
+        guard gestureRecognizer === panGestureRecognizer else {
             return false
         }
 
-        // When returning `true`, `panGestureRecognizer` will fail.
-        // And it will prevent panning to reveal when the content view is a scroll view
-        return gestureRecognizer === panGestureRecognizer && currentView.isDescendant(of: contentView)
+        return false
     }
 }
