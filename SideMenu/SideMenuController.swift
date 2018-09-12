@@ -698,6 +698,48 @@ open class SideMenuController: UIViewController {
 // MARK: UIGestureRecognizerDelegate
 
 extension SideMenuController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard preferences.basic.enablePanGesture else {
+            return false
+        }
+
+        if isViewControllerInsideNavigationStack(for: touch.view) {
+            return false
+        }
+
+        if touch.view is UISlider {
+            return false
+        }
+
+        // If the view is scrollable in horizon direciton, don't receive the touch
+        if let scrollView = touch.view as? UIScrollView, scrollView.frame.width > scrollView.contentSize.width {
+            return false
+        }
+
+        return true
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let velocity = panGestureRecognizer?.velocity(in: view) {
+            return isValidateHorizontalMovement(for: velocity)
+        }
+        return true
+    }
+
+    private func isViewControllerInsideNavigationStack(for view: UIView?) -> Bool {
+        guard let view = view,
+            let viewController = view.parentViewController,
+            !(viewController is UINavigationController),
+            let navigationController = viewController.navigationController else {
+                return false
+        }
+
+        if let index = navigationController.viewControllers.index(of: viewController) {
+            return index > 0
+        }
+        return false
+    }
+
     private func isValidateHorizontalMovement(for velocity: CGPoint) -> Bool {
         if isMenuRevealed {
             return true
@@ -710,38 +752,5 @@ extension SideMenuController: UIGestureRecognizerDelegate {
             return false
         }
         return fabs(velocity.y / velocity.x) < 0.25
-    }
-
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view is UISlider {
-            return false
-        }
-
-        // If the view is scrollable in horizon direciton, don't receive the touch
-        if let scrollView = touch.view as? UIScrollView, scrollView.frame.width > scrollView.contentSize.width {
-            return false
-        }
-
-        if gestureRecognizer === panGestureRecognizer {
-            return preferences.basic.enablePanGesture
-        }
-        return true
-    }
-
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer == panGestureRecognizer,
-            let velocity = panGestureRecognizer?.velocity(in: view) {
-            return isValidateHorizontalMovement(for: velocity)
-        }
-        return true
-    }
-
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                                  shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard gestureRecognizer === panGestureRecognizer else {
-            return false
-        }
-
-        return false
     }
 }

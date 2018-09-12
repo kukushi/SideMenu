@@ -33,6 +33,7 @@
 		87A5D7CD2026108900DAAF4F /* SideMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5D7CC2026108900DAAF4F /* SideMenuTests.swift */; };
 		87A5D7CF2026108900DAAF4F /* SideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A5D7C12026108900DAAF4F /* SideMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		87AF0B4E207A1EF30041CBEC /* SideMenuExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF0B4D207A1EF30041CBEC /* SideMenuExampleUITests.swift */; };
+		87CE22702148271A000E4B0C /* UIView+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CE226F2148271A000E4B0C /* UIView+Container.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		87AF0B4B207A1EF30041CBEC /* SideMenuExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SideMenuExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87AF0B4D207A1EF30041CBEC /* SideMenuExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuExampleUITests.swift; sourceTree = "<group>"; };
 		87AF0B4F207A1EF30041CBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87CE226F2148271A000E4B0C /* UIView+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Container.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				872EABB1202F2A6D0066A8AE /* UIViewController+SideMenu.swift */,
 				8701B8D2211B0DFA0013DF2E /* UIViewController+Container.swift */,
+				87CE226F2148271A000E4B0C /* UIView+Container.swift */,
 				876428BC203EFDA900203A30 /* StatusBar.swift */,
 			);
 			name = Extensions;
@@ -424,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87CE22702148271A000E4B0C /* UIView+Container.swift in Sources */,
 				874025EB203D6F9D00EE4306 /* SideMenuPreferences.swift in Sources */,
 				8701B8D1211B0A750013DF2E /* BasicTransitionAnimator.swift in Sources */,
 				872EABB4202F39180066A8AE /* SideMenuController.swift in Sources */,
