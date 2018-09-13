@@ -19,12 +19,12 @@ import UIKit
 open class SideMenuController: UIViewController {
 
     /// Configure this property to change the behavior of SideMenuController;
-    public static var preferences = SideMenuPreferences()
-    private var preferences: SideMenuPreferences {
+    public static var preferences = Preferences()
+    private var preferences: Preferences {
         return type(of: self).preferences
     }
 
-    private lazy var adjustedDirection = SideMenuPreferences.MenuDirection.left
+    private lazy var adjustedDirection = Preferences.MenuDirection.left
 
     private var isInitiatedFromStoryboard: Bool {
         return storyboard != nil
@@ -33,12 +33,12 @@ open class SideMenuController: UIViewController {
     /// The identifier of content view controller segue.
     /// If the SideMenuController instance is initiated from IB, this identifier will
     /// be used to retrieve the content view controller.
-    @IBInspectable public var contentSegueID: String = SideMenuSegue.ContentType.content.rawValue
+    @IBInspectable public var contentSegueID: String = Segue.ContentType.content.rawValue
 
     /// The identifier of menu view controller segue.
     /// If the SideMenuController instance is initiated from IB, this identifier will
     /// be used to retrieve the menu view controller.
-    @IBInspectable public var menuSegueID: String = SideMenuSegue.ContentType.menu.rawValue
+    @IBInspectable public var menuSegueID: String = Segue.ContentType.menu.rawValue
 
     /// Caching
     private lazy var lazyCachedViewControllerGenerators: [String: () -> UIViewController?] = [:]
@@ -49,7 +49,7 @@ open class SideMenuController: UIViewController {
 
     /// Tell whether `setContentViewController` setter should call the delegate.
     /// Work as a workaround when switching content view controller from other animation approach which also change the
-    /// `contentViewController`.
+    /// `contentViewController`. 
     private var shouldCallSwitchingDelegate = true
 
     /// The content view controller. Changes its value will change the display immediately.
@@ -197,7 +197,7 @@ open class SideMenuController: UIViewController {
     // MARK: Storyboard
 
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segue = segue as? SideMenuSegue, let identifier = segue.identifier else {
+        guard let segue = segue as? Segue, let identifier = segue.identifier else {
             return
         }
         switch identifier {
@@ -591,7 +591,7 @@ open class SideMenuController: UIViewController {
 
             let animator = animatorFromDelegate ?? BasicTransitionAnimator()
 
-            let transitionContext = SideMenuTransitionContext(with: contentViewController, toViewController: viewController)
+            let transitionContext = SideMenuController.TransitionContext(with: contentViewController, toViewController: viewController)
             transitionContext.isAnimated = true
             transitionContext.isInteractive = false
             transitionContext.completion = { finish in

@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8701B8CB211AF99B0013DF2E /* SideMenuControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8CA211AF99B0013DF2E /* SideMenuControllerDelegate.swift */; };
-		8701B8CD211B00340013DF2E /* SideMenuSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8CC211B00340013DF2E /* SideMenuSegue.swift */; };
-		8701B8CF211B04FE0013DF2E /* SideMenuTransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8CE211B04FE0013DF2E /* SideMenuTransitionContext.swift */; };
+		8701B8CB211AF99B0013DF2E /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8CA211AF99B0013DF2E /* Delegate.swift */; };
+		8701B8CD211B00340013DF2E /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8CC211B00340013DF2E /* Segue.swift */; };
+		8701B8CF211B04FE0013DF2E /* TransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8CE211B04FE0013DF2E /* TransitionContext.swift */; };
 		8701B8D1211B0A750013DF2E /* BasicTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8D0211B0A750013DF2E /* BasicTransitionAnimator.swift */; };
 		8701B8D3211B0DFA0013DF2E /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701B8D2211B0DFA0013DF2E /* UIViewController+Container.swift */; };
 		8711F0A420A9F6CA00DCB7D4 /* SideMenuRightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711F0A320A9F6CA00DCB7D4 /* SideMenuRightUITests.swift */; };
 		871987552042FCB90052E62F /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871987542042FCB90052E62F /* UINavigationController+Extension.swift */; };
 		872EABB2202F2A6D0066A8AE /* UIViewController+SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB1202F2A6D0066A8AE /* UIViewController+SideMenu.swift */; };
 		872EABB4202F39180066A8AE /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EABB3202F39180066A8AE /* SideMenuController.swift */; };
-		874025EB203D6F9D00EE4306 /* SideMenuPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */; };
+		874025EB203D6F9D00EE4306 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025EA203D6F9D00EE4306 /* Preferences.swift */; };
 		874025EE203DA0CD00EE4306 /* WorkWithOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025ED203DA0CD00EE4306 /* WorkWithOtherViewController.swift */; };
 		874025F0203DA11900EE4306 /* OtherExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874025EF203DA11900EE4306 /* OtherExampleViewController.swift */; };
 		874025F1203DB06600EE4306 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A5D7BE2026108900DAAF4F /* SideMenu.framework */; };
@@ -75,16 +75,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8701B8CA211AF99B0013DF2E /* SideMenuControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuControllerDelegate.swift; sourceTree = "<group>"; };
-		8701B8CC211B00340013DF2E /* SideMenuSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSegue.swift; sourceTree = "<group>"; };
-		8701B8CE211B04FE0013DF2E /* SideMenuTransitionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTransitionContext.swift; sourceTree = "<group>"; };
+		8701B8CA211AF99B0013DF2E /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		8701B8CC211B00340013DF2E /* Segue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
+		8701B8CE211B04FE0013DF2E /* TransitionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionContext.swift; sourceTree = "<group>"; };
 		8701B8D0211B0A750013DF2E /* BasicTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTransitionAnimator.swift; sourceTree = "<group>"; };
 		8701B8D2211B0DFA0013DF2E /* UIViewController+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Container.swift"; sourceTree = "<group>"; };
 		8711F0A320A9F6CA00DCB7D4 /* SideMenuRightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRightUITests.swift; sourceTree = "<group>"; };
 		871987542042FCB90052E62F /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		872EABB1202F2A6D0066A8AE /* UIViewController+SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SideMenu.swift"; sourceTree = "<group>"; };
 		872EABB3202F39180066A8AE /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
-		874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuPreferences.swift; sourceTree = "<group>"; };
+		874025EA203D6F9D00EE4306 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		874025ED203DA0CD00EE4306 /* WorkWithOtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWithOtherViewController.swift; sourceTree = "<group>"; };
 		874025EF203DA11900EE4306 /* OtherExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExampleViewController.swift; sourceTree = "<group>"; };
 		875A43E12089F474008E7B17 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
@@ -206,10 +206,10 @@
 			children = (
 				87A5D7C12026108900DAAF4F /* SideMenu.h */,
 				872EABB3202F39180066A8AE /* SideMenuController.swift */,
-				874025EA203D6F9D00EE4306 /* SideMenuPreferences.swift */,
-				8701B8CA211AF99B0013DF2E /* SideMenuControllerDelegate.swift */,
-				8701B8CC211B00340013DF2E /* SideMenuSegue.swift */,
-				8701B8CE211B04FE0013DF2E /* SideMenuTransitionContext.swift */,
+				874025EA203D6F9D00EE4306 /* Preferences.swift */,
+				8701B8CA211AF99B0013DF2E /* Delegate.swift */,
+				8701B8CC211B00340013DF2E /* Segue.swift */,
+				8701B8CE211B04FE0013DF2E /* TransitionContext.swift */,
 				8701B8D0211B0A750013DF2E /* BasicTransitionAnimator.swift */,
 				8701B8D5211B0EEE0013DF2E /* Extensions */,
 				87A5D7C22026108900DAAF4F /* Info.plist */,
@@ -430,15 +430,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				87CE22702148271A000E4B0C /* UIView+Container.swift in Sources */,
-				874025EB203D6F9D00EE4306 /* SideMenuPreferences.swift in Sources */,
+				874025EB203D6F9D00EE4306 /* Preferences.swift in Sources */,
 				8701B8D1211B0A750013DF2E /* BasicTransitionAnimator.swift in Sources */,
 				872EABB4202F39180066A8AE /* SideMenuController.swift in Sources */,
 				872EABB2202F2A6D0066A8AE /* UIViewController+SideMenu.swift in Sources */,
 				8701B8D3211B0DFA0013DF2E /* UIViewController+Container.swift in Sources */,
-				8701B8CF211B04FE0013DF2E /* SideMenuTransitionContext.swift in Sources */,
+				8701B8CF211B04FE0013DF2E /* TransitionContext.swift in Sources */,
 				876428BD203EFDA900203A30 /* StatusBar.swift in Sources */,
-				8701B8CB211AF99B0013DF2E /* SideMenuControllerDelegate.swift in Sources */,
-				8701B8CD211B00340013DF2E /* SideMenuSegue.swift in Sources */,
+				8701B8CB211AF99B0013DF2E /* Delegate.swift in Sources */,
+				8701B8CD211B00340013DF2E /* Segue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

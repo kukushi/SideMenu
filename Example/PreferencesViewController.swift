@@ -32,9 +32,9 @@ class PreferencesViewController: UIViewController {
 
     var isDarkModeEnabled = false
     var themeColor = UIColor.white
-    let statusBarBehaviors: [SideMenuPreferences.StatusBarBehavior] = [.none, .slide, .fade, .hideOnMenu]
-    let menuPosition: [SideMenuPreferences.MenuPosition] = [.above, .under, .sideBySide]
-    let menuDirections: [SideMenuPreferences.MenuDirection] = [.left, .right]
+    let statusBarBehaviors: [SideMenuController.Preferences.StatusBarBehavior] = [.none, .slide, .fade, .hideOnMenu]
+    let menuPosition: [SideMenuController.Preferences.MenuPosition] = [.above, .under, .sideBySide]
+    let menuDirections: [SideMenuController.Preferences.MenuDirection] = [.left, .right]
     let menuOrientation: [UIInterfaceOrientationMask] = [.portrait, .allButUpsideDown]
 
     override func viewDidLoad() {
