@@ -36,22 +36,22 @@ public protocol SideMenuControllerDelegate: class {
     /// Side menu is going to reveal.
     ///
     /// - Parameter sideMenu: The side menu
-    func sideMenuWillReveal(_ sideMenu: SideMenuController)
+    func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController)
 
     /// Side menu did revealed.
     ///
     /// - Parameter sideMenu: The side menu
-    func sideMenuDidReveal(_ sideMenu: SideMenuController)
+    func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController)
 
     /// Side menu is going to hide.
     ///
     /// - Parameter sideMenu: The side menu
-    func sideMenuWillHide(_ sideMenu: SideMenuController)
+    func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController)
 
     /// Side menu is did hide.
     ///
     /// - Parameter sideMenu: The side menu
-    func sideMenuDidHide(_ sideMenu: SideMenuController)
+    func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController)
 }
 
 // Provides default implementation for delegates
@@ -68,8 +68,8 @@ public extension SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController,
                             didShow viewController: UIViewController,
                             animated: Bool) {}
-    func sideMenuWillReveal(_ sideMenu: SideMenuController) {}
-    func sideMenuDidReveal(_ sideMenu: SideMenuController) {}
-    func sideMenuWillHide(_ sideMenu: SideMenuController) {}
-    func sideMenuDidHide(_ sideMenu: SideMenuController) {}
+    func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {}
+    func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {}
+    func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {}
+    func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController) {}
 }

@@ -238,7 +238,7 @@ open class SideMenuController: UIViewController {
         menuViewController.beginAppearanceTransition(true, animated: true)
 
         if shouldCallDelegate {
-            reveal ? delegate?.sideMenuWillReveal(self) : delegate?.sideMenuWillHide(self)
+            reveal ? delegate?.sideMenuControllerWillRevealMenu(self) : delegate?.sideMenuControllerWillHideMenu(self)
         }
 
         if reveal {
@@ -259,7 +259,7 @@ open class SideMenuController: UIViewController {
             self.menuViewController.endAppearanceTransition()
 
             if shouldCallDelegate {
-                reveal ? self.delegate?.sideMenuDidReveal(self) : self.delegate?.sideMenuDidHide(self)
+                reveal ? self.delegate?.sideMenuControllerDidRevealMenu(self) : self.delegate?.sideMenuControllerDidHideMneu(self)
             }
 
             if !reveal {
