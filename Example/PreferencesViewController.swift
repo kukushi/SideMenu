@@ -62,7 +62,7 @@ class PreferencesViewController: UIViewController {
             navigationController?.navigationBar.tintColor = .lobolly
             navigationController?.navigationBar.barTintColor = .mirage
             navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.white
+                NSAttributedString.Key.foregroundColor: UIColor.white
             ]
         } else {
             themeColor = .white

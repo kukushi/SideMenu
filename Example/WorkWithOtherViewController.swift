@@ -90,7 +90,7 @@ extension PushedViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCellEditingStyle,
+                   commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             items.remove(at: indexPath.row)

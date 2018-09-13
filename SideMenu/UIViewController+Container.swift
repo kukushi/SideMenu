@@ -17,7 +17,7 @@ extension UIViewController {
 
         // `willMoveToParentViewController:` is called automatically when adding
 
-        addChildViewController(viewController)
+        addChild(viewController)
 
         viewController.view.frame = view.bounds
         viewController.view.translatesAutoresizingMaskIntoConstraints = true
@@ -25,7 +25,7 @@ extension UIViewController {
 
         view.addSubview(viewController.view)
 
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
     }
 
     func unload(_ viewController: UIViewController?) {
@@ -33,9 +33,9 @@ extension UIViewController {
             return
         }
 
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
         // `didMoveToParentViewController:` is called automatically when removing
     }
 }
