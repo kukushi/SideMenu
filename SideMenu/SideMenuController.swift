@@ -33,12 +33,12 @@ open class SideMenuController: UIViewController {
     /// The identifier of content view controller segue.
     /// If the SideMenuController instance is initiated from IB, this identifier will
     /// be used to retrieve the content view controller.
-    @IBInspectable public var contentSegueID: String = Segue.ContentType.content.rawValue
+    @IBInspectable public var contentSegueID: String = SideMenuSegue.ContentType.content.rawValue
 
     /// The identifier of menu view controller segue.
     /// If the SideMenuController instance is initiated from IB, this identifier will
     /// be used to retrieve the menu view controller.
-    @IBInspectable public var menuSegueID: String = Segue.ContentType.menu.rawValue
+    @IBInspectable public var menuSegueID: String = SideMenuSegue.ContentType.menu.rawValue
 
     /// Caching
     private lazy var lazyCachedViewControllerGenerators: [String: () -> UIViewController?] = [:]
@@ -197,7 +197,7 @@ open class SideMenuController: UIViewController {
     // MARK: Storyboard
 
     open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segue = segue as? Segue, let identifier = segue.identifier else {
+        guard let segue = segue as? SideMenuSegue, let identifier = segue.identifier else {
             return
         }
         switch identifier {
