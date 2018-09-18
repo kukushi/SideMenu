@@ -19,7 +19,7 @@ import UIKit
 open class SideMenuController: UIViewController {
 
     /// Configure this property to change the behavior of SideMenuController;
-    open static var preferences = SideMenuPreferences()
+    public static var preferences = SideMenuPreferences()
     private var preferences: SideMenuPreferences {
         return type(of: self).preferences
     }
@@ -59,7 +59,7 @@ open class SideMenuController: UIViewController {
         didSet {
             guard contentViewController !== oldValue &&
                 isViewLoaded &&
-                !childViewControllers.contains(contentViewController) else {
+                !children.contains(contentViewController) else {
                     return
             }
 
@@ -68,7 +68,7 @@ open class SideMenuController: UIViewController {
             }
 
             load(contentViewController, on: contentContainerView)
-            contentContainerView.sendSubview(toBack: contentViewController.view)
+            contentContainerView.sendSubviewToBack(contentViewController.view)
             unload(oldValue)
 
             if shouldCallSwitchingDelegate {
@@ -172,7 +172,7 @@ open class SideMenuController: UIViewController {
         load(menuViewController, on: menuContainerView)
 
         if preferences.basic.position == .under {
-            view.bringSubview(toFront: contentContainerView)
+            view.bringSubviewToFront(contentContainerView)
         }
 
         // Forwarding status bar style/hidden status to content view controller
@@ -459,7 +459,7 @@ open class SideMenuController: UIViewController {
     private func setUpNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(SideMenuController.appDidEnteredBackground),
-                                               name: .UIApplicationDidEnterBackground,
+                                               name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
     }
 
@@ -514,12 +514,12 @@ open class SideMenuController: UIViewController {
         return screenshot
     }
 
-    open override var childViewControllerForStatusBarStyle: UIViewController? {
+    open override var childForStatusBarStyle: UIViewController? {
         // Forward to the content view controller
         return contentViewController
     }
 
-    open override var childViewControllerForStatusBarHidden: UIViewController? {
+    open override var childForStatusBarHidden: UIViewController? {
         return contentViewController
     }
 
@@ -573,7 +573,7 @@ open class SideMenuController: UIViewController {
         if animated {
             delegate?.sideMenuController(self, willShow: viewController, animated: animated)
 
-            addChildViewController(viewController)
+            addChild(viewController)
 
             viewController.view.frame = view.bounds
             viewController.view.translatesAutoresizingMaskIntoConstraints = true
@@ -606,7 +606,7 @@ open class SideMenuController: UIViewController {
 
                 self.delegate?.sideMenuController(self, didShow: viewController, animated: animated)
 
-                viewController.didMove(toParentViewController: self)
+                viewController.didMove(toParent: self)
 
                 completion?()
             }
@@ -751,6 +751,6 @@ extension SideMenuController: UIGestureRecognizerDelegate {
         guard velocity.x * factor > 0 else {
             return false
         }
-        return fabs(velocity.y / velocity.x) < 0.25
+        return abs(velocity.y / velocity.x) < 0.25
     }
 }
