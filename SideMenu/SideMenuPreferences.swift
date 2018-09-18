@@ -53,7 +53,7 @@ public struct SideMenuPreferences {
         public var hideDuration: TimeInterval = 0.4
 
         // The animation option of reveal/hide. Default is `.curveEaseInOut`.
-        public var options: UIViewAnimationOptions = .curveEaseInOut
+        public var options: UIView.AnimationOptions = .curveEaseInOut
 
         // The amping ratio option used in the revealing and hiding animation of the menu. The default is 1.
         public var dampingRatio: CGFloat = 1
