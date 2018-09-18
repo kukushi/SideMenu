@@ -1,5 +1,10 @@
 # CHANGES
 
+## [1.0.0]
+
+- Update to Swift 4.2
+- Rename some APIs to make it more swift.
+
 ## [0.5.0]
 
 - Adds supports for transition animation

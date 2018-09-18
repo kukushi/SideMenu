@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "SideMenuSwift"
-    s.version      = "0.5.1"
+    s.version      = "1.0.0"
     s.summary      = "An interactive iOS side menu with rich features."
   
     s.description  = <<-DESC

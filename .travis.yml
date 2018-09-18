@@ -1,6 +1,6 @@
 sudo: false
 language: objective-c
-osx_image: xcode9
+osx_image: xcode10
 xcode_project: SideMenu.xcodeproj
 xcode_scheme: SideMenu
 script: xcodebuild -project SideMenu.xcodeproj -scheme SideMenu -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=latest' build
