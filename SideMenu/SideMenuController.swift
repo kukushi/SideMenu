@@ -106,6 +106,10 @@ open class SideMenuController: UIViewController {
     private var isValidatePanningBegan = false
     private var panningBeganPointX: CGFloat = 0
 
+    private var isContentOrMenuNotInitialized: Bool {
+        return menuViewController == nil || contentViewController == nil
+    }
+
     /// The view responsible for tapping to hide the menu and shadow
     private weak var contentContainerOverlay: UIView?
 
@@ -149,14 +153,16 @@ open class SideMenuController: UIViewController {
         super.viewDidLoad()
 
         // Setup from the IB
-        if isInitiatedFromStoryboard {
+        // Side menu may be initialized from the IB while segues are not used, thus passing the performing of
+        // segues if content and menu is already set
+        if isInitiatedFromStoryboard && isContentOrMenuNotInitialized {
             // Note that if you are using the `SideMenuController` from the IB, you must supply the default or
             // custom view controller ID in the storyboard.
             performSegue(withIdentifier: contentSegueID, sender: self)
             performSegue(withIdentifier: menuSegueID, sender: self)
         }
 
-        if menuViewController == nil || contentViewController == nil {
+        if isContentOrMenuNotInitialized {
             fatalError("[SideMenuSwift] `menuViewController` or `contentViewController` should not be nil.")
         }
 

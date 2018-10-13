@@ -36,4 +36,13 @@ class OtherExampleViewController: UIViewController {
         let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
         UIApplication.shared.keyWindow?.rootViewController = sideMenuController
     }
+
+    @IBAction func switchToHybridExample(_ sender: Any) {
+        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentNavigation")
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuNavigation")
+        let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SingleSideMenu") as! SideMenuController
+        sideMenuController.contentViewController = contentViewController
+        sideMenuController.menuViewController = menuViewController
+        UIApplication.shared.keyWindow?.rootViewController = sideMenuController
+    }
 }
