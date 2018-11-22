@@ -494,10 +494,10 @@ open class SideMenuController: UIViewController {
 
         if animate && behavior != .hideOnMenu {
             UIView.animate(withDuration: 0.4, animations: {
-                sbw.setStatusBar(hidden, with: behavior)
+                sbw.setStatusBarHidden(hidden, with: behavior)
             })
         } else {
-            sbw.setStatusBar(hidden, with: behavior)
+            sbw.setStatusBarHidden(hidden, with: behavior)
         }
 
         if behavior == .hideOnMenu {

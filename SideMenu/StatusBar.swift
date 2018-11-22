@@ -24,7 +24,7 @@ extension UIWindow {
     /// - Parameters:
     ///   - hidden: the windows hidden status
     ///   - behavior: status bar behavior
-    internal func setStatusBar(_ hidden: Bool, with behavior: SideMenuController.Preferences.StatusBarBehavior) {
+    internal func setStatusBarHidden(_ hidden: Bool, with behavior: SideMenuController.Preferences.StatusBarBehavior) {
         guard behavior != .none else {
             return
         }
