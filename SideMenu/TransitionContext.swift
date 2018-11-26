@@ -29,8 +29,11 @@ extension SideMenuController {
         var completion: ((Bool) -> Void)?
 
         init(with fromViewController: UIViewController, toViewController: UIViewController) {
+            guard let superView = fromViewController.view.superview else {
+                fatalError("fromViewControlelr's view should have a parent view")
+            }
             presentationStyle = .custom
-            containerView = fromViewController.view.superview!
+            containerView = superView
             viewControllers = [
                 .from: fromViewController,
                 .to: toViewController

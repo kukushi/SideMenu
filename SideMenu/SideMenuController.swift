@@ -49,12 +49,14 @@ open class SideMenuController: UIViewController {
 
     /// Tell whether `setContentViewController` setter should call the delegate.
     /// Work as a workaround when switching content view controller from other animation approach which also change the
-    /// `contentViewController`. 
+    /// `contentViewController`.
+    // swiftlint:disable:next weak_delegate
     private var shouldCallSwitchingDelegate = true
 
     /// The content view controller. Changes its value will change the display immediately.
     /// If the new value is already one of the side menu controller's child controllers, nothing will happen beside value change.
     /// If you want a caching approach, use `setContentViewController(with)`. Its value should not be nil.
+    // swiftlint:disable:next implicitly_unwrapped_optional
     open var contentViewController: UIViewController! {
         didSet {
             guard contentViewController !== oldValue &&
@@ -80,6 +82,7 @@ open class SideMenuController: UIViewController {
     }
 
     /// The menu view controller. Its value should not be nil.
+    // swiftlint:disable:next implicitly_unwrapped_optional
     open var menuViewController: UIViewController! {
         didSet {
             guard menuViewController !== oldValue && isViewLoaded else {
@@ -428,7 +431,8 @@ open class SideMenuController: UIViewController {
                 if !isMenuRevealed {
                     translation -= menuWidth * factor
                 }
-                viewToAnimate.frame.origin.x = (isLeft ? rightBorder : leftBorder) + factor * menuWidth * log10(translation * factor / menuWidth + 1) * 0.5
+                viewToAnimate.frame.origin.x = (isLeft ? rightBorder : leftBorder) + factor * menuWidth
+                    * log10(translation * factor / menuWidth + 1) * 0.5
             }
 
             if let viewToAnimate2 = viewToAnimate2 {
@@ -470,6 +474,7 @@ open class SideMenuController: UIViewController {
     }
 
     private func unregisterNotifications() {
+        // swiftlint:disable:next notification_center_detachment
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -504,9 +509,9 @@ open class SideMenuController: UIViewController {
             if !hidden {
                 statusBarScreenShotView?.removeFromSuperview()
                 statusBarScreenShotView = nil
-            } else if statusBarScreenShotView == nil {
-                statusBarScreenShotView = statusBarScreenShot()
-                contentContainerView.insertSubview(statusBarScreenShotView!, aboveSubview: contentViewController.view)
+            } else if statusBarScreenShotView == nil, let newStatusBarScreenShot = statusBarScreenShot() {
+                statusBarScreenShotView = newStatusBarScreenShot
+                contentContainerView.insertSubview(newStatusBarScreenShot, aboveSubview: contentViewController.view)
             }
         }
     }
@@ -591,13 +596,15 @@ open class SideMenuController: UIViewController {
 
             #if DEBUG
             if animatorFromDelegate == nil {
+                // swiftlint:disable:next line_length
                 print("[SideMenu] `setContentViewController` is called with animated while the delegate method return nil, fall back to the fade animation.")
             }
             #endif
 
             let animator = animatorFromDelegate ?? BasicTransitionAnimator()
 
-            let transitionContext = SideMenuController.TransitionContext(with: contentViewController, toViewController: viewController)
+            let transitionContext = SideMenuController.TransitionContext(with: contentViewController,
+                                                                         toViewController: viewController)
             transitionContext.isAnimated = true
             transitionContext.isInteractive = false
             transitionContext.completion = { finish in
@@ -689,12 +696,12 @@ open class SideMenuController: UIViewController {
         hideMenu(animated: false, completion: { _ in
             // Temporally hide the menu container view for smooth animation
             self.menuContainerView.isHidden = true
-            coordinator.animate(alongsideTransition: { (context) in
+            coordinator.animate(alongsideTransition: { (_) in
                 self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed)
-            }) { (_) in
+            }, completion: { (_) in
                 self.menuContainerView.isHidden = false
                 self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed)
-            }
+            })
         })
 
         super.viewWillTransition(to: size, with: coordinator)

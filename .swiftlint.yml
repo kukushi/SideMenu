@@ -5,10 +5,25 @@ disabled_rules:
    - cyclomatic_complexity
    # TODO
    - type_body_length
+   - nesting
+
+opt_in_rules:
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - legacy_random
+  - overridden_super_call
+  - override_in_extension
+  - prohibited_super_call
+  - redundant_type_annotation
+  - static_operator
+  - toggle_bool
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
+  - SideMenuExampleUITests
+  - Example
+  - SideMenuTests
 
 identifier_name:
   excluded: # excluded via string array

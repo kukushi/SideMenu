@@ -12,6 +12,7 @@ extension UIView {
     var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
+            // swiftlint:disable:next force_unwrapping
             parentResponder = parentResponder!.next
             if let viewController = parentResponder as? UIViewController {
                 return viewController
