@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SideMenu  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="SideMenu  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          SideMenu Docs
+        </a>
+         (46% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/kukushi/SideMenu">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://http%3A%2F%2Fkukushi%2Egithub%2Eio%2FSideMenu%2Fdocsets%2FSideMenu%2Exml">
+            <img class="header-icon" src="img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">SideMenu Reference</a>
+      <img class="carat" src="img/carat.png" />
+      SideMenu  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/BasicTransitionAnimator.html">BasicTransitionAnimator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SideMenuController.html">SideMenuController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SideMenuController/Preferences.html">– Preferences</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SideMenuSegue.html">SideMenuSegue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/SideMenuSegue/ContentType.html">– ContentType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/SideMenuControllerDelegate.html">SideMenuControllerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <h1 id='img-src-https-github-com-kukushi-sidemenu-blob-develop-images-logo-png-raw-true-alt' class='heading'><img src="https://github.com/kukushi/SideMenu/blob/develop/Images/Logo.png?raw=true" alt=""></h1>
+
+<p><a href="http://cocoapods.org/pods/SideMenuSwift"><img src="https://img.shields.io/cocoapods/v/SideMenuSwift.svg?style=flat-square" alt="Version"></a>
+<img src="https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat%22" alt="Swift4">
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square" alt="Carthage compatible"></a>
+<a href="http://cocoapods.org/pods/SideMenuSwift"><img src="https://img.shields.io/cocoapods/l/SideMenuSwift.svg?style=flat-square" alt="License"></a>
+<a href="http://cocoapods.org/pods/SideMenuSwift"><img src="https://img.shields.io/cocoapods/p/SideMenuSwift.svg?style=flat-square" alt="Platform"></a></p>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<p><em>SideMenu</em> is an easy-to-use side menu container controller written in Swift 4.</p>
+
+<p>Besides all the features a <em>Side Menu</em> should have, it supports:</p>
+
+<ul>
+<li>Four kinds of status bar behaviors</li>
+<li>Three different menu position</li>
+<li>Both storyboard and programmatically</li>
+<li>Caching the content view controller and lazy initialization</li>
+<li>Rubber band effect while panning</li>
+<li>Custom transition animation</li>
+<li>RTL supports</li>
+</ul>
+<h2 id='preview' class='heading'>Preview</h2>
+
+<p>Menu Position / Status Menu Behavior</p>
+
+<table><thead>
+<tr>
+<th>Above + None</th>
+<th>Below + Slide</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><img src="https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/Above%2BNone.gif" alt=""></td>
+<td><img src="https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/Below%2BSlide.gif" alt=""></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>SideBySide + Fade</th>
+<th>SideBySide + HideOnMenu</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><img src="https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/SideBySide%2BFade.gif" alt=""></td>
+<td><img src="https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/SideBySide%2BHideOnMenu.gif" alt=""></td>
+</tr>
+</tbody></table>
+
+<p>We call the left/right view controller as the <strong>menu</strong> view controller, the central view controller as <strong>content</strong> view controller.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<blockquote>
+<p>For Swift 4.0, please using 0.5.1 or earlier version.</p>
+</blockquote>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>To install <code>SideMenu</code> with <a href="http://cocoapods.org/">CocoaPods</a>, add the below line in your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'SideMenuSwift'</span>
+<span class="c1"># Note it's NOT 'SideMenu'</span>
+</code></pre>
+<h3 id='carthage' class='heading'>Carthage</h3>
+
+<p>To install <code>SideMenu</code> with <a href="https://github.com/Carthage/Carthage">Carthage</a>, add the below line in your <code>Cartfile</code>:</p>
+<pre class="highlight plaintext"><code>github "kukushi/SideMenu" "master"
+</code></pre>
+<h2 id='usages' class='heading'>Usages</h2>
+<h3 id='storyboard' class='heading'>Storyboard</h3>
+
+<details>
+<summary>
+To set up `SideMenu` in storyboard:
+</summary>
+
+
+1. Open the view controller&rsquo;s *Identity inspector*. Change its **Class** to `SideMenuController` and **Module** to `SideMenuSwift`.
+2. Set up the menu view controller and the initial content view controller in your Storyboard. Add a **Custom** segue from the `SideMenuController` to each of them.
+    - Change the menu segue&rsquo;s identifier to `SideMenu.Menu`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
+    - Change the content segue&rsquo;s identifier to `SideMenu.Content`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
+4. (Optional) If you want to use custom segue identifier:
+   - Open the `SideMenuController`&lsquo;s *Attribute inspector*.
+   - In the **Side Menu Controller** section, modify the *Content SegueID/Menu SegueID* to the desired value and change the corresponding segue&rsquo;s identifier.
+5. It&rsquo;s done. Check [this screenshot](https://github.com/kukushi/SideMenu/blob/develop/Images/StoryboardSample.png?raw=true) a for clear view.
+</details>
+<h3 id='programmatically' class='heading'>Programmatically</h3>
+
+<details>
+<summary>
+To start the app with `SideMenu` programmatically:
+</summary>
+
+&ldquo;`swift
+import UIKit
+import SideMenuSwift
+// If you are using Carthage, uses `import SideMenu`
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    @objc func applicationDidFinishLaunching(_ application: UIApplication) {
+        let contentViewController = &hellip;
+        let menuViewController = &hellip;
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = SideMenuController(contentViewController: contentViewController, 
+        menuViewController: menuViewController)
+        
+        window?.makeKeyAndVisible()
+        return true
+    }
+}
+&rdquo;`
+</details>
+
+<p>Use the <code>sideMenuController</code> method which provided in <code>UIViewController</code>&rsquo;s extension to get the parent <code><a href="Classes/SideMenuController.html">SideMenuController</a></code>:</p>
+<pre class="highlight swift"><code><span class="n">viewController</span><span class="o">.</span><span class="n">sideMenuController</span><span class="p">?</span><span class="o">.</span><span class="nf">revealMenu</span><span class="p">()</span>
+</code></pre>
+<h3 id='preferences' class='heading'>Preferences</h3>
+
+<p>All the preferences of SideMenu can be found in <code><a href="Classes/SideMenuController.html#/s:8SideMenu0aB10ControllerC11preferencesAC11PreferencesVvpZ">SideMenuController.preferences</a></code>. Its recommend to check out the <code>Example</code> to see how those options will take effect.</p>
+<pre class="highlight swift"><code><span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">menuWidth</span> <span class="o">=</span> <span class="mi">240</span>
+<span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">statusBarBehavior</span> <span class="o">=</span> <span class="o">.</span><span class="n">hideOnMenu</span>
+<span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="o">.</span><span class="n">below</span>
+<span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="o">.</span><span class="n">left</span>
+<span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">enablePanGesture</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">supportedOrientations</span> <span class="o">=</span> <span class="o">.</span><span class="n">portrait</span>
+<span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">shouldRespectLanguageDirection</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="c1">// See a lot more options on `Preferences.swift`.</span>
+</code></pre>
+<h3 id='caching-the-content' class='heading'>Caching the Content</h3>
+
+<p>One of the coolest features of SideMenu is caching. </p>
+<pre class="highlight swift"><code><span class="c1">// Cache the view controllers somewhere in your code</span>
+<span class="n">sideMenuController</span><span class="p">?</span><span class="o">.</span><span class="nf">cache</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">secondViewController</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="s">"second"</span><span class="p">)</span>
+<span class="n">sideMenuController</span><span class="p">?</span><span class="o">.</span><span class="nf">cache</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="n">thirdViewController</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="s">"third"</span><span class="p">)</span>
+
+<span class="c1">// Switch to it when needed</span>
+<span class="n">sideMenuController</span><span class="p">?</span><span class="o">.</span><span class="nf">setContentViewController</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="s">"second"</span><span class="p">)</span>
+</code></pre>
+
+<p>What about the content view controller initialized from the Storyboard? We can use the preferences to apply a default key for it!</p>
+<pre class="highlight swift"><code><span class="kt">SideMenuController</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">defaultCacheKey</span> <span class="o">=</span> <span class="s">"default"</span>
+</code></pre>
+
+<p>What if we can&rsquo;t want to load all the content view controllers so early? We can use lazy caching:</p>
+<pre class="highlight plaintext"><code>sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") }, with: "second")
+sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") }, with: "third")
+</code></pre>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<ul>
+<li>Xcode 10</li>
+<li>iOS 9.0 or later</li>
+</ul>
+<h2 id='license' class='heading'>License</h2>
+
+<p>SideMenu is available under the MIT license. See the LICENSE file for more info.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://kushi.me" target="_blank" rel="external">Xing He</a>. All rights reserved. (Last updated: 2019-01-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

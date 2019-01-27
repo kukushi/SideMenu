@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SideMenuControllerDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/SideMenuControllerDelegate" class="dashAnchor"></a>
+
+    <a title="SideMenuControllerDelegate Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          SideMenu Docs
+        </a>
+         (46% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/kukushi/SideMenu">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://http%3A%2F%2Fkukushi%2Egithub%2Eio%2FSideMenu%2Fdocsets%2FSideMenu%2Exml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">SideMenu Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      SideMenuControllerDelegate Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BasicTransitionAnimator.html">BasicTransitionAnimator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SideMenuController.html">SideMenuController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SideMenuController/Preferences.html">– Preferences</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SideMenuSegue.html">SideMenuSegue</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SideMenuSegue/ContentType.html">– ContentType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SideMenuControllerDelegate.html">SideMenuControllerDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>SideMenuControllerDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SideMenuControllerDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Animation"></a>
+                <a name="//apple_ref/swift/Section/Animation" class="dashAnchor"></a>
+                <a href="#/Animation">
+                  <h3 class="section-name">Animation</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC0_09animationC4From2toSo06UIViewC21AnimatedTransitioning_pSgAA0abC0C_So0iC0CALtF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuController(_:animationControllerFrom:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_09animationC4From2toSo06UIViewC21AnimatedTransitioning_pSgAA0abC0C_So0iC0CALtF">sideMenuController(_:animationControllerFrom:to:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to allow the delegate to return a non-interactive animator object for use during view controller transitions.
+Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperation:fromViewController:toViewController:</code>.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuController</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">,</span> <span class="n">animationControllerFrom</span> <span class="nv">fromVC</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="n">to</span> <span class="nv">toVC</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIViewControllerAnimatedTransitioning</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sideMenuController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The side menu controller</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fromVC</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The currently visible view controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toVC</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view controller that should be visible at the end of the transition.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The animator object responsible for managing the transition animations,
+       or nil if you want to use the fade transitions.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Switching"></a>
+                <a name="//apple_ref/swift/Section/Switching" class="dashAnchor"></a>
+                <a href="#/Switching">
+                  <h3 class="section-name">Switching</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC0_8willShow8animatedyAA0abC0C_So06UIViewC0CSbtF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuController(_:willShow:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_8willShow8animatedyAA0abC0C_So06UIViewC0CSbtF">sideMenuController(_:willShow:animated:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuController</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">,</span> <span class="n">willShow</span> <span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC0_7didShow8animatedyAA0abC0C_So06UIViewC0CSbtF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuController(_:didShow:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_7didShow8animatedyAA0abC0C_So06UIViewC0CSbtF">sideMenuController(_:didShow:animated:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuController</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">,</span> <span class="n">didShow</span> <span class="nv">viewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Revealing"></a>
+                <a name="//apple_ref/swift/Section/Revealing" class="dashAnchor"></a>
+                <a href="#/Revealing">
+                  <h3 class="section-name">Revealing</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc10WillRevealB0yyAA0abC0CF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuControllerWillRevealMenu(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc10WillRevealB0yyAA0abC0CF">sideMenuControllerWillRevealMenu(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Side menu is going to reveal.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuControllerWillRevealMenu</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sideMenu</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The side menu</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc9DidRevealB0yyAA0abC0CF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuControllerDidRevealMenu(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc9DidRevealB0yyAA0abC0CF">sideMenuControllerDidRevealMenu(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Side menu did revealed.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuControllerDidRevealMenu</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sideMenu</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The side menu</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L44">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc8WillHideB0yyAA0abC0CF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuControllerWillHideMenu(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc8WillHideB0yyAA0abC0CF">sideMenuControllerWillHideMenu(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Side menu is going to hide.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuControllerWillHideMenu</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sideMenu</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The side menu</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L49">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC11DidHideMneuyyAA0abC0CF"></a>
+                    <a name="//apple_ref/swift/Method/sideMenuControllerDidHideMneu(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC11DidHideMneuyyAA0abC0CF">sideMenuControllerDidHideMneu(_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Side menu is did hide.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuControllerDidHideMneu</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sideMenu</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The side menu</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/kukushi/SideMenu/1.0.0/SideMenu/Delegate.swift#L54">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://kushi.me" target="_blank" rel="external">Xing He</a>. All rights reserved. (Last updated: 2019-01-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

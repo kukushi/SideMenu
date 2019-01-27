@@ -1,0 +1,334 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/BasicTransitionAnimator.swift",
+      "line": 12,
+      "symbol": "BasicTransitionAnimator",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/BasicTransitionAnimator.swift",
+      "line": 16,
+      "symbol": "BasicTransitionAnimator.init(options:duration:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/BasicTransitionAnimator.swift",
+      "line": 21,
+      "symbol": "BasicTransitionAnimator.transitionDuration(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/BasicTransitionAnimator.swift",
+      "line": 25,
+      "symbol": "BasicTransitionAnimator.animateTransition(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
+      "line": null,
+      "symbol": "SideMenuControllerDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
+      "line": 12,
+      "symbol": "SideMenuControllerDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
+      "line": 31,
+      "symbol": "SideMenuControllerDelegate.sideMenuController(_:willShow:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
+      "line": 32,
+      "symbol": "SideMenuControllerDelegate.sideMenuController(_:didShow:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
+      "line": 65,
+      "symbol": "SideMenuControllerDelegate.sideMenuController(_:willShow:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
+      "line": 68,
+      "symbol": "SideMenuControllerDelegate.sideMenuController(_:didShow:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 23,
+      "symbol": "SideMenuController.Preferences.StatusBarBehavior.none",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 24,
+      "symbol": "SideMenuController.Preferences.StatusBarBehavior.slide",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 25,
+      "symbol": "SideMenuController.Preferences.StatusBarBehavior.fade",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 26,
+      "symbol": "SideMenuController.Preferences.StatusBarBehavior.hideOnMenu",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 34,
+      "symbol": "SideMenuController.Preferences.MenuDirection.left",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 35,
+      "symbol": "SideMenuController.Preferences.MenuDirection.right",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 44,
+      "symbol": "SideMenuController.Preferences.MenuPosition.above",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 45,
+      "symbol": "SideMenuController.Preferences.MenuPosition.under",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 46,
+      "symbol": "SideMenuController.Preferences.MenuPosition.sideBySide",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 49,
+      "symbol": "SideMenuController.Preferences.Animation",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 51,
+      "symbol": "SideMenuController.Preferences.Animation.revealDuration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 54,
+      "symbol": "SideMenuController.Preferences.Animation.hideDuration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 57,
+      "symbol": "SideMenuController.Preferences.Animation.options",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 60,
+      "symbol": "SideMenuController.Preferences.Animation.dampingRatio",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 63,
+      "symbol": "SideMenuController.Preferences.Animation.initialSpringVelocity",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 66,
+      "symbol": "SideMenuController.Preferences.Animation.shouldAddShadowWhenRevealing",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 69,
+      "symbol": "SideMenuController.Preferences.Animation.shadowAlpha",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 72,
+      "symbol": "SideMenuController.Preferences.Configuration",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 84,
+      "symbol": "SideMenuController.Preferences.Configuration.shouldRespectLanguageDirection",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 109,
+      "symbol": "SideMenuController.Preferences.basic",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 110,
+      "symbol": "SideMenuController.Preferences.animation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
+      "line": 13,
+      "symbol": "SideMenuSegue.ContentType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
+      "line": 14,
+      "symbol": "SideMenuSegue.ContentType.content",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
+      "line": 15,
+      "symbol": "SideMenuSegue.ContentType.menu",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
+      "line": 18,
+      "symbol": "SideMenuSegue.contentType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
+      "line": 20,
+      "symbol": "SideMenuSegue.perform()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 60,
+      "symbol": "SideMenuController.contentViewController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 86,
+      "symbol": "SideMenuController.menuViewController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 155,
+      "symbol": "SideMenuController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 208,
+      "symbol": "SideMenuController.prepare(for:sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 528,
+      "symbol": "SideMenuController.childForStatusBarStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 533,
+      "symbol": "SideMenuController.childForStatusBarHidden",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 576,
+      "symbol": "SideMenuController.setContentViewController(to:animated:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 691,
+      "symbol": "SideMenuController.supportedInterfaceOrientations",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 695,
+      "symbol": "SideMenuController.viewWillTransition(to:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 714,
+      "symbol": "SideMenuController.gestureRecognizer(_:shouldReceive:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 735,
+      "symbol": "SideMenuController.gestureRecognizerShouldBegin(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/kukushi/Documents/Projects/kukushi/SideMenu"
+}
