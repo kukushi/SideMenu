@@ -8,15 +8,22 @@
 
 import UIKit
 
-// Built-In Animation Controller
+// A Simple transition animator can be configured with anmiation options.
 public class BasicTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let animationOptions: UIView.AnimationOptions
     let duration: TimeInterval
 
+    /// Initialize a new animator with animatio options and duration.
+    ///
+    /// - Parameters:
+    ///   - options: animation options
+    ///   - duration: animation duration
     public init(options: UIView.AnimationOptions = .transitionCrossDissolve, duration: TimeInterval = 0.4) {
-        animationOptions = options
+        self.animationOptions = options
         self.duration = duration
     }
+
+    // MARK: UIViewControllerAnimatedTransitioning
 
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
@@ -35,9 +42,9 @@ public class BasicTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         UIView.transition(from: fromViewController.view,
                           to: toViewController.view,
                           duration: duration,
-                          options: animationOptions
-        ) { (_) in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        }
+                          options: animationOptions,
+                          completion: { (_) in
+                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        })
     }
 }

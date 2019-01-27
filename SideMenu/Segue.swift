@@ -10,11 +10,17 @@ import UIKit
 
 /// Custom Segue that is required for SideMenuController to be used in Storyboard.
 open class SideMenuSegue: UIStoryboardSegue {
+
+    /// The type of segue
+    ///
+    /// - content: represent the content scene of side menu
+    /// - menu: represent the menu scene of side menu
     public enum ContentType: String {
         case content = "SideMenu.Content"
         case menu = "SideMenu.Menu"
     }
 
+    /// current content type
     public var contentType = ContentType.content
 
     open override func perform() {

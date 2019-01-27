@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Delegate Methods
 public protocol SideMenuControllerDelegate: class {
@@ -48,10 +49,16 @@ public protocol SideMenuControllerDelegate: class {
     /// - Parameter sideMenu: The side menu
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController)
 
-    /// Side menu is did hide.
+    /// [Deprecated] Side menu did hided.
     ///
     /// - Parameter sideMenu: The side menu
+    @available(*, deprecated, message: "Use `sideMenuControllerDidHideMenu` instead. This method will be removed in next major release.")
     func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController)
+
+    /// Side menu did hided.
+    ///
+    /// - Parameter sideMenu: The side menu
+    func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController)
 }
 
 // Provides default implementation for delegates
@@ -72,4 +79,5 @@ public extension SideMenuControllerDelegate {
     func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController) {}
+    func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController) {}
 }

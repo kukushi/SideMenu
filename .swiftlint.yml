@@ -32,4 +32,4 @@ identifier_name:
     # `func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath)`
     - to
 
-line_length: 130
+line_length: 140

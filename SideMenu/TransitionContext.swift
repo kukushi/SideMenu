@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// A private transitioning context used for triggering the transition animation
+/// A internal transitioning context used for triggering the transition animation
 extension SideMenuController {
     class TransitionContext: NSObject, UIViewControllerContextTransitioning {
         var isAnimated = true
