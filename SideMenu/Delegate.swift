@@ -29,7 +29,21 @@ public protocol SideMenuControllerDelegate: class {
 
     // MARK: Switching
 
+
+    /// Side menu will show a view controller.
+    ///
+    /// - Parameters:
+    ///   - sideMenuController: current side menu controller
+    ///   - viewController: the view controller to show
+    ///   - animated: whether it's animated
     func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool)
+
+    /// Side menu did showed a view controller.
+    ///
+    /// - Parameters:
+    ///   - sideMenuController: current side menu controller
+    ///   - viewController: the view controller shown
+    ///   - animated: whether it's animated
     func sideMenuController(_ sideMenuController: SideMenuController, didShow viewController: UIViewController, animated: Bool)
 
     // MARK: Revealing

@@ -36,34 +36,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
-      "line": 32,
-      "symbol": "SideMenuControllerDelegate.sideMenuController(_:willShow:animated:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
-      "line": 33,
-      "symbol": "SideMenuControllerDelegate.sideMenuController(_:didShow:animated:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
-      "line": 72,
-      "symbol": "SideMenuControllerDelegate.sideMenuController(_:willShow:animated:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Delegate.swift",
-      "line": 75,
-      "symbol": "SideMenuControllerDelegate.sideMenuController(_:didShow:animated:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
       "line": 23,
       "symbol": "SideMenuController.Preferences.StatusBarBehavior.none",
@@ -197,20 +169,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 109,
-      "symbol": "SideMenuController.Preferences.basic",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 110,
-      "symbol": "SideMenuController.Preferences.animation",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
       "line": 19,
       "symbol": "SideMenuSegue.ContentType.content",
@@ -222,13 +180,6 @@
       "line": 20,
       "symbol": "SideMenuSegue.ContentType.menu",
       "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Segue.swift",
-      "line": 26,
-      "symbol": "SideMenuSegue.perform()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {

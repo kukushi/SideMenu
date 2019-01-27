@@ -106,7 +106,11 @@ extension SideMenuController {
             public var supportedOrientations: UIInterfaceOrientationMask = .portrait
         }
 
+
+        /// The basic configuration of side menu
         public var basic = Configuration()
+
+        /// The animation configuration of side menu
         public var animation = Animation()
     }
 }
