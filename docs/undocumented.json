@@ -157,13 +157,20 @@
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
       "line": 72,
+      "symbol": "SideMenuController.Preferences.Animation.shadowColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
+      "line": 75,
       "symbol": "SideMenuController.Preferences.Configuration",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 84,
+      "line": 87,
       "symbol": "SideMenuController.Preferences.Configuration.shouldRespectLanguageDirection",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

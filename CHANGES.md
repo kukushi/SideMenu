@@ -1,5 +1,9 @@
 # CHANGES
 
+## [1.0.1]
+
+- Add `shadowColor`
+
 ## [1.0.0]
 
 - Update to Swift 4.2
