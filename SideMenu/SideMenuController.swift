@@ -352,7 +352,7 @@ open class SideMenuController: UIViewController {
         if !shouldShowShadowOnContent {
             overlay.backgroundColor = .clear
         } else {
-            overlay.backgroundColor = .black
+            overlay.backgroundColor = SideMenuController.preferences.animation.shadowColor
             overlay.alpha = 0
         }
         overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
