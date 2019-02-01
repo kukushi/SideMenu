@@ -29,7 +29,6 @@ public protocol SideMenuControllerDelegate: class {
 
     // MARK: Switching
 
-
     /// Side menu will show a view controller.
     ///
     /// - Parameters:
