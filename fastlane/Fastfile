@@ -35,4 +35,13 @@ platform :ios do
                       --output docs/ \
                       --theme fullwidth")
   end
+
+  desc "Runs all the tests"
+  lane :test do
+
+    scan(
+      scheme: "SideMenu", 
+      devices: ['iPhone XR']
+      )
+  end
 end

@@ -9,6 +9,5 @@ before_install:
 
 sudo: false
 
-xcode_project: SideMenu.xcodeproj
-xcode_scheme: SideMenu
-script: xcodebuild -project SideMenu.xcodeproj -scheme SideMenu -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=latest' build
+script:
+  - bundle exec fastlane test

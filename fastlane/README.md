@@ -26,6 +26,11 @@ Description of what the lane does
 fastlane ios doc
 ```
 
+### ios test
+```
+fastlane ios test
+```
+Runs all the tests
 
 ----
 
