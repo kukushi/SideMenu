@@ -38,16 +38,6 @@
                ReferencedContainer = "container:SideMenu.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87AF0B4A207A1EF30041CBEC"
-               BuildableName = "SideMenuExampleUITests.xctest"
-               BlueprintName = "SideMenuExampleUITests"
-               ReferencedContainer = "container:SideMenu.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
