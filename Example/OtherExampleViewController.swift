@@ -40,7 +40,10 @@ class OtherExampleViewController: UIViewController {
     @IBAction func switchToHybridExample(_ sender: Any) {
         let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ContentNavigation")
         let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuNavigation")
-        let sideMenuController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SingleSideMenu") as! SideMenuController
+        guard let sideMenuController = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SingleSideMenu") as? SideMenuController else {
+            fatalError("Missing SingleSideMenu viewcontroller in storyboard")
+        }
         sideMenuController.contentViewController = contentViewController
         sideMenuController.menuViewController = menuViewController
         UIApplication.shared.keyWindow?.rootViewController = sideMenuController

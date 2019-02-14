@@ -18,12 +18,9 @@ opt_in_rules:
   - static_operator
   - toggle_bool
 
-excluded: # paths to ignore during linting. Takes precedence over `included`.
-  - Carthage
-  - Pods
-  - SideMenuExampleUITests
+included: # paths to ignore during linting. Takes precedence over `included`.
+  - SideMenu
   - Example
-  - SideMenuTests
 
 identifier_name:
   excluded: # excluded via string array

@@ -68,12 +68,12 @@ class PushedViewController: UIViewController {
     }
 
     private func printSideMenu(_ function: String) {
-        let representation = sideMenuController != nil ? String(describing: sideMenuController!) : "nil"
-        print("In `\(function)`, sideMenuControlLer is: \(representation)")
+        if let sideMenuController = sideMenuController {
+            print("In `\(function)`, sideMenuControlLer is: \(sideMenuController)")
+        }
 
-        if sideMenuController == nil {
-            let representation2 = navigationController != nil ? String(describing: navigationController!) : "nil"
-            print("    - And navigationController is: \(representation2)")
+        if navigationController == navigationController {
+            print("    - And navigationController is: \(navigationController)")
         }
     }
 }

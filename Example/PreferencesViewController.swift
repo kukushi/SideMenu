@@ -72,10 +72,25 @@ class PreferencesViewController: UIViewController {
         containerView.backgroundColor = themeColor
 
         let preferences = SideMenuController.preferences.basic
-        statusBarBehaviorSegment.selectedSegmentIndex = statusBarBehaviors.index(of: preferences.statusBarBehavior)!
-        menuPositionSegment.selectedSegmentIndex = menuPosition.index(of: preferences.position)!
-        menuDirectionSegment.selectedSegmentIndex = menuDirections.index(of: preferences.direction)!
-        orientationSegment.selectedSegmentIndex = menuOrientation.index(of: preferences.supportedOrientations)!
+        guard let behaviorIndex = statusBarBehaviors.index(of: preferences.statusBarBehavior) else {
+            fatalError("Conigration is messed up")
+        }
+        statusBarBehaviorSegment.selectedSegmentIndex = behaviorIndex
+
+        guard let menuPositionIndex = menuPosition.index(of: preferences.position) else {
+            fatalError("Conigration is messed up")
+        }
+        menuPositionSegment.selectedSegmentIndex = menuPositionIndex
+
+        guard let menuDirectionIndex = menuDirections.index(of: preferences.direction) else {
+            fatalError("Conigration is messed up")
+        }
+        menuDirectionSegment.selectedSegmentIndex = menuDirectionIndex
+
+        guard let menuOrientationIndex = menuOrientation.index(of: preferences.supportedOrientations)else {
+            fatalError("Conigration is messed up")
+        }
+        orientationSegment.selectedSegmentIndex = menuOrientationIndex
     }
 
     @IBAction func menuButtonDidClicked(_ sender: Any) {

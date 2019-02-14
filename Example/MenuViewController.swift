@@ -54,7 +54,8 @@ class MenuViewController: UIViewController {
             themeColor = UIColor(red: 0.98, green: 0.97, blue: 0.96, alpha: 1.00)
         }
 
-        let showPlaceTableOnLeft = (SideMenuController.preferences.basic.position == .under) != (SideMenuController.preferences.basic.direction == .right)
+        let sidemenuBasicConfiguration = SideMenuController.preferences.basic
+        let showPlaceTableOnLeft = (sidemenuBasicConfiguration.position == .under) != (sidemenuBasicConfiguration.direction == .right)
         if showPlaceTableOnLeft {
             selectionMenuTrailingConstraint.constant = SideMenuController.preferences.basic.menuWidth - view.frame.width
         }
@@ -66,14 +67,17 @@ class MenuViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        let showPlaceTableOnLeft = (SideMenuController.preferences.basic.position == .under) != (SideMenuController.preferences.basic.direction == .right)
+        let sidemenuBasicConfiguration = SideMenuController.preferences.basic
+        let showPlaceTableOnLeft = (sidemenuBasicConfiguration.position == .under) != (sidemenuBasicConfiguration.direction == .right)
         selectionMenuTrailingConstraint.constant = showPlaceTableOnLeft ? SideMenuController.preferences.basic.menuWidth - size.width : 0
         view.layoutIfNeeded()
     }
 }
 
 extension MenuViewController: SideMenuControllerDelegate {
-    func sideMenuController(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func sideMenuController(_ sideMenuController: SideMenuController,
+                            animationControllerFrom fromVC: UIViewController,
+                            to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return BasicTransitionAnimator(options: .transitionFlipFromLeft, duration: 0.6)
     }
 
@@ -129,7 +133,9 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
 
-        print("[Example] View Controller Cache Identifier: " + sideMenuController!.currentCacheIdentifier()!)
+        if let identifier = sideMenuController.currentCacheIdentifier() {
+            print("[Example] View Controller Cache Identifier: \(identifier)")
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
