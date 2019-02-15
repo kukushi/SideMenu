@@ -28,5 +28,7 @@ identifier_name:
     # Used by UIKit
     # `func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath)`
     - to
-
+file_length:
+  warning: 999
+  error: 1500
 line_length: 140

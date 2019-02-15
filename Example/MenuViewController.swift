@@ -133,7 +133,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
         sideMenuController?.hideMenu()
 
-        if let identifier = sideMenuController.currentCacheIdentifier() {
+        if let identifier = sideMenuController?.currentCacheIdentifier() {
             print("[Example] View Controller Cache Identifier: \(identifier)")
         }
     }

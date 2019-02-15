@@ -73,7 +73,7 @@ class PushedViewController: UIViewController {
         }
 
         if navigationController == navigationController {
-            print("    - And navigationController is: \(navigationController)")
+            print("    - And navigationController is: \(String(describing: navigationController))")
         }
     }
 }
