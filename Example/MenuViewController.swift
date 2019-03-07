@@ -89,20 +89,20 @@ extension MenuViewController: SideMenuControllerDelegate {
         print("[Example] View controller did show [\(viewController)]")
     }
 
-    func sideMenuWillHide(_ sideMenu: SideMenuController) {
+    func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {
         print("[Example] Menu will hide")
     }
 
-    func sideMenuDidHide(_ sideMenu: SideMenuController) {
+    func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController) {
         print("[Example] Menu did hide.")
     }
 
-    func sideMenuWillReveal(_ sideMenu: SideMenuController) {
-        print("[Example] Menu will show.")
+    func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {
+        print("[Example] Menu will reveal.")
     }
 
-    func sideMenuDidReveal(_ sideMenu: SideMenuController) {
-        print("[Example] Menu did show.")
+    func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {
+        print("[Example] Menu did reveal.")
     }
 }
 
