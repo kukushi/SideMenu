@@ -102,7 +102,7 @@ open class SideMenuController: UIViewController {
     open var isMenuRevealed = false
 
     private var shouldShowShadowOnContent: Bool {
-        return preferences.animation.shouldAddShadowWhenRevealing
+        return preferences.animation.shouldAddShadowWhenRevealing && preferences.basic.position != .under
     }
 
     /// States used in panning gesture
@@ -346,16 +346,15 @@ open class SideMenuController: UIViewController {
             return
         }
 
-        let overlay = UIView()
-        overlay.bounds = contentContainerView.bounds
-        overlay.center = contentContainerView.center
+        let overlay = UIView(frame: contentContainerView.bounds)
+        overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
         if !shouldShowShadowOnContent {
             overlay.backgroundColor = .clear
         } else {
             overlay.backgroundColor = SideMenuController.preferences.animation.shadowColor
             overlay.alpha = 0
         }
-        overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 
         // UIKit can coordinate overlay's tap gesture and controller view's pan gesture correctly
         let tapToHideGesture = UITapGestureRecognizer()
