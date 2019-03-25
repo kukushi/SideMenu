@@ -1,5 +1,9 @@
 # CHANGES
 
+## [1.0.2]
+
+- Remove shadow effect for `.under` position.
+
 ## [1.0.1]
 
 - Add `shadowColor`
