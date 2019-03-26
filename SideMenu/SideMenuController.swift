@@ -639,7 +639,7 @@ open class SideMenuController: UIViewController {
     ///
     /// - Returns: if not exist, returns nil.
     open func currentCacheIdentifier() -> String? {
-        guard let index = lazyCachedViewControllers.values.index(of: contentViewController) else {
+        guard let index = lazyCachedViewControllers.values.firstIndex(of: contentViewController) else {
             return nil
         }
         return lazyCachedViewControllers.keys[index]
@@ -751,7 +751,7 @@ extension SideMenuController: UIGestureRecognizerDelegate {
                 return false
         }
 
-        if let index = navigationController.viewControllers.index(of: viewController) {
+        if let index = navigationController.viewControllers.firstIndex(of: viewController) {
             return index > 0
         }
         return false

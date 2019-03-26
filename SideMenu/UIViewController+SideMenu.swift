@@ -12,7 +12,7 @@ import UIKit
 public extension UIViewController {
 
     /// Access the nearest ancestor view controller hierarchy that is a side menu controller.
-    public var sideMenuController: SideMenuController? {
+    var sideMenuController: SideMenuController? {
         return findSideMenuController(from: self)
     }
 

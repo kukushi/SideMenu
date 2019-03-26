@@ -62,7 +62,8 @@ extension SideMenuController {
             // The `initialSpringVelocity` option used in the revealing and hiding animation of the menu. The default is 1.
             public var initialSpringVelocity: CGFloat = 1
 
-            // Whether a shadow effect should be added on content view when revealing the menu. The default is true. If the position is `.under`, the shadow effect will not be added even if this value is set to `true`.
+            // Whether a shadow effect should be added on content view when revealing the menu. The default is true.
+            // If the position is `.under`, the shadow effect will not be added even if this value is set to `true`.
             public var shouldAddShadowWhenRevealing = true
 
             // The shadow's alpha when showing on the content view. Default is 0.2.
