@@ -444,7 +444,13 @@ open class SideMenuController: UIViewController {
             }
 
             if shouldShowShadowOnContent {
-                let shadowPercent = min(menuContainerView.frame.maxX / menuWidth, 1)
+                let movingDistance: CGFloat
+                if isLeft {
+                    movingDistance = menuContainerView.frame.maxX
+                } else {
+                    movingDistance = menuWidth - menuContainerView.frame.minX
+                }
+                let shadowPercent = min(movingDistance / menuWidth, 1)
                 contentContainerOverlay?.alpha = self.preferences.animation.shadowAlpha * shadowPercent
             }
         case .ended, .cancelled, .failed:

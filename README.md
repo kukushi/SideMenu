@@ -1,7 +1,7 @@
 # ![](https://github.com/kukushi/SideMenu/blob/develop/Images/Logo.png?raw=true)
 
 [![Version](https://img.shields.io/cocoapods/v/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
-![Swift4](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat")
+![Swift5](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat%22)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
 [![Platform](https://img.shields.io/cocoapods/p/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
@@ -37,7 +37,10 @@ We call the left/right view controller as the **menu** view controller, the cent
 
 ## Installation
 
+For Swift 5, please use 2.0.0 or later version.
+
 > For Swift 4.0, please using 0.5.1 or earlier version.
+> For Swift 4.2, please using 1.x
 
 ### CocoaPods
 

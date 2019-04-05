@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.0]
+
+- Update to Swift 5.0
+
 ## [1.0.2]
 
 - Remove shadow effect for `.under` position.
