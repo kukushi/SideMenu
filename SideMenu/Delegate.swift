@@ -62,12 +62,6 @@ public protocol SideMenuControllerDelegate: class {
     /// - Parameter sideMenu: The side menu
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController)
 
-    /// [Deprecated] Side menu did hided.
-    ///
-    /// - Parameter sideMenu: The side menu
-    @available(*, deprecated, message: "Use `sideMenuControllerDidHideMenu` instead. This method will be removed in next major release.")
-    func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController)
-
     /// Side menu did hided.
     ///
     /// - Parameter sideMenu: The side menu
@@ -91,6 +85,5 @@ public extension SideMenuControllerDelegate {
     func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {}
-    func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController) {}
 }

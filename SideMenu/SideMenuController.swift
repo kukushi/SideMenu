@@ -271,7 +271,6 @@ open class SideMenuController: UIViewController {
                 if reveal {
                     self.delegate?.sideMenuControllerDidRevealMenu(self)
                 } else {
-                    self.delegate?.sideMenuControllerDidHideMneu(self)
                     self.delegate?.sideMenuControllerDidHideMenu(self)
                 }
             }
