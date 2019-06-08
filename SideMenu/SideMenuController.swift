@@ -660,11 +660,11 @@ open class SideMenuController: UIViewController {
 
     // MARK: - Helper Methods
 
-    private func sideMenuFrame(visibility: Bool) -> CGRect {
+    private func sideMenuFrame(visibility: Bool, targetSize: CGSize? = nil) -> CGRect {
         let position = preferences.basic.position
         switch position {
         case .above, .sideBySide:
-            var baseFrame = view.frame
+            var baseFrame = CGRect(origin: view.frame.origin, size: targetSize ?? view.frame.size)
             if visibility {
                 baseFrame.origin.x = preferences.basic.menuWidth - baseFrame.width
             } else {
@@ -672,26 +672,26 @@ open class SideMenuController: UIViewController {
             }
             let factor: CGFloat = adjustedDirection == .left ? 1 : -1
             baseFrame.origin.x *= factor
-            return baseFrame
+            return CGRect(origin: baseFrame.origin, size: targetSize ?? baseFrame.size)
         case .under:
-            return view.frame
+            return CGRect(origin: view.frame.origin, size: targetSize ?? view.frame.size)
         }
     }
 
-    private func contentFrame(visibility: Bool) -> CGRect {
+    private func contentFrame(visibility: Bool, targetSize: CGSize? = nil) -> CGRect {
         let position = preferences.basic.position
         switch position {
         case .above:
-            return view.frame
+            return CGRect(origin: view.frame.origin, size: targetSize ?? view.frame.size)
         case .under, .sideBySide:
-            var baseFrame = view.frame
+            var baseFrame = CGRect(origin: view.frame.origin, size: targetSize ?? view.frame.size)
             if visibility {
                 let factor: CGFloat = adjustedDirection == .left ? 1 : -1
                 baseFrame.origin.x = preferences.basic.menuWidth * factor
             } else {
                 baseFrame.origin.x = 0
             }
-            return baseFrame
+            return CGRect(origin: baseFrame.origin, size: targetSize ?? baseFrame.size)
         }
     }
 
@@ -705,11 +705,11 @@ open class SideMenuController: UIViewController {
         hideMenu(animated: false, completion: { _ in
             // Temporally hide the menu container view for smooth animation
             self.menuContainerView.isHidden = true
-            coordinator.animate(alongsideTransition: { (_) in
-                self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed)
+            coordinator.animate(alongsideTransition: { _ in
+                self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed, targetSize: size)
             }, completion: { (_) in
                 self.menuContainerView.isHidden = false
-                self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed)
+                self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed, targetSize: size)
             })
         })
 

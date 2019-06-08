@@ -25,6 +25,22 @@ class WorkWithOtherViewController: UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
+    @IBAction func presentViewControllerButtonClicked(_ sender: UIButton) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "PushedViewController") else {
+            return
+        }
+        viewController.view.backgroundColor = .white
+        let navigationController = UINavigationController(rootViewController: viewController)
+        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                                          target: self,
+                                                                          action: #selector(dismissViewController))
+        present(navigationController, animated: true, completion: nil)
+    }
+
+    @objc func dismissViewController() {
+        dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func menuButtonDidClicked(_ sender: Any) {
         sideMenuController?.revealMenu()
     }
