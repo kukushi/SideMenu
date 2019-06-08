@@ -107,7 +107,7 @@ extension SideMenuController {
             public var defaultCacheKey: String?
 
             /// The supported orientations of side menu controller. Default is `.portrait`.
-            public var supportedOrientations: UIInterfaceOrientationMask = .portrait
+            public var supportedOrientations: UIInterfaceOrientationMask = .allButUpsideDown
         }
 
         /// The basic configuration of side menu
