@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.1]
+
+- Fix orientation size [issue](https://github.com/kukushi/SideMenu/issues/64)
+
 ## [2.0.0]
 
 - Update to Swift 5.0
