@@ -142,35 +142,35 @@
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 66,
+      "line": 67,
       "symbol": "SideMenuController.Preferences.Animation.shouldAddShadowWhenRevealing",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 69,
+      "line": 70,
       "symbol": "SideMenuController.Preferences.Animation.shadowAlpha",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 72,
+      "line": 73,
       "symbol": "SideMenuController.Preferences.Animation.shadowColor",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 75,
+      "line": 76,
       "symbol": "SideMenuController.Preferences.Configuration",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/Preferences.swift",
-      "line": 87,
+      "line": 88,
       "symbol": "SideMenuController.Preferences.Configuration.shouldRespectLanguageDirection",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -205,6 +205,13 @@
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
+      "line": 146,
+      "symbol": "SideMenuController.deinit",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
       "line": 155,
       "symbol": "SideMenuController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
@@ -219,49 +226,49 @@
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 533,
+      "line": 537,
       "symbol": "SideMenuController.childForStatusBarStyle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 538,
+      "line": 542,
       "symbol": "SideMenuController.childForStatusBarHidden",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 581,
+      "line": 585,
       "symbol": "SideMenuController.setContentViewController(to:animated:completion:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 696,
+      "line": 700,
       "symbol": "SideMenuController.supportedInterfaceOrientations",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 700,
+      "line": 704,
       "symbol": "SideMenuController.viewWillTransition(to:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 719,
+      "line": 723,
       "symbol": "SideMenuController.gestureRecognizer(_:shouldReceive:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/SideMenu/SideMenuController.swift",
-      "line": 740,
+      "line": 744,
       "symbol": "SideMenuController.gestureRecognizerShouldBegin(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
