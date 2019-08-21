@@ -19,6 +19,7 @@ extension SideMenuController {
         /// - fade: The status bar will fade out when revealed and show up when hidden.
         /// - hideOnMenu: The status bar on the side menu will be hidden (without animation),
         ///               while the one the on content view will still show.
+        @available(iOS, deprecated: 13.0, message: "Status bar animation not longer work after iOS 13")
         public enum StatusBarBehavior {
             case none
             case slide
@@ -92,6 +93,7 @@ extension SideMenuController {
             public var direction: MenuDirection = .left
 
             /// The status bar behavior when menu revealed / hidden. Default is `.none`.
+            @available(iOS, deprecated: 13.0, message: "Status bar animation not longer work after iOS 13")
             public var statusBarBehavior: StatusBarBehavior = .none
 
             /// Whether the pan gesture should be enabled. The default is true.
