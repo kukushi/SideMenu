@@ -6,7 +6,7 @@
 //  Copyright © 2018 kukushi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension SideMenuController {
     /// The preferences of side menu controller.
