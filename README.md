@@ -12,7 +12,7 @@
 
 Besides all the features a *Side Menu* should have, it supports:
 
-- Four kinds of status bar behaviors
+- Four kinds of status bar behaviors (iOS 12 and earlier)
 - Three different menu position
 - Both storyboard and programmatically
 - Caching the content view controller and lazy initialization

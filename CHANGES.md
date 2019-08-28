@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.2]
+
+- Disable status bar animation on iOS 13
+
 ## [2.0.1]
 
 - Fix orientation size [issue](https://github.com/kukushi/SideMenu/issues/64)
