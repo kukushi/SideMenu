@@ -42,7 +42,7 @@ class OtherExampleViewController: UIViewController {
         let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuNavigation")
         guard let sideMenuController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SingleSideMenu") as? SideMenuController else {
-            fatalError("Missing SingleSideMenu viewcontroller in storyboard")
+            fatalError("Missing SingleSideMenu view controller in storyboard")
         }
         sideMenuController.contentViewController = contentViewController
         sideMenuController.menuViewController = menuViewController

@@ -23,7 +23,7 @@ open class SideMenuSegue: UIStoryboardSegue {
     /// current content type
     public var contentType = ContentType.content
 
-    /// Peforming the segue, will change the corresponding view controller of side menu to `destination` vew controller.
+    /// Performing the segue, will change the corresponding view controller of side menu to `destination` view controller.
     /// This method is called when loading from storyboard.
     open override func perform() {
         guard let sideMenuController = source as? SideMenuController else {

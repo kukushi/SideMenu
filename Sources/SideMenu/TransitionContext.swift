@@ -30,7 +30,7 @@ extension SideMenuController {
 
         init(with fromViewController: UIViewController, toViewController: UIViewController) {
             guard let superView = fromViewController.view.superview else {
-                fatalError("fromViewControlelr's view should have a parent view")
+                fatalError("fromViewController's view should have a parent view")
             }
             presentationStyle = .custom
             containerView = superView

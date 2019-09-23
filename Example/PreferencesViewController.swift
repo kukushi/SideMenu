@@ -73,22 +73,22 @@ class PreferencesViewController: UIViewController {
 
         let preferences = SideMenuController.preferences.basic
         guard let behaviorIndex = statusBarBehaviors.firstIndex(of: preferences.statusBarBehavior) else {
-            fatalError("Conigration is messed up")
+            fatalError("Configuration is messed up")
         }
         statusBarBehaviorSegment.selectedSegmentIndex = behaviorIndex
 
         guard let menuPositionIndex = menuPosition.firstIndex(of: preferences.position) else {
-            fatalError("Conigration is messed up")
+            fatalError("Configuration is messed up")
         }
         menuPositionSegment.selectedSegmentIndex = menuPositionIndex
 
         guard let menuDirectionIndex = menuDirections.firstIndex(of: preferences.direction) else {
-            fatalError("Conigration is messed up")
+            fatalError("Configuration is messed up")
         }
         menuDirectionSegment.selectedSegmentIndex = menuDirectionIndex
 
         guard let menuOrientationIndex = menuOrientation.firstIndex(of: preferences.supportedOrientations)else {
-            fatalError("Conigration is messed up")
+            fatalError("Configuration is messed up")
         }
         orientationSegment.selectedSegmentIndex = menuOrientationIndex
     }

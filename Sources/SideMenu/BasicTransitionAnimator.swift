@@ -8,12 +8,12 @@
 
 import UIKit
 
-// A Simple transition animator can be configured with anmiation options.
+// A Simple transition animator can be configured with animation options.
 public class BasicTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let animationOptions: UIView.AnimationOptions
     let duration: TimeInterval
 
-    /// Initialize a new animator with animatio options and duration.
+    /// Initialize a new animator with animation options and duration.
     ///
     /// - Parameters:
     ///   - options: animation options
