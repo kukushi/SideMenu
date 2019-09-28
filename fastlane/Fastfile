@@ -43,7 +43,7 @@ platform :ios do
 
     scan(
       scheme: "SideMenu", 
-      devices: ['iPhone XR']
+      devices: ['iPhone Xʀ']
       )
   end
 end

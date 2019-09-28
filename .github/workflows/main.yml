@@ -4,15 +4,14 @@ jobs:
   test:
     name: Test
     runs-on: macOS-latest
-    strategy:
-        matrix:
-          destination: ['platform=iOS Simulator,OS=12.4,name=iPhone X']
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
       - name: Build and test
         run: |
-          xcodebuild clean test -project SideMenu.xcodeproj -scheme SideMenu -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-          bash <(curl -s https://codecov.io/bash)
-        env: 
-         destination: ${{ matrix.destination }}
+          gem update --system
+          gem install bundler
+          bundle install
+          bundle exec fastlane test
