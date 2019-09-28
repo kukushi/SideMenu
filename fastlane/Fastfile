@@ -16,15 +16,17 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
-  end
-
+  desc "Generates documentation for given version."
   lane :doc do |options|
     target_version = options[:version]
+
+    if target_version.nil?
+      UI.user_error!("Missing 'version' parameter")
+    end
+    
     Actions.sh("cd .. && jazzy \
                       --clean \
+                      -x USE_SWIFT_RESPONSE_FILE=NO \
                       --author \"Xing He\" \
                       --author_url https://kushi.me \
                       --github_url https://github.com/kukushi/SideMenu \
