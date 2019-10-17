@@ -750,14 +750,16 @@ extension SideMenuController: UIGestureRecognizerDelegate {
 
     private func isViewControllerInsideNavigationStack(for view: UIView?) -> Bool {
         guard let view = view,
-            let viewController = view.parentViewController,
-            !(viewController is UINavigationController),
-            let navigationController = viewController.navigationController else {
+            let viewController = view.parentViewController else {
                 return false
         }
-
-        if let index = navigationController.viewControllers.firstIndex(of: viewController) {
-            return index > 0
+        
+        if let navigationController = viewController as? UINavigationController {
+            return navigationController.viewControllers.count > 1
+        } else if let navigationController = viewController.navigationController {
+            if let index = navigationController.viewControllers.firstIndex(of: viewController) {
+                return index > 0
+            }
         }
         return false
     }
