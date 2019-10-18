@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.3]
+
+- Fix gesture backing [issue](https://github.com/kukushi/SideMenu/issues/67)
+
 ## [2.0.2]
 
 - Disable status bar animation on iOS 13
