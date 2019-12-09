@@ -698,6 +698,9 @@ open class SideMenuController: UIViewController {
     // MARK: Orientation
 
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if preferences.basic.shouldUseContentSupportedOrientations {
+            return contentViewController.supportedInterfaceOrientations
+        }
         return preferences.basic.supportedOrientations
     }
 
