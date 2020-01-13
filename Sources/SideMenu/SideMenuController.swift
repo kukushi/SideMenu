@@ -566,8 +566,10 @@ open class SideMenuController: UIViewController {
     }
 
     /// Changes the content view controller to the cached one with given `identifier`.
-    ///
-    /// - Parameter identifier: the identifier that associates with a cache view controller or generator.
+    /// - Parameters:
+    ///   - identifier: the identifier that associates with a cache view controller or generator.
+    ///   - animated: whether the transition should be animated, default is `false`.
+    ///   - completion: the completion closure will be called when the transition  complete. Notice that if the caller is the current content view controller, once the transition completed, the caller will be removed from the parent view controller, and it will have no access to the side menu controller via `sideMenuController`
     open func setContentViewController(with identifier: String,
                                        animated: Bool = false,
                                        completion: (() -> Void)? = nil) {
@@ -582,6 +584,11 @@ open class SideMenuController: UIViewController {
         }
     }
 
+    /// Change the content view controller to `viewController`
+    /// - Parameters:
+    ///   - viewController: the view controller which will become the content view controller
+    ///   - animated: whether the transition should be animated, default is `false`.
+    ///   - completion: the completion closure will be called when the transition  complete. Notice that if the caller is the current content view controller, once the transition completed, the caller will be removed from the parent view
     open func setContentViewController(to viewController: UIViewController,
                                        animated: Bool = false,
                                        completion: (() -> Void)? = nil) {
@@ -736,7 +743,7 @@ extension SideMenuController: UIGestureRecognizerDelegate {
             return false
         }
 
-        // If the view is scrollable in horizon direciton, don't receive the touch
+        // If the view is scrollable in horizon direction, don't receive the touch
         if let scrollView = touch.view as? UIScrollView, scrollView.frame.width > scrollView.contentSize.width {
             return false
         }
