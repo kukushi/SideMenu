@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.4]
+
+- Update docs
+
 ## [2.0.3]
 
 - Fix gesture backing [issue](https://github.com/kukushi/SideMenu/issues/67)
