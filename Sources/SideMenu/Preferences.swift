@@ -113,6 +113,9 @@ extension SideMenuController {
 
             /// The supported orientations of side menu controller. Default is `.portrait`.
             public var supportedOrientations: UIInterfaceOrientationMask = .allButUpsideDown
+            
+            /// The side menu shouldAutorotate. Default is `true`.
+            public var shouldAutorotate: Bool = true
         }
 
         /// The basic configuration of side menu
