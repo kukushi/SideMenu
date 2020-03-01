@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.5]
+
+- Add `shouldAutorotate`
+
 ## [2.0.4]
 
 - Update docs
