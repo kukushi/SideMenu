@@ -439,7 +439,7 @@ open class SideMenuController: UIViewController {
             }
 
             if let viewToAnimate2 = viewToAnimate2 {
-                viewToAnimate2.frame.origin.x = viewToAnimate.frame.origin.x - containerWidth * factor
+                viewToAnimate2.frame.origin.x = viewToAnimate.frame.origin.x - viewToAnimate2.frame.width * factor
             }
 
             if shouldShowShadowOnContent {
@@ -665,14 +665,17 @@ open class SideMenuController: UIViewController {
         switch position {
         case .above, .sideBySide:
             var baseFrame = CGRect(origin: view.frame.origin, size: targetSize ?? view.frame.size)
+            if !preferences.basic.enableRubberEffectWhenPanning {
+                baseFrame.size.width = preferences.basic.menuWidth
+            }
             if visibility {
                 baseFrame.origin.x = preferences.basic.menuWidth - baseFrame.width
             } else {
-                baseFrame.origin.x = -baseFrame.width
+                baseFrame.origin.x = -baseFrame.width - 8//Hide shadow
             }
             let factor: CGFloat = adjustedDirection == .left ? 1 : -1
             baseFrame.origin.x *= factor
-            return CGRect(origin: baseFrame.origin, size: targetSize ?? baseFrame.size)
+            return baseFrame
         case .under:
             return CGRect(origin: view.frame.origin, size: targetSize ?? view.frame.size)
         }
