@@ -742,10 +742,6 @@ extension SideMenuController: UIGestureRecognizerDelegate {
             return false
         }
 
-        if isViewControllerInsideNavigationStack(for: touch.view) {
-            return false
-        }
-
         if touch.view is UISlider {
             return false
         }
