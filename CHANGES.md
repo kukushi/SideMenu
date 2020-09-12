@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.6]
+
+- fix: menu view controller life cycle
+
 ## [2.0.5]
 
 - Add `shouldAutorotate`
