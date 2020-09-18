@@ -244,7 +244,7 @@ open class SideMenuController: UIViewController {
                                       shouldCallDelegate: Bool = true,
                                       shouldChangeStatusBar: Bool = true,
                                       completion: ((Bool) -> Void)? = nil) {
-        menuViewController.beginAppearanceTransition(true, animated: true)
+        menuViewController.beginAppearanceTransition(reveal, animated: animated)
 
         if shouldCallDelegate {
             reveal ? delegate?.sideMenuControllerWillRevealMenu(self) : delegate?.sideMenuControllerWillHideMenu(self)
@@ -716,6 +716,13 @@ open class SideMenuController: UIViewController {
 
     // MARK: Orientation
 
+    open override var shouldAutorotate: Bool {
+        if preferences.basic.shouldUseContentSupportedOrientations {
+            return contentViewController.shouldAutorotate
+        }
+        return preferences.basic.shouldAutorotate
+    }
+    
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if preferences.basic.shouldUseContentSupportedOrientations {
             return contentViewController.supportedInterfaceOrientations

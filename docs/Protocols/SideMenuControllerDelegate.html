@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          SideMenu 2.0.4 Docs
+          SideMenu 2.0.6 Docs
         </a>
          (58% documented)
       </p>
@@ -40,7 +40,7 @@
         </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="dash-feed://http%3A%2F%2Fkukushi%2Egithub%2Eio%2FSideMenu%2Fdocsets%2FSideMenu%2Exml">
+          <a class="header-link" href="dash-feed://http%3A%2F%2Fkukushi.github.io%2FSideMenu%2Fdocsets%2FSideMenu.xml">
             <img class="header-icon" src="../img/dash.png"/>
             Install in Dash
           </a>
@@ -101,12 +101,16 @@
             <h1>SideMenuControllerDelegate</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SideMenuControllerDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
             <p>Undocumented</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L13-L69">Show on GitHub</a>
+              </div>
           </div>
         </section>
 
@@ -128,7 +132,7 @@
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC0_09animationC4From2toSo06UIViewC21AnimatedTransitioning_pSgAA0abC0C_So0iC0CALtF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuController(_:animationControllerFrom:to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_09animationC4From2toSo06UIViewC21AnimatedTransitioning_pSgAA0abC0C_So0iC0CALtF">sideMenuController(_:animationControllerFrom:to:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_09animationC4From2toSo06UIViewC21AnimatedTransitioning_pSgAA0abC0C_So0iC0CALtF">sideMenuController(_:<wbr>animationControllerFrom:<wbr>to:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -151,7 +155,9 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuController</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">,</span> <span class="n">animationControllerFrom</span> <span class="nv">fromVC</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="n">to</span> <span class="nv">toVC</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIViewControllerAnimatedTransitioning</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideMenuController</span><span class="p">(</span><span class="n">_</span> <span class="nv">sideMenuController</span><span class="p">:</span> <span class="kt"><a href="../Classes/SideMenuController.html">SideMenuController</a></span><span class="p">,</span>
+                        <span class="n">animationControllerFrom</span> <span class="nv">fromVC</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
+                        <span class="n">to</span> <span class="nv">toVC</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIViewControllerAnimatedTransitioning</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -204,7 +210,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
        or nil if you want to use the fade transitions.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L26">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -227,7 +233,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC0_8willShow8animatedyAA0abC0C_So06UIViewC0CSbtF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuController(_:willShow:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_8willShow8animatedyAA0abC0C_So06UIViewC0CSbtF">sideMenuController(_:willShow:animated:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_8willShow8animatedyAA0abC0C_So06UIViewC0CSbtF">sideMenuController(_:<wbr>willShow:<wbr>animated:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -297,7 +303,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L38">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L38">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -307,7 +313,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebC0_7didShow8animatedyAA0abC0C_So06UIViewC0CSbtF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuController(_:didShow:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_7didShow8animatedyAA0abC0C_So06UIViewC0CSbtF">sideMenuController(_:didShow:animated:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebC0_7didShow8animatedyAA0abC0C_So06UIViewC0CSbtF">sideMenuController(_:<wbr>didShow:<wbr>animated:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -377,7 +383,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L46">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L46">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -400,7 +406,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc10WillRevealB0yyAA0abC0CF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuControllerWillRevealMenu(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc10WillRevealB0yyAA0abC0CF">sideMenuControllerWillRevealMenu(_:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc10WillRevealB0yyAA0abC0CF">sideMenuControllerWillRevealMenu(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -446,7 +452,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L53">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -456,7 +462,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc9DidRevealB0yyAA0abC0CF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuControllerDidRevealMenu(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc9DidRevealB0yyAA0abC0CF">sideMenuControllerDidRevealMenu(_:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc9DidRevealB0yyAA0abC0CF">sideMenuControllerDidRevealMenu(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -502,7 +508,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L58">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L58">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -512,7 +518,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc8WillHideB0yyAA0abC0CF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuControllerWillHideMenu(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc8WillHideB0yyAA0abC0CF">sideMenuControllerWillHideMenu(_:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc8WillHideB0yyAA0abC0CF">sideMenuControllerWillHideMenu(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -558,7 +564,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L63">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -568,7 +574,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                     <code>
                     <a name="/s:8SideMenu0aB18ControllerDelegateP04sidebc7DidHideB0yyAA0abC0CF"></a>
                     <a name="//apple_ref/swift/Method/sideMenuControllerDidHideMenu(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc7DidHideB0yyAA0abC0CF">sideMenuControllerDidHideMenu(_:)</a>
+                    <a class="token" href="#/s:8SideMenu0aB18ControllerDelegateP04sidebc7DidHideB0yyAA0abC0CF">sideMenuControllerDidHideMenu(_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -614,7 +620,7 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/kukushi/SideMenu/2.0.4/Sources/SideMenu/Delegate.swift#L68">Show on GitHub</a>
+                        <a href="https://github.com/kukushi/SideMenu/2.0.6/Sources/SideMenu/Delegate.swift#L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -627,8 +633,8 @@ Same with UIKit&rsquo;s <code>navigationController:animationControllerForOperati
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://kushi.me" target="_blank" rel="external">Xing He</a>. All rights reserved. (Last updated: 2020-01-14)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://kushi.me" target="_blank" rel="external">Xing He</a>. All rights reserved. (Last updated: 2020-09-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

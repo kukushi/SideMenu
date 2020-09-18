@@ -234,27 +234,34 @@
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/SideMenuController.swift",
       "line": 707,
-      "symbol": "SideMenuController.supportedInterfaceOrientations",
+      "symbol": "SideMenuController.shouldAutorotate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/SideMenuController.swift",
       "line": 714,
+      "symbol": "SideMenuController.supportedInterfaceOrientations",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/SideMenuController.swift",
+      "line": 721,
       "symbol": "SideMenuController.viewWillTransition(to:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/SideMenuController.swift",
-      "line": 733,
+      "line": 740,
       "symbol": "SideMenuController.gestureRecognizer(_:shouldReceive:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/SideMenuController.swift",
-      "line": 754,
+      "line": 761,
       "symbol": "SideMenuController.gestureRecognizerShouldBegin(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -45,6 +45,16 @@ class MenuViewController: UIViewController {
         sideMenuController?.delegate = self
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("[Example] Menu did appear")
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("[Example] Menu will disappear")
+    }
+
     private func configureView() {
         if isDarkModeEnabled {
             themeColor = UIColor(red: 0.03, green: 0.04, blue: 0.07, alpha: 1.00)
@@ -67,8 +77,8 @@ class MenuViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
-        let sidemenuBasicConfiguration = SideMenuController.preferences.basic
-        let showPlaceTableOnLeft = (sidemenuBasicConfiguration.position == .under) != (sidemenuBasicConfiguration.direction == .right)
+        let sideMenuBasicConfiguration = SideMenuController.preferences.basic
+        let showPlaceTableOnLeft = (sideMenuBasicConfiguration.position == .under) != (sideMenuBasicConfiguration.direction == .right)
         selectionMenuTrailingConstraint.constant = showPlaceTableOnLeft ? SideMenuController.preferences.basic.menuWidth - size.width : 0
         view.layoutIfNeeded()
     }
