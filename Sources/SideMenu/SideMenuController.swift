@@ -120,6 +120,7 @@ open class SideMenuController: UIViewController {
     private weak var panGestureRecognizer: UIPanGestureRecognizer?
 
     var shouldReverseDirection: Bool {
+        if preferences.basic.forceRightToLeft { return true }
         guard preferences.basic.shouldRespectLanguageDirection else {
             return false
         }

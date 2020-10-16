@@ -87,6 +87,10 @@ extension SideMenuController {
             // More specific, when the app is using a right to left (RTL) language, the direction of side menu will be
             // reversed
             public var shouldRespectLanguageDirection = true
+          
+            // Whether the direction of side menu should be reversed forcefully to RTL. This is required if we're changing the application language in runtime.
+            // The direction of side menu will be reversed forcefully. The default is false.
+            public var forceRightToLeft = false
 
             /// The direction of side menu. Default is `.left`.
             /// Note that you should only modify this property before the side menu controller is initialized.
