@@ -116,6 +116,9 @@ extension SideMenuController {
             
             /// The side menu shouldAutorotate. Default is `true`.
             public var shouldAutorotate: Bool = true
+            
+            /// The sensitivity of pan pan gesture recognizer
+            public var panGestureSensitivity: CGFloat = 0.25
         }
 
         /// The basic configuration of side menu

@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.7]
+
+- [Add `panGestureSensitivity`](https://github.com/kukushi/SideMenu/issues/71))
+
 ## [2.0.6]
 
 - fix: menu view controller life cycle

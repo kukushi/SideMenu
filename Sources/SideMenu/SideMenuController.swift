@@ -792,6 +792,6 @@ extension SideMenuController: UIGestureRecognizerDelegate {
         guard velocity.x * factor > 0 else {
             return false
         }
-        return abs(velocity.y / velocity.x) < 0.25
+        return abs(velocity.y / velocity.x) < preferences.basic.panGestureSensitivity
     }
 }
