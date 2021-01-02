@@ -265,6 +265,41 @@
       "symbol": "SideMenuController.gestureRecognizerShouldBegin(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/TransitionContext.swift",
+      "line": 13,
+      "symbol": "SideMenuController.TransitionContext",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/UIView+Container.swift",
+      "line": 12,
+      "symbol": "UIView.parentViewController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/UIView+Container.swift",
+      "line": 24,
+      "symbol": "UIView.parentNavigationController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/UIViewController+Container.swift",
+      "line": 13,
+      "symbol": "UIViewController.load(_:on:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kukushi/Documents/Projects/kukushi/SideMenu/Sources/SideMenu/UIViewController+Container.swift",
+      "line": 31,
+      "symbol": "UIViewController.unload(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
     }
   ],
   "source_directory": "/Users/kukushi/Documents/Projects/kukushi/SideMenu"
