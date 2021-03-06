@@ -23,7 +23,7 @@ extension XCTestCase {
 
     func UIAssert(_ value: Bool, _ description: String = "-", file: String = #file, line: Int = #line) {
         if !value {
-            self.recordFailure(withDescription: description, inFile: file, atLine: line, expected: true)
+            record(XCTIssue(type: .assertionFailure, compactDescription: description))
         }
     }
 
@@ -46,9 +46,9 @@ extension XCTestCase {
                  line: Int = #line) {
         expectation(for: to, evaluatedWith: element, handler: nil)
         waitForExpectations(timeout: timeout) { (error) -> Void in
-            if (error != nil) {
+            if error != nil {
                 let message = "Failed to find \(element) after \(timeout) seconds."
-                self.recordFailure(withDescription: message, inFile: file, atLine: line, expected: true)
+                self.record(XCTIssue(type: .assertionFailure, compactDescription: message))
             }
         }
     }
