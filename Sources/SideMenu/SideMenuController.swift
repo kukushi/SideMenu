@@ -47,16 +47,15 @@ open class SideMenuController: UIViewController {
     /// The side menu controller's delegate object.
     public weak var delegate: SideMenuControllerDelegate?
 
-    /// Tell whether `setContentViewController` setter should call the delegate.
-    /// Work as a workaround when switching content view controller from other animation approach which also change the
-    /// `contentViewController`.
     // swiftlint:disable:next weak_delegate
+    /// Tell whether ``contentViewController`` setter should call the delegate.
+    /// Work as a workaround when switching content view controller from other animation approach which also change the
     private var shouldCallSwitchingDelegate = true
 
+    // swiftlint:disable:next implicitly_unwrapped_optional
     /// The content view controller. Changes its value will change the display immediately.
     /// If the new value is already one of the side menu controller's child controllers, nothing will happen beside value change.
-    /// If you want a caching approach, use `setContentViewController(with)`. Its value should not be nil.
-    // swiftlint:disable:next implicitly_unwrapped_optional
+    /// If you want a caching approach, use ``setContentViewController(with:animated:completion:)``. Its value should not be nil.
     open var contentViewController: UIViewController! {
         didSet {
             guard contentViewController !== oldValue &&
@@ -81,8 +80,8 @@ open class SideMenuController: UIViewController {
         }
     }
 
-    /// The menu view controller. Its value should not be nil.
     // swiftlint:disable:next implicitly_unwrapped_optional
+    /// The menu view controller. Its value should not be nil.
     open var menuViewController: UIViewController! {
         didSet {
             guard menuViewController !== oldValue && isViewLoaded else {
@@ -149,9 +148,9 @@ open class SideMenuController: UIViewController {
 
     // MARK: Life Cycle
 
-    // `SideMenu` may be initialized from Storyboard, thus we shouldn't load the view in `loadView()`.
-    // As mentioned by Apple, "If you use Interface Builder to create your views and initialize the view controller,
-    // you must not override this method."
+    /// `SideMenu` may be initialized from Storyboard, thus we shouldn't load the view in `loadView()`.
+    /// As mentioned by Apple, "If you use Interface Builder to create your views and initialize the view controller,
+    /// you must not override this method."
     open override func viewDidLoad() {
         super.viewDidLoad()
 
