@@ -69,6 +69,9 @@ extension SideMenuController {
 
             /// The shadow's color when showing on the content view. Default is black.
             public var shadowColor: UIColor = .black
+
+            /// Whether we should add a blurr effect on shadow when revealing
+            public var shouldAddBlurWhenRevealing = false
         }
 
         public struct Configuration {
