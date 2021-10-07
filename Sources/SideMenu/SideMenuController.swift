@@ -344,7 +344,13 @@ open class SideMenuController: UIViewController {
             return
         }
 
-        let overlay = UIView(frame: contentContainerView.bounds)
+        var overlay:UIView
+        if SideMenuController.preferences.animation.shouldAddBlurWhenRevealing {
+            let blurEffect = UIBlurEffect(style: .light)
+            overlay = UIVisualEffectView(effect: blurEffect)
+        } else {
+            overlay = UIView(frame: contentContainerView.bounds)
+        }
         overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 
         if !shouldShowShadowOnContent {
