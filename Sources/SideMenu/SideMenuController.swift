@@ -707,6 +707,30 @@ open class SideMenuController: UIViewController {
         }
     }
 
+    private func updateSideMenuWidth() {
+        let fifteenPercent = 0.15
+        let size = UIScreen.main.bounds.size
+        SideMenuController.preferences.basic.menuWidth = size.width - (size.width * CGFloat(fifteenPercent))
+    }
+
+    private func keepSideMenuOpenOnRotation() {
+        if self.isMenuRevealed {
+            self.hideMenu(animated: false, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                self.updateSideMenuWidth()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                    self.revealMenu(animated: false, completion: nil)
+                })
+            })
+        } else {
+            self.revealMenu(animated: false) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                    self.hideMenu(animated: false, completion: nil)
+                })
+            }
+        }
+    }
+
     // MARK: Orientation
 
     open override var shouldAutorotate: Bool {
@@ -724,20 +748,19 @@ open class SideMenuController: UIViewController {
     }
 
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if self.isMenuRevealed {
-            self.hideMenu(animated: false, completion: nil)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                self.updateSideMenuWidth()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                    self.revealMenu(animated: false, completion: nil)
+        if preferences.basic.shouldKeepMenuOpen {
+            self.keepSideMenuOpenOnRotation()
+        } else {
+            hideMenu(animated: false, completion: { _ in
+                // Temporally hide the menu container view for smooth animation
+                self.menuContainerView.isHidden = true
+                coordinator.animate(alongsideTransition: { _ in
+                    self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed, targetSize: size)
+                }, completion: { (_) in
+                    self.menuContainerView.isHidden = false
+                    self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed, targetSize: size)
                 })
             })
-        } else {
-            self.revealMenu(animated: false) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                    self.hideMenu(animated: false, completion: nil)
-                })
-            }
         }
 
         super.viewWillTransition(to: size, with: coordinator)
