@@ -714,19 +714,21 @@ open class SideMenuController: UIViewController {
     }
 
     private func keepSideMenuOpenOnRotation() {
-        if self.isMenuRevealed {
-            self.hideMenu(animated: false, completion: nil)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                self.updateSideMenuWidth()
+        if menuViewController != nil {
+            if self.isMenuRevealed {
+                self.hideMenu(animated: false, completion: nil)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                    self.revealMenu(animated: false, completion: nil)
+                    self.updateSideMenuWidth()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                        self.revealMenu(animated: false, completion: nil)
+                    })
                 })
-            })
-        } else {
-            self.revealMenu(animated: false) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                    self.hideMenu(animated: false, completion: nil)
-                })
+            } else {
+                self.revealMenu(animated: false) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                        self.hideMenu(animated: false, completion: nil)
+                    })
+                }
             }
         }
     }
