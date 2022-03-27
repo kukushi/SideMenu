@@ -19,7 +19,7 @@ Besides all the features a *Side Menu* should have, it supports:
 - Rubber band effect while panning
 - Custom transition animation
 - RTL supports
-- [API References](https://kukushi.github.io/SideMenu)
+- [API References](https://kukushi.github.io/SideMenu/documentation/sidemenu/)
 
 ## Preview
 
