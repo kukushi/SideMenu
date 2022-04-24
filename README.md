@@ -20,6 +20,7 @@ Besides all the features a *Side Menu* should have, it supports:
 - Custom transition animation
 - RTL supports
 - [API References](https://kukushi.github.io/SideMenu/documentation/sidemenu/)
+- [CHANGELOG](https://github.com/kukushi/SideMenu/blob/master/CHANGELOG.md)
 
 ## Preview
 
