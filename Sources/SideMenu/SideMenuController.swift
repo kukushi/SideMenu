@@ -778,11 +778,17 @@ extension SideMenuController: UIGestureRecognizerDelegate {
         
         if let navigationController = viewController as? UINavigationController {
             return navigationController.viewControllers.count > 1
-        } else if let navigationController = viewController.navigationController {
-            if let index = navigationController.viewControllers.firstIndex(of: viewController) {
-                return index > 0
-            }
         }
+
+        var parent = viewController.parent
+        while parent != nil {
+            guard let navigationController = parent as? UINavigationController else {
+                parent = parent?.parent
+                continue
+            }
+            return navigationController.viewControllers.count > 0
+        }
+
         return false
     }
 
