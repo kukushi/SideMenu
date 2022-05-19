@@ -15,7 +15,7 @@ public protocol SideMenuControllerDelegate: AnyObject {
     // MARK: Animation
 
     /// Called to allow the delegate to return a non-interactive animator object for use during view controller transitions.
-    /// Same with UIKit's `navigationController:animationControllerForOperation:fromViewController:toViewController:`.
+    /// Same with UIKit's ``navigationController(_:animationControllerFor:from:to:)``.
     ///
     /// - Parameters:
     ///   - sideMenuController: The side menu controller

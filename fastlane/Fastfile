@@ -17,25 +17,8 @@ default_platform(:ios)
 
 platform :ios do
   desc "Generates documentation for given version."
-  lane :doc do |options|
-    target_version = options[:version]
-
-    if target_version.nil?
-      UI.user_error!("Missing 'version' parameter")
-    end
-    
-    Actions.sh("cd .. && jazzy \
-                      --clean \
-                      -x USE_SWIFT_RESPONSE_FILE=NO \
-                      --author \"Xing He\" \
-                      --author_url https://kushi.me \
-                      --github_url https://github.com/kukushi/SideMenu \
-                      --github-file-prefix https://github.com/kukushi/SideMenu/#{target_version} \
-                      --module-version #{target_version} \
-                      --module SideMenu \
-                      --root-url http://kukushi.github.io/SideMenu/ \
-                      --output docs/ \
-                      --theme fullwidth")
+  lane :doc do |options| 
+    Actions.sh('cd .. && xcodebuild docbuild -scheme SideMenu -destination generic/platform=iOS OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path SideMenu --output-path docs docs"')
   end
 
   desc "Runs all the tests"

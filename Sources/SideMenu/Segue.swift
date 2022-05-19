@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Custom Segue that is required for SideMenuController to be used in Storyboard.
+/// Custom Segue that is required for ``SideMenuController`` to be used in Storyboard.
 open class SideMenuSegue: UIStoryboardSegue {
 
     /// The type of segue

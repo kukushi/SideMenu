@@ -13,9 +13,12 @@ import UIKit
 /// A container view controller owns a menu view controller and a content view controller.
 ///
 /// The overall architecture of SideMenuController is:
-/// SideMenuController
-/// ├── Menu View Controller
-/// └── Content View Controller
+/// 
+/// SideMenuController  
+/// 
+/// ├── Menu View Controller  
+/// 
+/// └── Content View Controller  
 open class SideMenuController: UIViewController {
 
     /// Configure this property to change the behavior of SideMenuController;
@@ -129,7 +132,7 @@ open class SideMenuController: UIViewController {
 
     // MARK: Initialization
 
-    /// Creates a SideMenuController instance with the content view controller and menu view controller.
+    /// Creates a ``SideMenuController`` instance with the content view controller and menu view controller.
     ///
     /// - Parameters:
     ///   - contentViewController: the content view controller
@@ -148,7 +151,7 @@ open class SideMenuController: UIViewController {
 
     // MARK: Life Cycle
 
-    /// `SideMenu` may be initialized from Storyboard, thus we shouldn't load the view in `loadView()`.
+    /// ``SideMenuController`` may be initialized from Storyboard, thus we shouldn't load the view in `loadView()`.
     /// As mentioned by Apple, "If you use Interface Builder to create your views and initialize the view controller,
     /// you must not override this method."
     open override func viewDidLoad() {

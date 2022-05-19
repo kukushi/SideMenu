@@ -45,29 +45,29 @@ extension SideMenuController {
         }
 
         public struct Animation {
-            /// The animation interval of revealing side menu. Default is 0.4.
+            /// The animation interval of revealing side menu. Default is `0.4`.
             public var revealDuration: TimeInterval = 0.4
 
-            /// The animation interval of hiding side menu. Default is 0.4.
+            /// The animation interval of hiding side menu. Default is `0.4`.
             public var hideDuration: TimeInterval = 0.4
 
-            /// The animation option of reveal/hide. Default is `.curveEaseInOut`.
+            /// The animation option of reveal/hide. Default is ``.curveEaseInOut``.
             public var options: UIView.AnimationOptions = .curveEaseInOut
 
-            /// The amping ratio option used in the revealing and hiding animation of the menu. The default is 1.
+            /// The amping ratio option used in the revealing and hiding animation of the menu. The default is `1`.
             public var dampingRatio: CGFloat = 1
 
-            /// The ``initialSpringVelocity`` option used in the revealing and hiding animation of the menu. The default is 1.
+            /// The ``initialSpringVelocity`` option used in the revealing and hiding animation of the menu. The default is `1`.
             public var initialSpringVelocity: CGFloat = 1
 
             /// Whether a shadow effect should be added on content view when revealing the menu. The default is true.
             /// If the position is `.under`, the shadow effect will not be added even if this value is set to `true`.
             public var shouldAddShadowWhenRevealing = true
 
-            /// The shadow's alpha when showing on the content view. Default is 0.2.
+            /// The shadow's alpha when showing on the content view. Default is `0.2`.
             public var shadowAlpha: CGFloat = 0.2
 
-            /// The shadow's color when showing on the content view. Default is black.
+            /// The shadow's color when showing on the content view. Default is `black`.
             public var shadowColor: UIColor = .black
 
             /// Whether we should add a blurr effect on shadow when revealing
@@ -75,11 +75,11 @@ extension SideMenuController {
         }
 
         public struct Configuration {
-            /// The width of the side menu. The default is 300.
+            /// The width of the side menu. The default is `300`.
             /// Note that you should only modify this property before the side menu controller is initialized.
             public var menuWidth: CGFloat = 300
 
-            /// The position of the side menu. Default is `.above`.
+            /// The position of the side menu. Default is ``.above``.
             /// Note that you should only modify this property before the side menu controller is initialized.
             public var position: MenuPosition = .above
 
@@ -88,7 +88,7 @@ extension SideMenuController {
             /// reversed
             public var shouldRespectLanguageDirection = true
 
-            /// The direction of side menu. Default is `.left`.
+            /// The direction of side menu. Default is ``.left``.
             /// Note that you should only modify this property before the side menu controller is initialized.
             public var direction: MenuDirection = .left
 
@@ -111,7 +111,7 @@ extension SideMenuController {
             /// The side menu should use content's supported orientations. Default is false.
             public var shouldUseContentSupportedOrientations: Bool = false
 
-            /// The supported orientations of side menu controller. Default is `.portrait`.
+            /// The supported orientations of side menu controller. Default is ``.allButUpsideDown``.
             public var supportedOrientations: UIInterfaceOrientationMask = .allButUpsideDown
             
             /// The side menu shouldAutorotate. Default is `true`.
@@ -121,10 +121,10 @@ extension SideMenuController {
             public var panGestureSensitivity: CGFloat = 0.25
         }
 
-        /// The basic configuration of side menu
+        /// The basic configuration of side menu.
         public var basic = Configuration()
 
-        /// The animation configuration of side menu
+        /// The animation configuration of side menu.
         public var animation = Animation()
     }
 }
