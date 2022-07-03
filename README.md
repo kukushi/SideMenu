@@ -38,10 +38,10 @@ We call the left/right view controller as the **menu** view controller, the cent
 
 ## Installation
 
-For Swift 5, please use 2.0.0 or later version.
+For Swift 5.0 and later, please use 2.0.0 or later version.
 
 > For Swift 4.0, please using 0.5.1 or earlier version.
-> For Swift 4.2, please using 1.x
+> For Swift 4.2, please using 1.x.
 
 ### CocoaPods
 
@@ -55,9 +55,17 @@ pod 'SideMenuSwift'
 
 To install `SideMenu` with [Carthage](https://github.com/Carthage/Carthage), add the below line in your `Cartfile`:
 
-```
+```bash
 github "kukushi/SideMenu" "master"
 ```
+
+### Swift Package Manager
+
+1. In your project's **Package Description**, click the `+` to add a new package.
+2. Paste `https://github.com/kukushi/SideMenu.git` into the search field.
+3. Choose the project to integrate in the **Add to Project** selection box.
+4. Click **Add Package**.
+5. Note that you should use `import SideMenu` to import `SideMenu`.
 
 ## Usages
 
@@ -119,7 +127,7 @@ viewController.sideMenuController?.revealMenu()
 
 ### Preferences
 
-All the preferences of SideMenu can be found in `SideMenuController.preferences`. Its recommend to check out the `Example` to see how those options will take effect.
+All the preferences of SideMenu can be found in `SideMenuController.preferences`. It's recommend to check out the `Example` to see how those options will take effect.
 
 ```swift
 SideMenuController.preferences.basic.menuWidth = 240
@@ -135,7 +143,7 @@ SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
 
 ### Caching the Content
 
-One of the coolest features of SideMenu is caching. 
+One of the coolest features of `SideMenu` is caching. 
 
 ```swift
 // Cache the view controllers somewhere in your code
