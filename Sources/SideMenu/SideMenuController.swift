@@ -785,7 +785,18 @@ extension SideMenuController: UIGestureRecognizerDelegate {
             if let index = navigationController.viewControllers.firstIndex(of: viewController) {
                 return index > 0
             }
+        } else {
+            // Check if the ViewController is embedded
+            var parent = viewController.parent
+            while parent != nil {
+                guard let navigationController = parent as? UINavigationController else {
+                    parent = parent?.parent
+                    continue
+                }
+                return navigationController.viewControllers.count > 0
+            }
         }
+
         return false
     }
 
