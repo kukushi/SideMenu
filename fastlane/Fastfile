@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Generates documentation for given version."
   lane :doc do |options| 
-    Actions.sh('cd .. && xcodebuild docbuild -scheme SideMenu -destination generic/platform=iOS OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path SideMenu --output-path docs docs"')
+    Actions.sh('cd .. && xcodebuild docbuild -scheme SideMenu -destination generic/platform=iOS OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path SideMenu --output-path docs"')
   end
 
   desc "Runs all the tests"
