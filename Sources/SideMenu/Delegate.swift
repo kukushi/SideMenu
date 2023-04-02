@@ -89,6 +89,7 @@ public extension SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController,
                             didShow viewController: UIViewController,
                             animated: Bool) {}
+    func sideMenuControllerShouldRevealMenu(_ sideMenuController: SideMenuController) -> Bool { return true }
     func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {}
