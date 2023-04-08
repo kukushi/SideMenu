@@ -751,6 +751,12 @@ extension SideMenuController: UIGestureRecognizerDelegate {
             return false
         }
 
+        if let shouldReveal = self.delegate?.sideMenuControllerShouldRevealMenu(self) {
+            guard shouldReveal else {
+                return false
+            }
+        }
+
         if isViewControllerInsideNavigationStack(for: touch.view) {
             return false
         }

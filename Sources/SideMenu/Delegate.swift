@@ -47,6 +47,13 @@ public protocol SideMenuControllerDelegate: AnyObject {
 
     // MARK: Revealing
 
+    /// Asks the delegate whether the side menu should be shown.
+    ///
+    /// Triggered by the pan gesture.
+    /// - Parameter sideMenuController: The side menu
+    /// - Returns: Whether the menu should be revealed.
+    func sideMenuControllerShouldRevealMenu(_ sideMenuController: SideMenuController) -> Bool
+
     /// Side menu is going to reveal.
     ///
     /// - Parameter sideMenu: The side menu
@@ -82,6 +89,7 @@ public extension SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController,
                             didShow viewController: UIViewController,
                             animated: Bool) {}
+    func sideMenuControllerShouldRevealMenu(_ sideMenuController: SideMenuController) -> Bool { return true }
     func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {}

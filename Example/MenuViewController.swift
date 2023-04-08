@@ -99,6 +99,11 @@ extension MenuViewController: SideMenuControllerDelegate {
         print("[Example] View controller did show [\(viewController)]")
     }
 
+    func sideMenuControllerShouldRevealMenu(_ sideMenuController: SideMenuController) -> Bool {
+        print("[Example] Returning true for shouldRevealMenu")
+        return true
+    }
+
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {
         print("[Example] Menu will hide")
     }
