@@ -126,9 +126,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         return 3
     }
 
-    // swiftlint:disable force_cast
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SelectionCell
+        // swiftlint:enable force_cast
         cell.contentView.backgroundColor = themeColor
         let row = indexPath.row
         if row == 0 {
