@@ -13,14 +13,13 @@ import UIKit
 /// A container view controller owns a menu view controller and a content view controller.
 ///
 /// The overall architecture of SideMenuController is:
-/// 
-/// SideMenuController  
-/// 
-/// ├── Menu View Controller  
-/// 
-/// └── Content View Controller  
+///
+/// SideMenuController
+///
+/// ├── Menu View Controller
+///
+/// └── Content View Controller
 open class SideMenuController: UIViewController {
-
     /// Configure this property to change the behavior of SideMenuController;
     public static var preferences = Preferences()
     private var preferences: Preferences {
@@ -64,7 +63,7 @@ open class SideMenuController: UIViewController {
             guard contentViewController !== oldValue &&
                 isViewLoaded &&
                 !children.contains(contentViewController) else {
-                    return
+                return
             }
 
             if shouldCallSwitchingDelegate {
@@ -155,7 +154,7 @@ open class SideMenuController: UIViewController {
     /// ``SideMenuController`` may be initialized from Storyboard, thus we shouldn't load the view in `loadView()`.
     /// As mentioned by Apple, "If you use Interface Builder to create your views and initialize the view controller,
     /// you must not override this method."
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Setup from the IB
@@ -208,7 +207,7 @@ open class SideMenuController: UIViewController {
 
     // MARK: Storyboard
 
-    open override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override open func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segue = segue as? SideMenuSegue, let identifier = segue.identifier else {
             return
         }
@@ -259,9 +258,15 @@ open class SideMenuController: UIViewController {
 
         UIApplication.shared.beginIgnoringInteractionEvents()
 
+        let frame = self.sideMenuFrame(visibility: reveal)
+        if reveal{
+            self.menuViewController.additionalSafeAreaInsets = UIEdgeInsets(top: -frame.origin.y, left: -frame.origin.x, bottom: 0, right: 0)
+            self.menuContainerView.setNeedsLayout()
+        }
         let animationClosure = {
-            self.menuContainerView.frame = self.sideMenuFrame(visibility: reveal)
+            self.menuContainerView.frame = frame
             self.contentContainerView.frame = self.contentFrame(visibility: reveal)
+            self.menuContainerView.layoutIfNeeded()
             if self.shouldShowShadowOnContent {
                 self.contentContainerOverlay?.alpha = reveal ? self.preferences.animation.shadowAlpha : 0
             }
@@ -269,7 +274,6 @@ open class SideMenuController: UIViewController {
 
         let animationCompletionClosure: (Bool) -> Void = { finish in
             self.menuViewController.endAppearanceTransition()
-
             if shouldCallDelegate {
                 if reveal {
                     self.delegate?.sideMenuControllerDidRevealMenu(self)
@@ -301,7 +305,6 @@ open class SideMenuController: UIViewController {
             animationCompletionClosure(true)
             completion?(true)
         }
-
     }
 
     private func animateMenu(with reveal: Bool,
@@ -319,18 +322,18 @@ open class SideMenuController: UIViewController {
                        initialSpringVelocity: preferences.animation.initialSpringVelocity,
                        options: preferences.animation.options,
                        animations: {
-                        if shouldChangeStatusBar && shouldAnimateStatusBarChange {
-                            self.setStatusBar(hidden: reveal)
-                        }
+                           if shouldChangeStatusBar && shouldAnimateStatusBarChange {
+                               self.setStatusBar(hidden: reveal)
+                           }
 
-                        animations()
-        }, completion: { (finished) in
-            if shouldChangeStatusBar && !shouldAnimateStatusBarChange && !reveal {
-                self.setStatusBar(hidden: reveal)
-            }
+                           animations()
+                       }, completion: { finished in
+                           if shouldChangeStatusBar && !shouldAnimateStatusBarChange && !reveal {
+                               self.setStatusBar(hidden: reveal)
+                           }
 
-            completion?(finished)
-        })
+                           completion?(finished)
+                       })
     }
 
     // MARK: Gesture Recognizer
@@ -348,7 +351,7 @@ open class SideMenuController: UIViewController {
             return
         }
 
-        var overlay:UIView
+        var overlay: UIView
         if SideMenuController.preferences.animation.shouldAddBlurWhenRevealing {
             let blurEffect = UIBlurEffect(style: .light)
             overlay = UIVisualEffectView(effect: blurEffect)
@@ -459,7 +462,7 @@ open class SideMenuController: UIViewController {
                     movingDistance = menuWidth - menuContainerView.frame.minX
                 }
                 let shadowPercent = min(movingDistance / menuWidth, 1)
-                contentContainerOverlay?.alpha = self.preferences.animation.shadowAlpha * shadowPercent
+                contentContainerOverlay?.alpha = preferences.animation.shadowAlpha * shadowPercent
             }
         case .ended, .cancelled, .failed:
             let offset: CGFloat
@@ -510,7 +513,7 @@ open class SideMenuController: UIViewController {
         // the navigation bar will go up as we don't expect.
         // So we need to manipulate the windows of status bar manually.
 
-        let behavior = self.preferences.basic.statusBarBehavior
+        let behavior = preferences.basic.statusBarBehavior
         guard let sbw = UIWindow.sb, sbw.isStatusBarHidden(with: behavior) != hidden else {
             return
         }
@@ -543,12 +546,12 @@ open class SideMenuController: UIViewController {
         return screenshot
     }
 
-    open override var childForStatusBarStyle: UIViewController? {
+    override open var childForStatusBarStyle: UIViewController? {
         // Forward to the content view controller
         return contentViewController
     }
 
-    open override var childForStatusBarHidden: UIViewController? {
+    override open var childForStatusBarHidden: UIViewController? {
         return contentViewController
     }
 
@@ -620,10 +623,10 @@ open class SideMenuController: UIViewController {
                                                                     to: viewController)
 
             #if DEBUG
-            if animatorFromDelegate == nil {
-                // swiftlint:disable:next line_length
-                print("[SideMenu] `setContentViewController` is called with animated while the delegate method return nil, fall back to the fade animation.")
-            }
+                if animatorFromDelegate == nil {
+                    // swiftlint:disable:next line_length
+                    print("[SideMenu] `setContentViewController` is called with animated while the delegate method return nil, fall back to the fade animation.")
+                }
             #endif
 
             let animator = animatorFromDelegate ?? BasicTransitionAnimator()
@@ -632,7 +635,7 @@ open class SideMenuController: UIViewController {
                                                                          toViewController: viewController)
             transitionContext.isAnimated = true
             transitionContext.isInteractive = false
-            transitionContext.completion = { finish in
+            transitionContext.completion = { _ in
                 self.unload(self.contentViewController)
 
                 self.shouldCallSwitchingDelegate = false
@@ -713,27 +716,27 @@ open class SideMenuController: UIViewController {
 
     // MARK: Orientation
 
-    open override var shouldAutorotate: Bool {
+    override open var shouldAutorotate: Bool {
         if preferences.basic.shouldUseContentSupportedOrientations {
             return contentViewController.shouldAutorotate
         }
         return preferences.basic.shouldAutorotate
     }
-    
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if preferences.basic.shouldUseContentSupportedOrientations {
             return contentViewController.supportedInterfaceOrientations
         }
         return preferences.basic.supportedOrientations
     }
 
-    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         hideMenu(animated: false, completion: { _ in
             // Temporally hide the menu container view for smooth animation
             self.menuContainerView.isHidden = true
             coordinator.animate(alongsideTransition: { _ in
                 self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed, targetSize: size)
-            }, completion: { (_) in
+            }, completion: { _ in
                 self.menuContainerView.isHidden = false
                 self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed, targetSize: size)
             })
@@ -751,7 +754,7 @@ extension SideMenuController: UIGestureRecognizerDelegate {
             return false
         }
 
-        if let shouldReveal = self.delegate?.sideMenuControllerShouldRevealMenu(self) {
+        if let shouldReveal = delegate?.sideMenuControllerShouldRevealMenu(self) {
             guard shouldReveal else {
                 return false
             }
@@ -782,10 +785,10 @@ extension SideMenuController: UIGestureRecognizerDelegate {
 
     private func isViewControllerInsideNavigationStack(for view: UIView?) -> Bool {
         guard let view = view,
-            let viewController = view.parentViewController else {
-                return false
+              let viewController = view.parentViewController else {
+            return false
         }
-        
+
         if let navigationController = viewController as? UINavigationController {
             return navigationController.viewControllers.count > 1
         } else if let navigationController = viewController.navigationController {
