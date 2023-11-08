@@ -1,5 +1,3 @@
-# ![](https://github.com/kukushi/SideMenu/blob/develop/Images/Logo.png?raw=true)
-
 [![Version](https://img.shields.io/cocoapods/v/SideMenuSwift.svg?style=flat-square)](http://cocoapods.org/pods/SideMenuSwift)
 ![Swift5](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat%22)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
@@ -26,12 +24,12 @@ Besides all the features a *Side Menu* should have, it supports:
 
 Menu Position / Status Menu Behavior
 
-| Above + None | Below + Slide |
-| --- | --- |
+| Above + None                                                                         | Below + Slide                                                                         |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
 | ![](https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/Above%2BNone.gif) | ![](https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/Below%2BSlide.gif) |
 
-| SideBySide + Fade | SideBySide + HideOnMenu |
-| --- | --- |
+| SideBySide + Fade                                                                         | SideBySide + HideOnMenu                                                                         |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | ![](https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/SideBySide%2BFade.gif) | ![](https://raw.githubusercontent.com/kukushi/SideMenu/master/Images/SideBySide%2BHideOnMenu.gif) |
 
 We call the left/right view controller as the **menu** view controller, the central view controller as **content** view controller.
@@ -51,6 +49,7 @@ To install `SideMenu` with [CocoaPods](http://cocoapods.org/), add the below lin
 pod 'SideMenuSwift'
 # Note it's NOT 'SideMenu'
 ```
+
 ### Carthage
 
 To install `SideMenu` with [Carthage](https://github.com/Carthage/Carthage), add the below line in your `Cartfile`:
@@ -76,15 +75,15 @@ github "kukushi/SideMenu" "master"
 To set up `SideMenu` in storyboard:
 </summary>
 
-
 1. Open the view controller's *Identity inspector*. Change its **Class** to `SideMenuController` and **Module** to `SideMenuSwift`.
 2. Set up the menu view controller and the initial content view controller in your Storyboard. Add a **Custom** segue from the `SideMenuController` to each of them.
-    - Change the menu segue's identifier to `SideMenu.Menu`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
-    - Change the content segue's identifier to `SideMenu.Content`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
-4. (Optional) If you want to use custom segue identifier:
+   - Change the menu segue's identifier to `SideMenu.Menu`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
+   - Change the content segue's identifier to `SideMenu.Content`, **Class** to `SideMenuSegue` and **Module** to `SideMenuSwift`.
+3. (Optional) If you want to use custom segue identifier:
    - Open the `SideMenuController`'s *Attribute inspector*.
    - In the **Side Menu Controller** section, modify the *Content SegueID/Menu SegueID* to the desired value and change the corresponding segue's identifier.
-5. It's done. Check [this screenshot](https://github.com/kukushi/SideMenu/blob/develop/Images/StoryboardSample.png?raw=true) a for clear view.
+4. It's done. Check [this screenshot](https://github.com/kukushi/SideMenu/blob/develop/Images/StoryboardSample.png?raw=true) a for clear view.
+
 </details>
 
 ### Programmatically
@@ -109,14 +108,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuViewController = ...
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = SideMenuController(contentViewController: contentViewController, 
+        window?.rootViewController = SideMenuController(contentViewController: contentViewController,
         menuViewController: menuViewController)
-        
+
         window?.makeKeyAndVisible()
         return true
     }
 }
 ```
+
 </details>
 
 Use the `sideMenuController` method which provided in `UIViewController`'s extension to get the parent `SideMenuController`:
@@ -143,7 +143,7 @@ SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
 
 ### Caching the Content
 
-One of the coolest features of `SideMenu` is caching. 
+One of the coolest features of `SideMenu` is caching.
 
 ```swift
 // Cache the view controllers somewhere in your code
@@ -170,7 +170,7 @@ sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiat
 ## Requirements
 
 - Xcode 10 or later
-- iOS 9.0 or later
+- iOS 11.0 or later
 
 ## License
 

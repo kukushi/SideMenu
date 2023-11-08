@@ -18,13 +18,18 @@ extension UIViewController {
         // `willMoveToParentViewController:` is called automatically when adding
 
         addChild(viewController)
-
+        
         viewController.view.frame = view.bounds
-        viewController.view.translatesAutoresizingMaskIntoConstraints = true
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+//        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         view.addSubview(viewController.view)
-
+        NSLayoutConstraint.activate([
+            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+        ])
         viewController.didMove(toParent: self)
     }
 
