@@ -12,7 +12,7 @@
 
 Besides all the features a *Side Menu* should have, it supports:
 
-- Four kinds of status bar behaviors (iOS 12 and earlier)
+- Four kinds of status bar behaviors (iOS 12 only)
 - Three different menu position
 - Both storyboard and programmatically
 - Caching the content view controller and lazy initialization
@@ -39,9 +39,6 @@ We call the left/right view controller as the **menu** view controller, the cent
 ## Installation
 
 For Swift 5.0 and later, please use 2.0.0 or later version.
-
-> For Swift 4.0, please using 0.5.1 or earlier version.
-> For Swift 4.2, please using 1.x.
 
 ### CocoaPods
 
@@ -169,8 +166,8 @@ sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiat
 
 ## Requirements
 
-- Xcode 10 or later
-- iOS 9.0 or later
+- Xcode 13 or later
+- iOS 12.0 or later
 
 ## License
 

@@ -1,5 +1,9 @@
 # CHANGES
 
+## [2.0.19]
+
+- Bump deployment target to iOS 12.0
+
 ## [2.0.7]
 
 - [Add `panGestureSensitivity`](https://github.com/kukushi/SideMenu/issues/71))

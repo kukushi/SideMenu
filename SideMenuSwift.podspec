@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "SideMenuSwift"
-    s.version      = "2.0.10"
+    s.version      = "2.1.0"
     s.summary      = "An interactive iOS side menu with rich features."
   
     s.description  = <<-DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.homepage     = "https://github.com/kukushi/SideMenu"
     s.license      = "MIT"
     s.author       = { "kukushi" => "" }
-    s.platform     = :ios, "9.0"
+    s.platform     = :ios, "12.0"
     s.source       = { :git => "https://github.com/kukushi/SideMenu.git", :tag => s.version }
     s.source_files  = "Sources/SideMenu/*.{h,m,swift}"
     s.swift_version = "5.0"

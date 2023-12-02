@@ -37,14 +37,6 @@ class WorkWithOtherViewController: UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-
     @objc func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
