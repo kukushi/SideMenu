@@ -23,6 +23,7 @@
 		874025F2203DB06600EE4306 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87A5D7BE2026108900DAAF4F /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		875A43E22089F474008E7B17 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A43E12089F474008E7B17 /* UITestHelpers.swift */; };
 		876428BD203EFDA900203A30 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876428BC203EFDA900203A30 /* StatusBar.swift */; };
+		8788C3352B470C1B00DE934F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8788C3342B470A5A00DE934F /* PrivacyInfo.xcprivacy */; };
 		8792D079203093A5007F917F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792D078203093A5007F917F /* AppDelegate.swift */; };
 		8792D07B203093A5007F917F /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792D07A203093A5007F917F /* PreferencesViewController.swift */; };
 		8792D07E203093A5007F917F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8792D07C203093A5007F917F /* Main.storyboard */; };
@@ -90,6 +91,7 @@
 		874025EF203DA11900EE4306 /* OtherExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExampleViewController.swift; sourceTree = "<group>"; };
 		875A43E12089F474008E7B17 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
 		876428BC203EFDA900203A30 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		8788C3342B470A5A00DE934F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8792D076203093A5007F917F /* SideMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8792D078203093A5007F917F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8792D07A203093A5007F917F /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				872C120223119BB700C49A29 /* SideMenu */,
+				8788C3342B470A5A00DE934F /* PrivacyInfo.xcprivacy */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8788C3352B470C1B00DE934F /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
