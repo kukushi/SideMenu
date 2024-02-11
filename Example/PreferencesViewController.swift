@@ -23,6 +23,7 @@ class PreferencesViewController: UIViewController {
     @IBOutlet weak var enablePanGesture: UISwitch!
     @IBOutlet weak var enableRubberBandEffect: UISwitch!
     @IBOutlet weak var enableTransitionAnimationSwitch: UISwitch!
+    @IBOutlet weak var keepsOpenSwitch: UISwitch!
     @IBOutlet weak var statusBarBehaviorSegment: UISegmentedControl!
     @IBOutlet weak var menuPositionSegment: UISegmentedControl!
     @IBOutlet weak var menuDirectionSegment: UISegmentedControl!
@@ -134,6 +135,8 @@ class PreferencesViewController: UIViewController {
             SideMenuController.preferences.basic.enableRubberEffectWhenPanning = sender.isOn
         case enableTransitionAnimationSwitch:
             Preferences.shared.enableTransitionAnimation = sender.isOn
+        case keepsOpenSwitch:
+            SideMenuController.preferences.basic.keepsMenuOpenAfterRotation = sender.isOn
         default:
             break
         }

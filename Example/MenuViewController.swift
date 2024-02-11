@@ -119,6 +119,13 @@ extension MenuViewController: SideMenuControllerDelegate {
     func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {
         print("[Example] Menu did reveal.")
     }
+
+    func sideMenuControllerGetMenuWidth(_ sideMenuController: SideMenuController, for size: CGSize) -> CGFloat? {
+        if size.width > size.height {
+            return 480
+        }
+        return 240
+    }
 }
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {

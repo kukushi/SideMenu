@@ -124,8 +124,8 @@ extension SideMenuController {
             /// The sensitivity of the pan gesture recognizer revealing menu view controller.
             public var panGestureSensitivity: CGFloat = 0.25
 
-            /// If the side menu should keep open on rotation. Default is false.
-            public var shouldKeepMenuOpen: Bool = false
+            /// If the side menu should keep open on rotation. Default is `false`.
+            public var keepsMenuOpenAfterRotation: Bool = false
         }
 
         /// The basic configuration of side menu.

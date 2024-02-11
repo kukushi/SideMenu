@@ -73,6 +73,11 @@ public protocol SideMenuControllerDelegate: AnyObject {
     ///
     /// - Parameter sideMenu: The side menu
     func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController)
+    
+    
+    /// Get the width of side menu in current size
+    /// - Parameter sideMenuController: The side menu
+    func sideMenuControllerGetMenuWidth(_ sideMenuController: SideMenuController, for size: CGSize) -> CGFloat?
 }
 
 // Provides default implementation for delegates
@@ -89,9 +94,10 @@ public extension SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController,
                             didShow viewController: UIViewController,
                             animated: Bool) {}
-    func sideMenuControllerShouldRevealMenu(_ sideMenuController: SideMenuController) -> Bool { return true }
+    func sideMenuControllerShouldRevealMenu(_ sideMenuController: SideMenuController) -> Bool { true }
     func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {}
     func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController) {}
+    func sideMenuControllerGetMenuWidth(_ sideMenuController: SideMenuController, for size: CGSize) -> CGFloat? { nil }
 }
