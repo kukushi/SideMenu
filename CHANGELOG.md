@@ -2,9 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [2.1.1]
+### [2.1.1](https://github.com/kukushi/SideMenu/compare/v2.0.8...v2.1.1) (2024-02-26)
 
-- Supports keeps SideMenu open when the device is rotated.
+
+### Features
+
+* add privacy ([9c7efc1](https://github.com/kukushi/SideMenu/commit/9c7efc1306c006f51fe270185a051caa6a5596e4))
+* disable library evolution ([59f0d95](https://github.com/kukushi/SideMenu/commit/59f0d95b1bfc785a14e07d1cd246a370ae93cbe1))
+* support keeps open when rotation ([db5812b](https://github.com/kukushi/SideMenu/commit/db5812b10b923da2c0bb695fa9ea97c1fa2edee1))
+* update doc ([f0d1d96](https://github.com/kukushi/SideMenu/commit/f0d1d966505e2fc0ca213441aa3967d64ba634d9))
+* usding DocC as the documentation format ([fc8fc18](https://github.com/kukushi/SideMenu/commit/fc8fc18bc767e5425170b686a200640833192ad4))
+
+
+### Bug Fixes
+
+* lint warnings ([4e80913](https://github.com/kukushi/SideMenu/commit/4e80913e2c82946625c5273f2b5ddad576a0bb63))
+* swiftlint in run phase ([07b7b5b](https://github.com/kukushi/SideMenu/commit/07b7b5b2d9f1a9a9da76f576f4a4db6dabca2753))
 
 ## [2.0.19]
 
