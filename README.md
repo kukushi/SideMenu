@@ -166,7 +166,7 @@ sideMenuController?.cache(viewControllerGenerator: { self.storyboard?.instantiat
 
 ## Requirements
 
-- Xcode 13 or later
+- Xcode 15 or later
 - iOS 12.0 or later
 
 ## License
