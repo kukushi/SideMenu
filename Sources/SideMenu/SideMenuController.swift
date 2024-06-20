@@ -492,6 +492,10 @@ open class SideMenuController: UIViewController {
                                                selector: #selector(SideMenuController.appDidEnteredBackground),
                                                name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(SideMenuController.didChangeStatusBarFrame),
+                                               name: UIApplication.didChangeStatusBarFrameNotification,
+                                               object: nil)
     }
 
     private func unregisterNotifications() {
@@ -502,6 +506,14 @@ open class SideMenuController: UIViewController {
     @objc private func appDidEnteredBackground() {
         if preferences.basic.hideMenuWhenEnteringBackground {
             hideMenu(animated: false)
+        }
+    }
+    
+    @objc private func didChangeStatusBarFrame() {
+        UIView.animate(withDuration: 0.25) {
+            self.menuContainerView.frame = self.sideMenuFrame(visibility: self.isMenuRevealed)
+            self.contentContainerView.frame = self.contentFrame(visibility: self.isMenuRevealed)
+            self.view.layoutIfNeeded()
         }
     }
 
