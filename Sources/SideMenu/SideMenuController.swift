@@ -18,7 +18,8 @@ import UIKit
 /// 
 /// ├── Menu View Controller  
 /// 
-/// └── Content View Controller  
+/// └── Content View Controller
+@MainActor
 open class SideMenuController: UIViewController {
 
     /// Configure this property to change the behavior of SideMenuController;
@@ -148,10 +149,6 @@ open class SideMenuController: UIViewController {
         // Assignment in initializer won't trigger the setter
         self.contentViewController = contentViewController
         self.menuViewController = menuViewController
-    }
-
-    deinit {
-        unregisterNotifications()
     }
 
     // MARK: Life Cycle
@@ -492,11 +489,6 @@ open class SideMenuController: UIViewController {
                                                selector: #selector(SideMenuController.appDidEnteredBackground),
                                                name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
-    }
-
-    private func unregisterNotifications() {
-        // swiftlint:disable:next notification_center_detachment
-        NotificationCenter.default.removeObserver(self)
     }
 
     @objc private func appDidEnteredBackground() {
